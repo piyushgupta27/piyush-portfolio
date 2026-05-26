@@ -7,10 +7,10 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
 
 const stats = [
-  { label: "Projects Shipped", value: "30+" },
-  { label: "Years Experience", value: "5+" },
-  { label: "Models Trained", value: "100+" },
-  { label: "Papers Read", value: "∞" },
+  { label: "Slice users / day", value: "10M+" },
+  { label: "jM community", value: "3M+" },
+  { label: "Yrs eng leadership", value: "8" },
+  { label: "Active projects", value: "5" },
 ];
 
 export function About() {
@@ -19,8 +19,8 @@ export function About() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label="// about"
-          title="Building AI That Ships"
-          description="Not just research — production systems that scale."
+          title="Engineering at Scale"
+          description="Platform engineering, product leadership, and autonomous AI tooling."
         />
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -30,7 +30,7 @@ export function About() {
               <div className="relative overflow-hidden rounded-2xl border border-border/50 neon-glow">
                 <Image
                   src="https://images.unsplash.com/photo-1607706189992-eae578626c86?w=600&h=600&fit=crop&crop=center"
-                  alt="Aaabad Touk"
+                  alt="Piyush Gupta"
                   width={600}
                   height={600}
                   className="w-full aspect-square object-cover"
@@ -52,14 +52,14 @@ export function About() {
                   <pre className="font-mono text-xs leading-relaxed text-muted-foreground">
                     <code>
 {`$ whoami
-> aaabad_touk
+> piyush_gupta
 
 $ cat skills.txt
-> pytorch, langchain, nextjs,
-> kubernetes, python, typescript
+> platform-eng, typescript, go,
+> ai-agents, system-design, EM
 
 $ echo $STATUS
-> building the future`}
+> building ai-sdlc`}
                     </code>
                   </pre>
                 </CardContent>
@@ -72,19 +72,19 @@ $ echo $STATUS
             <div className="flex flex-col justify-center space-y-8">
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  I&apos;m Aaabad Touk, an AI engineer based in San Francisco. I
-                  specialize in building end-to-end machine learning systems — from
-                  training custom models to deploying them at scale.
+                  Senior engineering manager with deep IC chops. I co-founded
+                  jumpingMinds in 2018 and grew it into India&apos;s largest
+                  mental-health community — over 3M users by 2024.
                 </p>
                 <p>
-                  My work spans large language models, computer vision, and MLOps.
-                  I believe the best AI isn&apos;t the most complex — it&apos;s the
-                  one that reliably ships value to users.
+                  Currently leading platform engineering at Slice, where the
+                  lending product serves 10M+ users daily. Alongside that,
+                  I&apos;m building ai-sdlc: an autonomous multi-agent SDLC
+                  pipeline with HITL gates calibrated to blast radius.
                 </p>
                 <p>
-                  When I&apos;m not training models or optimizing inference
-                  pipelines, you&apos;ll find me contributing to open-source ML
-                  tools and writing about practical AI engineering.
+                  Looking for Sr EM roles at Series A–D AI companies building
+                  products people actually use.
                 </p>
               </div>
 
