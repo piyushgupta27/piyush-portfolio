@@ -72,19 +72,21 @@ $ echo $STATUS
             <div className="flex flex-col justify-center space-y-8">
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Senior engineering manager with deep IC chops. I co-founded
+                  Senior engineering manager with deep IC chops — I still ship
+                  code as readily as I grow teams. I co-founded
                   jumpingMinds in 2018 and grew it into India&apos;s largest
-                  mental-health community — over 3M users by 2024.
+                  mental-health community, scaling past 3M users by 2024.
                 </p>
                 <p>
                   Currently leading platform engineering at Slice, where the
-                  lending product serves 10M+ users daily. Alongside that,
-                  I&apos;m building ai-sdlc: an autonomous multi-agent SDLC
+                  lending product serves 10M+ users daily across one of
+                  India&apos;s fastest-growing fintechs. Alongside that,
+                  I&apos;m building ai-sdlc, an autonomous multi-agent SDLC
                   pipeline with HITL gates calibrated to blast radius.
                 </p>
                 <p>
-                  Looking for Sr EM roles at Series A–D AI companies building
-                  products people actually use.
+                  Now I&apos;m looking for Sr EM roles at Series A–D AI
+                  companies building products people actually use.
                 </p>
               </div>
 
