@@ -40,7 +40,7 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
           </span>
-          Available for new projects
+          Available for Sr EM roles at Series A–D AI companies
         </motion.div>
 
         {/* Name */}
@@ -50,29 +50,28 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-4 text-5xl font-bold tracking-tight sm:text-7xl"
         >
-          Aaabad{" "}
-          <span className="gradient-text">Touk</span>
+          Piyush{" "}
+          <span className="gradient-text">Gupta</span>
         </motion.h1>
 
-        {/* Handle */}
+        {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6 font-mono text-sm text-muted-foreground"
+          className="mb-6 text-xl font-semibold text-foreground sm:text-2xl"
         >
-          @aaabadcode
+          Building autonomous AI tooling I&apos;d use myself
         </motion.p>
 
-        {/* Tagline */}
+        {/* Sub-tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          AI engineer building intelligent systems — from LLMs and computer
-          vision to production ML pipelines. Turning research into products.
+          Sr Engineering Manager. Co-founder of jumpingMinds (3M+ users). Currently leading platform engineering at Slice (10M+ users daily).
         </motion.p>
 
         {/* CTAs */}
@@ -86,13 +85,13 @@ export function Hero() {
             href="#projects"
             className={cn(buttonVariants({ size: "lg" }), "neon-glow")}
           >
-            View Projects
+            See the work
           </a>
           <a
             href="#contact"
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
-            Get in Touch
+            Get in touch
           </a>
           <div className="flex items-center gap-2">
             <a
