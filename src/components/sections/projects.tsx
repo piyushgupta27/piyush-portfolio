@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import {
-  MessageSquare,
-  Eye,
   Code,
   Workflow,
-  ImageIcon,
+  Search,
+  Briefcase,
+  BarChart2,
+  Activity,
+  ExternalLink,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -15,11 +17,12 @@ import { StaggerChildren, staggerItem } from "@/components/motion/stagger-childr
 import { projects } from "@/data/projects";
 
 const iconMap: Record<string, React.ElementType> = {
-  MessageSquare,
-  Eye,
   Code,
   Workflow,
-  Image: ImageIcon,
+  Search,
+  Briefcase,
+  BarChart2,
+  Activity,
 };
 
 export function Projects() {
@@ -48,7 +51,18 @@ export function Projects() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-background/50">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-lg">{project.title}</h3>
+                      <h3 className="font-semibold text-lg flex-1">{project.title}</h3>
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                          aria-label={`View ${project.title} on GitHub`}
+                        >
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      )}
                     </div>
 
                     <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
