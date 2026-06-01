@@ -21,7 +21,7 @@ export function Navbar() {
     <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <a href="#" className="font-mono text-sm font-bold tracking-wider">
-          <span className="gradient-text">aaabadcode</span>
+          <span className="gradient-text">piyush.gupta</span>
         </a>
 
         {/* Desktop */}
