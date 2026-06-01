@@ -44,3 +44,7 @@ next-env.d.ts
 .env.local
 .env*.local
 .vercel
+
+# ai-sdlc agent state (machine-local)
+.audit/
+.sdlc-queue/
