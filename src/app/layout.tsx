@@ -15,21 +15,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aaabad Touk — AI Engineer",
+  title: "Piyush Gupta — Sr Engineering Manager",
   description:
-    "Portfolio of Aaabad Touk (@aaabadcode) — AI engineer building intelligent systems, from LLMs to computer vision.",
+    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
   openGraph: {
-    title: "Aaabad Touk — AI Engineer",
+    title: "Piyush Gupta — Sr Engineering Manager",
     description:
-      "AI engineer building intelligent systems, from LLMs to computer vision.",
+      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
     type: "website",
+    images: ["https://piyushgupta.io/og.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aaabad Touk — AI Engineer",
+    title: "Piyush Gupta — Sr Engineering Manager",
     description:
-      "AI engineer building intelligent systems, from LLMs to computer vision.",
-    creator: "@aaabadcode",
+      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
   },
 };
 
