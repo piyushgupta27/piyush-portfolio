@@ -17,9 +17,15 @@
       "Bash(git commit:*)",
       "Bash(git rev-parse:*)",
       "Bash(git ls-files:*)",
-      "Bash(pnpm:*)",
-      "Bash(node:*)",
-      "Bash(npx:*)"
+      "Bash(pnpm install:*)",
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm run typecheck:*)",
+      "Bash(pnpm run lint:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(pnpm run build:*)"
     ]
   }
 }
