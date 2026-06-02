@@ -8,35 +8,19 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "DeepMind",
-    role: "Senior AI Research Engineer",
-    period: "2023 — Present",
+    company: "Slice",
+    role: "Sr Engineering Manager",
+    period: "2024 — Present",
     description:
-      "Leading research on multi-modal foundation models. Built internal tooling for large-scale distributed training across TPU pods.",
-    tech: ["JAX", "TPU", "Transformers", "Python"],
+      "Leading platform engineering on the lending product serving 10M+ users monthly. Owns reliability, payments rails, and the experimentation stack.",
+    tech: ["Platform Engineering", "Payments", "Reliability", "Experimentation"],
   },
   {
-    company: "OpenAI",
-    role: "ML Platform Engineer",
-    period: "2021 — 2023",
+    company: "jumpingMinds",
+    role: "Co-founder & CPO",
+    period: "2018 — 2024",
     description:
-      "Designed and scaled inference infrastructure for GPT models. Reduced latency by 40% through model optimization and caching strategies.",
-    tech: ["Python", "Kubernetes", "CUDA", "Redis"],
-  },
-  {
-    company: "Scale AI",
-    role: "Full-Stack ML Engineer",
-    period: "2020 — 2021",
-    description:
-      "Built data labeling pipelines and quality assurance systems for computer vision datasets. Shipped annotation tools used by 5k+ labelers.",
-    tech: ["React", "Python", "FastAPI", "PostgreSQL"],
-  },
-  {
-    company: "Hugging Face",
-    role: "Open Source Engineer (Intern)",
-    period: "2019 — 2020",
-    description:
-      "Contributed to the Transformers library. Implemented model architectures and wrote documentation for community adoption.",
-    tech: ["PyTorch", "Transformers", "TypeScript", "Docker"],
+      "Built India's largest mental-health community from 0 to 3M+ users. Led product, engineering, and growth. YC W21 alumnus.",
+    tech: ["Product", "Engineering", "Growth", "YC W21"],
   },
 ];
