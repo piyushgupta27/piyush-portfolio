@@ -2,41 +2,42 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   date: string;
-  readTime: string;
   tag: string;
+  url: string;
 }
 
 export const blogPosts: BlogPost[] = [
   {
-    title: "Why RAG is Eating the AI World",
+    title:
+      "Building Realtime Messaging Infrastructure for 50M+ Concurrent Users",
     excerpt:
-      "Retrieval-Augmented Generation is becoming the default architecture for enterprise AI. Here's why it works and how to build one.",
-    date: "Mar 2026",
-    readTime: "8 min read",
-    tag: "LLM",
+      "How we built realtime messaging at Disney+ Hotstar — sub-second latency, 25M+ concurrency baseline from the 2019 Cricket World Cup.",
+    date: "Feb 2024",
+    tag: "Distributed Systems",
+    url: "https://piyushguptaece.medium.com/building-realtime-messaging-infrastructure-for-50m-concurrent-users-with-sub-second-latency-741d0ea04235",
   },
   {
-    title: "Fine-Tuning vs. Prompting: A Practical Guide",
+    title: "Capturing A Billion Emo(j)i-ons",
     excerpt:
-      "When should you fine-tune a model versus engineering better prompts? I break down cost, performance, and maintenance trade-offs.",
-    date: "Jan 2026",
-    readTime: "12 min read",
-    tag: "ML",
+      "Bringing the stadium-energy emoji reactions in-house at Hotstar — performance, stability, and cost we couldn't get from a third-party.",
+    date: "Feb 2024",
+    tag: "Architecture",
+    url: "https://piyushguptaece.medium.com/capturing-a-billion-emo-j-i-ons-a6b5a1d39e96",
   },
   {
-    title: "Building ML Pipelines That Don't Break at 3AM",
+    title: "Why I enjoyed working at Disney!",
     excerpt:
-      "Lessons from running production ML systems. Monitoring, rollback strategies, and why you need feature stores.",
-    date: "Nov 2025",
-    readTime: "6 min read",
-    tag: "MLOps",
+      "A reflection on engineering culture and craft from my time at Disney+ Hotstar.",
+    date: "Aug 2019",
+    tag: "Culture",
+    url: "https://piyushguptaece.medium.com/why-i-enjoyed-working-disney-plus-c8ef83791334",
   },
   {
-    title: "The State of Computer Vision in 2025",
+    title: "Scheduling tasks in Android made easy",
     excerpt:
-      "From YOLO to vision transformers — a survey of what's working in production computer vision systems today.",
-    date: "Sep 2025",
-    readTime: "10 min read",
-    tag: "CV",
+      "Picking the right Android scheduling API across versions — AlarmManager, JobScheduler, GcmNetworkManager — and why we built Smart Scheduler.",
+    date: "Dec 2016",
+    tag: "Android",
+    url: "https://medium.com/hypertrack/scheduling-tasks-in-android-made-easy-231ca8178e38",
   },
 ];
