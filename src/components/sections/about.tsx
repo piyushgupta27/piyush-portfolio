@@ -29,7 +29,7 @@ export function About() {
             <div className="space-y-6">
               <div className="relative overflow-hidden rounded-2xl border border-border/50 neon-glow">
                 <Image
-                  src="https://images.unsplash.com/photo-1607706189992-eae578626c86?w=600&h=600&fit=crop&crop=center"
+                  src="/images/headshot.jpg"
                   alt="Piyush Gupta"
                   width={600}
                   height={600}
