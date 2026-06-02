@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { GithubIcon, XIcon } from "@/components/ui/icons";
+import { GithubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -95,7 +95,7 @@ export function Hero() {
           </a>
           <div className="flex items-center gap-2">
             <a
-              href="https://github.com/aaaby-code"
+              href="https://github.com/piyushgupta27"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -104,13 +104,13 @@ export function Hero() {
               <GithubIcon className="h-5 w-5" />
             </a>
             <a
-              href="https://x.com/aaabadcode"
+              href="https://linkedin.com/in/piyushguptaece"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="LinkedIn"
               className={buttonVariants({ variant: "ghost", size: "icon" })}
             >
-              <XIcon className="h-5 w-5" />
+              <LinkedInIcon className="h-5 w-5" />
             </a>
           </div>
         </motion.div>
