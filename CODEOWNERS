@@ -1,0 +1,12 @@
+# Code owners for piyush-portfolio.
+# These owners are requested for review on every PR touching the matched paths.
+
+# Default owner for everything in the repo.
+*                       @piyushgupta27
+
+# Red zone (Tier 0/1) — require explicit sign-off. See CLAUDE.md "Blast Radius".
+/CLAUDE.md              @piyushgupta27
+/.github/               @piyushgupta27
+/next.config.ts         @piyushgupta27
+/package.json           @piyushgupta27
+/pnpm-lock.yaml         @piyushgupta27

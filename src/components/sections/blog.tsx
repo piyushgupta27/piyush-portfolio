@@ -5,7 +5,10 @@ import { ArrowUpRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { StaggerChildren, staggerItem } from "@/components/motion/stagger-children";
+import {
+  StaggerChildren,
+  staggerItem,
+} from "@/components/motion/stagger-children";
 import { blogPosts } from "@/data/blog";
 
 export function Blog() {
@@ -30,10 +33,7 @@ export function Blog() {
                 <Card className="group h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
                   <CardContent className="p-6">
                     <div className="mb-4 flex items-center justify-between">
-                      <Badge
-                        variant="secondary"
-                        className="font-mono text-xs"
-                      >
+                      <Badge variant="secondary" className="font-mono text-xs">
                         {post.tag}
                       </Badge>
                       <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
