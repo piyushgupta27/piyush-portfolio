@@ -51,7 +51,7 @@ export function About() {
                   </div>
                   <pre className="font-mono text-xs leading-relaxed text-muted-foreground">
                     <code>
-{`$ whoami
+                      {`$ whoami
 > piyush_gupta
 
 $ cat skills.txt
@@ -73,9 +73,9 @@ $ echo $STATUS
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Senior engineering manager with deep IC chops — I still ship
-                  code as readily as I grow teams. I co-founded
-                  jumpingMinds in 2018 and grew it into India&apos;s largest
-                  mental-health community, scaling past 3M users by 2024.
+                  code as readily as I grow teams. I co-founded jumpingMinds in
+                  2018 and grew it into India&apos;s largest mental-health
+                  community, scaling past 3M users by 2024.
                 </p>
                 <p>
                   Currently leading platform engineering at Slice, where the

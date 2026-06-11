@@ -7,7 +7,9 @@ describe("next.config security headers", () => {
   });
 
   describe("headers() return value", () => {
-    let headerConfigs: Awaited<ReturnType<NonNullable<typeof nextConfig.headers>>>;
+    let headerConfigs: Awaited<
+      ReturnType<NonNullable<typeof nextConfig.headers>>
+    >;
 
     beforeAll(async () => {
       headerConfigs = await nextConfig.headers!();
@@ -26,7 +28,10 @@ describe("next.config security headers", () => {
       let headers: Array<{ key: string; value: string }>;
 
       beforeAll(() => {
-        headers = headerConfigs[0].headers as Array<{ key: string; value: string }>;
+        headers = headerConfigs[0].headers as Array<{
+          key: string;
+          value: string;
+        }>;
       });
 
       function getHeader(key: string) {
@@ -72,13 +77,13 @@ describe("next.config security headers", () => {
 
         it("has img-src allowing self, Unsplash, and data URIs", () => {
           expect(cspValue).toContain(
-            "img-src 'self' https://images.unsplash.com data:"
+            "img-src 'self' https://images.unsplash.com data:",
           );
         });
 
         it("has script-src with self, unsafe-inline, and unsafe-eval for Next.js + framer-motion", () => {
           expect(cspValue).toContain(
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
           );
         });
 
@@ -88,7 +93,7 @@ describe("next.config security headers", () => {
 
         it("has font-src allowing self, fonts.gstatic.com, and data URIs for Geist", () => {
           expect(cspValue).toContain(
-            "font-src 'self' https://fonts.gstatic.com data:"
+            "font-src 'self' https://fonts.gstatic.com data:",
           );
         });
 
@@ -109,10 +114,15 @@ describe("next.config security headers", () => {
       expect(nextConfig.images!.remotePatterns).toBeDefined();
       const patterns = nextConfig.images!.remotePatterns!;
       const unsplash = patterns.find(
-        (p) => typeof p === "object" && "hostname" in p && p.hostname === "images.unsplash.com"
+        (p) =>
+          typeof p === "object" &&
+          "hostname" in p &&
+          p.hostname === "images.unsplash.com",
       );
       expect(unsplash).toBeDefined();
-      expect((unsplash as { protocol: string; hostname: string }).protocol).toBe("https");
+      expect(
+        (unsplash as { protocol: string; hostname: string }).protocol,
+      ).toBe("https");
     });
   });
 });
