@@ -2,12 +2,12 @@ import { vi, describe, it, expect, beforeAll } from "vitest";
 import type { Metadata } from "next";
 import React from "react";
 
-vi.mock("next/font/google", () => ({
-  Geist: () => ({ variable: "--font-geist-sans", className: "geist-sans" }),
-  Geist_Mono: () => ({
-    variable: "--font-geist-mono",
-    className: "geist-mono",
-  }),
+vi.mock("geist/font/sans", () => ({
+  GeistSans: { variable: "--font-geist-sans", className: "geist-sans" },
+}));
+
+vi.mock("geist/font/mono", () => ({
+  GeistMono: { variable: "--font-geist-mono", className: "geist-mono" },
 }));
 
 vi.mock("./globals.css", () => ({}));
