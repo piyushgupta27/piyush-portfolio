@@ -1,9 +1,13 @@
 packages:
   - '.'
+
+# Dependencies allowed to run install/build scripts (pnpm build-script approval).
+# sharp ships the native image binary Next.js uses at build time; biome/esbuild/
+# unrs-resolver are native toolchain deps. msw's postinstall (service worker) is
+# not needed for build or tests.
 allowBuilds:
-  msw: set this to true or false
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
-ignoredBuiltDependencies:
-  - sharp
-  - unrs-resolver
+  '@biomejs/biome': true
+  esbuild: true
+  msw: false
+  sharp: true
+  unrs-resolver: true

@@ -34,9 +34,7 @@ export function Experience() {
                   ease: [0.21, 0.47, 0.32, 0.98],
                 }}
                 className={`relative flex flex-col gap-4 pl-12 md:pl-0 ${
-                  i % 2 === 0
-                    ? "md:flex-row"
-                    : "md:flex-row-reverse"
+                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
               >
                 {/* Dot */}

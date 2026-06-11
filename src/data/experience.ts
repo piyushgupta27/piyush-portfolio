@@ -13,7 +13,12 @@ export const experiences: Experience[] = [
     period: "2024 — Present",
     description:
       "Leading platform engineering on the lending product serving 10M+ users monthly. Owns reliability, payments rails, and the experimentation stack.",
-    tech: ["Platform Engineering", "Payments", "Reliability", "Experimentation"],
+    tech: [
+      "Platform Engineering",
+      "Payments",
+      "Reliability",
+      "Experimentation",
+    ],
   },
   {
     company: "jumpingMinds",

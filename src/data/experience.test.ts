@@ -1,4 +1,4 @@
-import { describe, it } from "node:test";
+import { describe, it } from "vitest";
 import assert from "node:assert/strict";
 import { experiences, type Experience } from "./experience.ts";
 
@@ -27,7 +27,7 @@ describe("experiences data", () => {
       assert.equal(
         found,
         undefined,
-        `Placeholder company "${name}" should have been removed`
+        `Placeholder company "${name}" should have been removed`,
       );
     }
   });
@@ -39,7 +39,7 @@ describe("experiences data", () => {
       assert.match(
         exp.period,
         yearPattern,
-        `Entry "${exp.company}" period "${exp.period}" should contain a year`
+        `Entry "${exp.company}" period "${exp.period}" should contain a year`,
       );
     }
   });
@@ -57,12 +57,12 @@ describe("experiences data", () => {
       for (const key of requiredKeys) {
         assert.ok(
           exp[key] !== undefined && exp[key] !== "",
-          `Entry "${exp.company}" is missing or has empty field "${key}"`
+          `Entry "${exp.company}" is missing or has empty field "${key}"`,
         );
       }
       assert.ok(
         Array.isArray(exp.tech) && exp.tech.length > 0,
-        `Entry "${exp.company}" must have a non-empty tech array`
+        `Entry "${exp.company}" must have a non-empty tech array`,
       );
     }
   });
@@ -86,7 +86,7 @@ describe("experiences data", () => {
       assert.equal(typeof exp.description, "string");
       assert.ok(
         exp.description.length > 0,
-        `Entry "${exp.company}" has empty description`
+        `Entry "${exp.company}" has empty description`,
       );
     }
   });

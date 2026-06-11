@@ -1,12 +1,9 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { describe, it } from "node:test";
+import { describe, it } from "vitest";
 import assert from "node:assert/strict";
 
-const src = readFileSync(
-  resolve(import.meta.dirname, "icons.tsx"),
-  "utf-8"
-);
+const src = readFileSync(resolve(import.meta.dirname, "icons.tsx"), "utf-8");
 
 describe("icons.tsx — icon exports", () => {
   it("exports GithubIcon", () => {

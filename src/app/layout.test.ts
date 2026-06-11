@@ -2,12 +2,12 @@ import { vi, describe, it, expect, beforeAll } from "vitest";
 import type { Metadata } from "next";
 import React from "react";
 
-vi.mock("next/font/google", () => ({
-  Geist: () => ({ variable: "--font-geist-sans", className: "geist-sans" }),
-  Geist_Mono: () => ({
-    variable: "--font-geist-mono",
-    className: "geist-mono",
-  }),
+vi.mock("geist/font/sans", () => ({
+  GeistSans: { variable: "--font-geist-sans", className: "geist-sans" },
+}));
+
+vi.mock("geist/font/mono", () => ({
+  GeistMono: { variable: "--font-geist-mono", className: "geist-mono" },
 }));
 
 vi.mock("./globals.css", () => ({}));
@@ -46,14 +46,14 @@ describe("layout metadata", () => {
   describe("openGraph", () => {
     it("has correct OG title", () => {
       expect((metadata.openGraph as Record<string, unknown>)?.title).toBe(
-        TITLE
+        TITLE,
       );
     });
 
     it("has correct OG description", () => {
-      expect(
-        (metadata.openGraph as Record<string, unknown>)?.description
-      ).toBe(DESCRIPTION);
+      expect((metadata.openGraph as Record<string, unknown>)?.description).toBe(
+        DESCRIPTION,
+      );
     });
 
     it("sets OG image to placeholder URL", () => {
@@ -64,7 +64,7 @@ describe("layout metadata", () => {
 
     it("sets OG type to website", () => {
       expect((metadata.openGraph as Record<string, unknown>)?.type).toBe(
-        "website"
+        "website",
       );
     });
   });
@@ -94,8 +94,8 @@ describe("RootLayout component", () => {
       React.createElement(
         RootLayout,
         null,
-        React.createElement("span", null, "test-child")
-      )
+        React.createElement("span", null, "test-child"),
+      ),
     );
     expect(html).toContain("test-child");
   });
@@ -103,7 +103,7 @@ describe("RootLayout component", () => {
   it("renders html element with lang=en", async () => {
     const { renderToString } = await import("react-dom/server");
     const html = renderToString(
-      React.createElement(RootLayout, null, React.createElement("div"))
+      React.createElement(RootLayout, null, React.createElement("div")),
     );
     expect(html).toContain('lang="en"');
   });

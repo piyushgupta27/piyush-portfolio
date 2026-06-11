@@ -13,7 +13,10 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
-import { StaggerChildren, staggerItem } from "@/components/motion/stagger-children";
+import {
+  StaggerChildren,
+  staggerItem,
+} from "@/components/motion/stagger-children";
 import { projects } from "@/data/projects";
 
 const iconMap: Record<string, React.ElementType> = {
@@ -51,7 +54,9 @@ export function Projects() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-background/50">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-lg flex-1">{project.title}</h3>
+                      <h3 className="font-semibold text-lg flex-1">
+                        {project.title}
+                      </h3>
                       {project.link && (
                         <a
                           href={project.link}
