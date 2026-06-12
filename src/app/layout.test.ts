@@ -107,4 +107,12 @@ describe("RootLayout component", () => {
     );
     expect(html).toContain('lang="en"');
   });
+
+  it("applies dark theme class to html element", async () => {
+    const { renderToString } = await import("react-dom/server");
+    const html = renderToString(
+      React.createElement(RootLayout, null, React.createElement("div")),
+    );
+    expect(html).toMatch(/class="[^"]*\bdark\b[^"]*"/);
+  });
 });
