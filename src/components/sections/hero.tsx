@@ -83,13 +83,13 @@ export function Hero() {
         >
           <a
             href="#projects"
-            className={cn(buttonVariants({ size: "lg" }), "neon-glow")}
+            className={cn(buttonVariants({ size: "lg" }), "neon-glow min-h-[44px]")}
           >
             See the work
           </a>
           <a
             href="#contact"
-            className={buttonVariants({ variant: "outline", size: "lg" })}
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "min-h-[44px]")}
           >
             Get in touch
           </a>
