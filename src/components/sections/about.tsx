@@ -33,7 +33,7 @@ export function About() {
                   alt="Piyush Gupta"
                   width={600}
                   height={600}
-                  className="w-full aspect-square object-cover"
+                  className="w-full aspect-square object-cover object-top"
                   priority
                 />
               </div>
