@@ -34,7 +34,7 @@ export function Skills() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-background/50">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="font-semibold">{cat.category}</h3>
+                      <h3 className="text-base font-semibold">{cat.category}</h3>
                     </div>
 
                     <div className="space-y-4">
