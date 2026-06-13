@@ -52,3 +52,12 @@ next-env.d.ts
 # ai-sdlc agent state (machine-local)
 .audit/
 .sdlc-queue/
+
+# gstack local artifacts
+.gstack/
+
+# local recordings
+*.mov
+
+# machine-local continuation doc pointer (absolute path, never commit)
+.continuation-doc-path

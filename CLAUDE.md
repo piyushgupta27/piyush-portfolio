@@ -18,3 +18,15 @@ Managed as an ai-sdlc testbed. All non-trivial work flows through:
 - **Testbed duty.** When work surfaces an ai-sdlc platform gap (onboarding miss, gate false-positive, prompt weakness), document it exhaustively + without bias — what / why it matters / evidence / suggested fix — as an ai-sdlc issue. The platform enforces systematically; testbeds report gaps diligently; neither is assumed correct.
 - **Pipeline artifacts stay gitignored.** `.audit/` and `.sdlc-queue/` are written into the working tree by the pipeline; they must remain gitignored so deterministic gates don't fail on the pipeline's own output.
 <!-- /ai-sdlc:rules -->
+
+## Session start checklist
+
+Run before any feature work — no exceptions:
+
+1. `git checkout main && git pull`
+2. `gh issue list --label blocker` — highest-priority blocker goes first; do not start other work until it's resolved
+3. `diff .github/pull_request_template.md ~/Workspace/ai-sdlc/meta/templates/pull-request.md` — sync if different (must be 10-section canonical)
+4. All features via: `pnpm sdlc dispatch --project piyush-portfolio` (run from `~/Workspace/piyush-portfolio`; no `--issue` flag; order the board first)
+5. Read `tasks/lessons.md`
+
+**Employer-detail boundary (privacy):** company names in hero/experience = keep (intentional portfolio content). Scrub: `/Users/piyush/`, `ai-workspace`, `mind-palace`, tokens, credentials.
