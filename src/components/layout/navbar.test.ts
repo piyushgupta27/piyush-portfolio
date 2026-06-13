@@ -86,3 +86,53 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
     });
   });
 });
+
+describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
+  it("logo anchor has h-11 (44px height)", () => {
+    const logoIdx = src.indexOf('href="#"');
+    assert.ok(logoIdx !== -1, "Logo href='#' must be present");
+    const block = src.slice(logoIdx, logoIdx + 200);
+    assert.ok(
+      block.includes("h-11"),
+      "Logo anchor must have h-11 (44px) so tap target meets minimum",
+    );
+  });
+
+  it("desktop nav links have h-11 (44px height)", () => {
+    assert.ok(
+      src.includes(
+        "inline-flex h-11 items-center rounded-md px-3",
+      ),
+      "Desktop nav link className must include h-11 for 44px touch target",
+    );
+  });
+
+  it("mobile hamburger toggle has min-h-[44px]", () => {
+    const toggleIdx = src.indexOf('aria-label="Toggle menu"');
+    assert.ok(toggleIdx !== -1, "Mobile toggle button must have aria-label");
+    const block = src.slice(Math.max(0, toggleIdx - 250), toggleIdx + 50);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Mobile toggle Button must have min-h-[44px]",
+    );
+  });
+
+  it("mobile hamburger toggle has min-w-[44px]", () => {
+    const toggleIdx = src.indexOf('aria-label="Toggle menu"');
+    const block = src.slice(Math.max(0, toggleIdx - 250), toggleIdx + 50);
+    assert.ok(
+      block.includes("min-w-[44px]"),
+      "Mobile toggle Button must have min-w-[44px]",
+    );
+  });
+
+  it("mobile nav links have h-11 (44px height)", () => {
+    const onClickIdx = src.indexOf("onClick={() => setOpen(false)}");
+    assert.ok(onClickIdx !== -1, "Mobile nav link onClick handler must be present");
+    const block = src.slice(Math.max(0, onClickIdx - 100), onClickIdx + 200);
+    assert.ok(
+      block.includes("h-11"),
+      "Mobile nav links must have h-11 for 44px touch target",
+    );
+  });
+});
