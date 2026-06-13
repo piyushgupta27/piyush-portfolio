@@ -14,7 +14,7 @@ export function Contact() {
         <SectionHeading
           label="// contact"
           title="Let's Build Something"
-          description="Have a project in mind? I'm always open to discussing new opportunities."
+          description="Looking for Sr EM roles at Series A–D AI companies building products people actually use. Reply within 24h."
         />
 
         <FadeIn>
