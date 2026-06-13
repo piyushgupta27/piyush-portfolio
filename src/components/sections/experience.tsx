@@ -9,7 +9,7 @@ import { experiences } from "@/data/experience";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-32 px-6">
+    <section id="experience" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
           label="// experience"

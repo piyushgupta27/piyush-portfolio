@@ -9,7 +9,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-32 px-6">
+    <section id="contact" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-2xl">
         <SectionHeading
           label="// contact"

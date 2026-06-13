@@ -13,7 +13,7 @@ import { blogPosts } from "@/data/blog";
 
 export function Blog() {
   return (
-    <section id="blog" className="py-32 px-6">
+    <section id="blog" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label="// blog"

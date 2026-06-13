@@ -30,7 +30,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export function Projects() {
   return (
-    <section id="projects" className="py-32 px-6">
+    <section id="projects" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label="// projects"
