@@ -120,7 +120,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="mt-20"
+          className="mt-12"
         >
           <a
             href="#about"

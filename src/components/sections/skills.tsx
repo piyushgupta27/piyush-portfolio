@@ -15,7 +15,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export function Skills() {
   return (
-    <section id="skills" className="py-32 px-6">
+    <section id="skills" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label="// skills"
@@ -34,7 +34,9 @@ export function Skills() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-background/50">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="font-semibold">{cat.category}</h3>
+                      <h3 className="text-base font-semibold">
+                        {cat.category}
+                      </h3>
                     </div>
 
                     <div className="space-y-4">

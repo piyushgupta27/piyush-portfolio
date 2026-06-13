@@ -15,7 +15,7 @@ const stats = [
 
 export function About() {
   return (
-    <section id="about" className="py-32 px-6">
+    <section id="about" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           label="// about"
@@ -33,7 +33,7 @@ export function About() {
                   alt="Piyush Gupta"
                   width={600}
                   height={600}
-                  className="w-full aspect-square object-cover"
+                  className="w-full aspect-square object-cover object-top"
                   priority
                 />
               </div>
