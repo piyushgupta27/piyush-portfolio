@@ -8,7 +8,9 @@ const src = readFileSync(resolve(import.meta.dirname, "navbar.tsx"), "utf-8");
 describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
   describe("anchor links", () => {
     it('has href="#about"', () => {
-      assert.ok(src.includes('href: "#about"') || src.includes('href="#about"'));
+      assert.ok(
+        src.includes('href: "#about"') || src.includes('href="#about"'),
+      );
     });
 
     it('has href="#projects"', () => {
@@ -61,7 +63,10 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
     });
 
     it("uses X icon for open state", () => {
-      assert.ok(src.includes("<X "), "Mobile menu must show an X icon when open");
+      assert.ok(
+        src.includes("<X "),
+        "Mobile menu must show an X icon when open",
+      );
     });
 
     it("closes menu on link click (onClick handler)", () => {
