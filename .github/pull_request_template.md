@@ -29,7 +29,7 @@ _The problem, the change, and the key trade-off — in prose. A reviewer should 
 - **Acceptance criteria** — each AC mapped to its evidence (test / `file:line`), or "n/a".
 - **Tests** — happy + sad + edge paths covered (what each asserts).
 - **CHECKER** — verdict · confidence · deficiencies resolved (or n/a).
-- **Manual** — UI changes: screenshot or video of affected sections · Content changes: what changed (copy, data, assets) · URL/route changes: before → after · (or n/a per category).
+- **Preview evidence** — UI changes: screenshot or video of affected sections (agent-captured from Vercel preview) · Content changes: what changed (copy, data, assets) · URL/route changes: before → after · (or n/a per category).
 
 ## 5 · Diff map
 
