@@ -134,9 +134,7 @@
 
 /* Gradient mesh background */
 .bg-grid {
-  background-image: linear-gradient(oklch(1 0 0 / 3%) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 3%) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background-image: none;
 }
 
 /* Neon glow utility */
