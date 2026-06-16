@@ -83,13 +83,19 @@ export function Hero() {
         >
           <a
             href="#projects"
-            className={cn(buttonVariants({ size: "lg" }), "neon-glow")}
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "neon-glow min-h-[44px]",
+            )}
           >
             See the work
           </a>
           <a
             href="#contact"
-            className={buttonVariants({ variant: "outline", size: "lg" })}
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "min-h-[44px]",
+            )}
           >
             Get in touch
           </a>
@@ -99,7 +105,10 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className={buttonVariants({ variant: "ghost", size: "icon" })}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "min-h-[44px] min-w-[44px]",
+              )}
             >
               <GithubIcon className="h-5 w-5" />
             </a>
@@ -108,7 +117,10 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className={buttonVariants({ variant: "ghost", size: "icon" })}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "min-h-[44px] min-w-[44px]",
+              )}
             >
               <LinkedInIcon className="h-5 w-5" />
             </a>
@@ -124,7 +136,7 @@ export function Hero() {
         >
           <a
             href="#about"
-            className="inline-flex flex-col items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex min-h-[44px] flex-col items-center justify-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
             <span className="font-mono">scroll</span>
             <motion.div

@@ -88,3 +88,55 @@ describe("Hero – acceptance criteria", () => {
     );
   });
 });
+
+describe("Hero — touch target ≥44px (gh-43)", () => {
+  test("GitHub icon link has min-h-[44px] and min-w-[44px]", () => {
+    const ghIdx = src.indexOf('aria-label="GitHub"');
+    assert.ok(ghIdx !== -1, "GitHub aria-label must be present");
+    // className comes after aria-label in the JSX prop order
+    const block = src.slice(ghIdx, ghIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Hero GitHub link must have min-h-[44px]",
+    );
+    assert.ok(
+      block.includes("min-w-[44px]"),
+      "Hero GitHub link must have min-w-[44px]",
+    );
+  });
+
+  test("LinkedIn icon link has min-h-[44px] and min-w-[44px]", () => {
+    const liIdx = src.indexOf('aria-label="LinkedIn"');
+    assert.ok(liIdx !== -1, "LinkedIn aria-label must be present");
+    // className comes after aria-label in the JSX prop order
+    const block = src.slice(liIdx, liIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Hero LinkedIn link must have min-h-[44px]",
+    );
+    assert.ok(
+      block.includes("min-w-[44px]"),
+      "Hero LinkedIn link must have min-w-[44px]",
+    );
+  });
+
+  test("scroll indicator anchor has min-h-[44px]", () => {
+    const scrollAnchorIdx = src.indexOf('href="#about"');
+    assert.ok(
+      scrollAnchorIdx !== -1,
+      "Scroll indicator href='#about' must be present",
+    );
+    const block = src.slice(scrollAnchorIdx, scrollAnchorIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Scroll indicator anchor must have min-h-[44px]",
+    );
+  });
+
+  test("imports cn utility for composing classNames with touch target overrides", () => {
+    assert.ok(
+      src.includes("import { cn }") || src.includes("import {cn}"),
+      "Hero must import cn to compose buttonVariants with touch target classes",
+    );
+  });
+});
