@@ -65,3 +65,45 @@ describe("contact.tsx — Piyush's real contact info", () => {
     assert.ok(block.includes('rel="noopener noreferrer"'));
   });
 });
+
+describe("contact.tsx — touch target ≥44px (gh-43)", () => {
+  it("email link has min-h-[44px]", () => {
+    const mailIdx = src.indexOf('href="mailto:piyushguptaece@gmail.com"');
+    assert.ok(mailIdx !== -1, "Email mailto href must be present");
+    const block = src.slice(mailIdx, mailIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Email link className must include min-h-[44px]",
+    );
+  });
+
+  it("GitHub button has min-h-[44px]", () => {
+    const ghIdx = src.indexOf('href="https://github.com/piyushgupta27"');
+    assert.ok(ghIdx !== -1, "GitHub href must be present");
+    const block = src.slice(ghIdx, ghIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Contact GitHub button className must include min-h-[44px]",
+    );
+  });
+
+  it("LinkedIn button has min-h-[44px]", () => {
+    const liIdx = src.indexOf('href="https://linkedin.com/in/piyushguptaece"');
+    assert.ok(liIdx !== -1, "LinkedIn href must be present");
+    const block = src.slice(liIdx, liIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Contact LinkedIn button className must include min-h-[44px]",
+    );
+  });
+
+  it("Medium button has min-h-[44px]", () => {
+    const medIdx = src.indexOf('href="https://piyushguptaece.medium.com"');
+    assert.ok(medIdx !== -1, "Medium href must be present");
+    const block = src.slice(medIdx, medIdx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Contact Medium button className must include min-h-[44px]",
+    );
+  });
+});

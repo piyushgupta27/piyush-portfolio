@@ -20,7 +20,10 @@ export function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#" className="font-mono text-sm font-bold tracking-wider">
+        <a
+          href="#"
+          className="inline-flex h-11 items-center font-mono text-sm font-bold tracking-wider"
+        >
           <span className="gradient-text">piyush.gupta</span>
         </a>
 
@@ -30,7 +33,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex h-11 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
@@ -41,7 +44,7 @@ export function Navbar() {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="min-h-[44px] min-w-[44px] md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -64,7 +67,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex h-11 items-center rounded-md px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </a>

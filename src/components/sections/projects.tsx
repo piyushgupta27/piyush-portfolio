@@ -62,7 +62,7 @@ export function Projects() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-primary transition-colors"
+                          className="inline-flex items-center justify-center p-3.5 -m-3.5 text-muted-foreground hover:text-primary transition-colors"
                           aria-label={`View ${project.title} on GitHub`}
                         >
                           <ExternalLink className="h-4 w-4" />

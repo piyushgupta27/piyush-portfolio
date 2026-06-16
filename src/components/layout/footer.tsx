@@ -12,7 +12,7 @@ export function Footer() {
             href="https://github.com/piyushgupta27"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
             aria-label="GitHub"
           >
             <GithubIcon className="h-4 w-4" />
