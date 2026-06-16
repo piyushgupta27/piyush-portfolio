@@ -122,7 +122,10 @@ describe("Hero — touch target ≥44px (gh-43)", () => {
 
   test("scroll indicator anchor has min-h-[44px]", () => {
     const scrollAnchorIdx = src.indexOf('href="#about"');
-    assert.ok(scrollAnchorIdx !== -1, "Scroll indicator href='#about' must be present");
+    assert.ok(
+      scrollAnchorIdx !== -1,
+      "Scroll indicator href='#about' must be present",
+    );
     const block = src.slice(scrollAnchorIdx, scrollAnchorIdx + 300);
     assert.ok(
       block.includes("min-h-[44px]"),
@@ -132,7 +135,7 @@ describe("Hero — touch target ≥44px (gh-43)", () => {
 
   test("imports cn utility for composing classNames with touch target overrides", () => {
     assert.ok(
-      src.includes('import { cn }') || src.includes("import {cn}"),
+      src.includes("import { cn }") || src.includes("import {cn}"),
       "Hero must import cn to compose buttonVariants with touch target classes",
     );
   });

@@ -37,7 +37,10 @@ export function Contact() {
                   href="https://github.com/piyushgupta27"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "min-h-[44px]")}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "min-h-[44px]",
+                  )}
                 >
                   <GithubIcon className="mr-2 h-4 w-4" />
                   GitHub
@@ -46,7 +49,10 @@ export function Contact() {
                   href="https://linkedin.com/in/piyushguptaece"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "min-h-[44px]")}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "min-h-[44px]",
+                  )}
                 >
                   <LinkedInIcon className="mr-2 h-4 w-4" />
                   LinkedIn
@@ -55,7 +61,10 @@ export function Contact() {
                   href="https://piyushguptaece.medium.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn(buttonVariants({ variant: "outline", size: "lg" }), "min-h-[44px]")}
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "min-h-[44px]",
+                  )}
                 >
                   <MediumIcon className="mr-2 h-4 w-4" />
                   Medium

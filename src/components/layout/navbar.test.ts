@@ -100,9 +100,7 @@ describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
 
   it("desktop nav links have h-11 (44px height)", () => {
     assert.ok(
-      src.includes(
-        "inline-flex h-11 items-center rounded-md px-3",
-      ),
+      src.includes("inline-flex h-11 items-center rounded-md px-3"),
       "Desktop nav link className must include h-11 for 44px touch target",
     );
   });
@@ -128,7 +126,10 @@ describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
 
   it("mobile nav links have h-11 (44px height)", () => {
     const onClickIdx = src.indexOf("onClick={() => setOpen(false)}");
-    assert.ok(onClickIdx !== -1, "Mobile nav link onClick handler must be present");
+    assert.ok(
+      onClickIdx !== -1,
+      "Mobile nav link onClick handler must be present",
+    );
     const block = src.slice(Math.max(0, onClickIdx - 100), onClickIdx + 200);
     assert.ok(
       block.includes("h-11"),
