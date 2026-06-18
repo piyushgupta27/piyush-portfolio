@@ -8,10 +8,7 @@ export default defineConfig({
     },
   },
   test: {
-    reporters: [
-      "default",
-      ["tdd-guard-vitest", { projectRoot: __dirname }],
-    ],
+    reporters: ["default", ["tdd-guard-vitest", { projectRoot: __dirname }]],
     exclude: ["e2e/**", "**/node_modules/**"],
     environment: "node",
     coverage: {
