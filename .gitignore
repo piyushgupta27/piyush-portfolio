@@ -61,3 +61,9 @@ next-env.d.ts
 
 # machine-local continuation doc pointer (absolute path, never commit)
 .continuation-doc-path
+
+# tdd-guard machine-generated test results
+.claude/tdd-guard/data/
+
+# repomix output
+repomix-output.*

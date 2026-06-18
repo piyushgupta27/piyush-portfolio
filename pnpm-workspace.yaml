@@ -6,6 +6,11 @@ packages:
 # unrs-resolver are native toolchain deps. msw's postinstall (service worker) is
 # not needed for build or tests.
 allowBuilds:
+  '@ast-grep/lang-go': false
+  '@ast-grep/lang-php': false
+  '@ast-grep/lang-python': false
+  '@ast-grep/lang-ruby': false
+  '@ast-grep/lang-rust': false
   '@biomejs/biome': true
   esbuild: true
   msw: false
