@@ -139,8 +139,9 @@
 
 /* Neon glow utility */
 .neon-glow {
-  box-shadow: 0 0 20px oklch(0.75 0.18 195 / 15%), 0 0 60px
-    oklch(0.75 0.18 195 / 5%);
+  box-shadow:
+    0 0 20px oklch(0.75 0.18 195 / 15%),
+    0 0 60px oklch(0.75 0.18 195 / 5%);
 }
 
 /* Gradient text */
@@ -172,7 +173,9 @@
     oklch(0.7 0.15 300 / 50%),
     oklch(0.75 0.18 195 / 50%)
   );
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
 }
