@@ -16,6 +16,24 @@ See `~/.claude/docs/continuation-doc-system.md` for the full system.
 
 ## Active context
 
+### 2026-06-18 — Sprint 3 plan drafted; retroactive S1/S2 plans written
+
+**State:** main @ d765af0 (tdd-guard-vitest merged via #81). Sprint 3 plan drafted and awaiting manager approval before any dispatch.
+
+**Sprint docs created:**
+- `tasks/sprint-1-plan.md` — retroactive, 11 PRs, May 31–Jun 2 (content bootstrap)
+- `tasks/sprint-2-plan.md` — retroactive, 16 PRs, Jun 11–18 (platform hardening + design polish)
+- `tasks/sprint-3-plan.md` — forward plan, DRAFT awaiting approval (content depth + blog)
+
+**Process decision:** retros start Sprint 3 onwards; S1/S2 have plan docs only.
+
+**Sprint 3 scope (pending approval):** #70 (about rewrite), #69 (case studies), #74 (resume PDF), #73 (OG tags), #68 (blog section). All run via `pnpm sdlc dispatch --project piyush-portfolio` from `~/Workspace/piyush-portfolio`. Content (#68, #70) requires Piyush review before merge.
+
+**Pending / open:**
+- PR #80 (dependabot dev-and-minor bump) — CI failing, needs investigation
+- UI-test epic (#32, #36, #37, #38) — blocked, Sprint 4
+- Sprint 3 dispatch — waiting for manager go-ahead
+
 ### 2026-06-11 — ai-sdlc onboarding hardening (branch: chore/ai-sdlc-onboarding-hardening)
 
 **State:**
