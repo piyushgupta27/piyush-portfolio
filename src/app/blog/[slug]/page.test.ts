@@ -38,4 +38,12 @@ describe("blog route — /blog/[slug] post page (gh-68)", () => {
       "blog post page must render post title and content blocks",
     );
   });
+
+  it("blog post page uses getAllSlugs in generateStaticParams (AC: each post renders at /blog/[slug])", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(
+      src.includes("getAllSlugs"),
+      "generateStaticParams must use getAllSlugs() to enumerate all post routes",
+    );
+  });
 });

@@ -20,4 +20,18 @@ describe("blog route — /blog index page (gh-68)", () => {
       "blog index page must render from seedPosts",
     );
   });
+
+  it("blog index page links each post to its /blog/[slug] route (AC: /blog renders list)", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(
+      src.includes("/blog/${") || src.includes('"/blog/"'),
+      "blog index must link to /blog/[slug] routes via template literal or concatenation",
+    );
+  });
+
+  it("blog index page exports metadata with Blog in the title", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(src.includes("export const metadata"), "must export metadata");
+    assert.ok(src.includes("Blog"), "metadata title must mention Blog");
+  });
 });
