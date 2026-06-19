@@ -70,6 +70,23 @@ describe("Hero – acceptance criteria", () => {
     );
   });
 
+  test("Resume download button is present with correct href", () => {
+    assert.ok(
+      src.includes("/resume/piyush-resume.pdf"),
+      "Resume download button must link to /resume/piyush-resume.pdf",
+    );
+  });
+
+  test("Resume download button has download attribute", () => {
+    const resumeHref = src.indexOf("/resume/piyush-resume.pdf");
+    assert.ok(resumeHref !== -1, "Resume href must be present");
+    const block = src.slice(Math.max(0, resumeHref - 200), resumeHref + 200);
+    assert.ok(
+      block.includes("download"),
+      "Resume link must have download attribute",
+    );
+  });
+
   test("No new imports introduced by BUILDER commit", () => {
     const importLines = src
       .split("\n")
@@ -130,6 +147,16 @@ describe("Hero — touch target ≥44px (gh-43)", () => {
     assert.ok(
       block.includes("min-h-[44px]"),
       "Scroll indicator anchor must have min-h-[44px]",
+    );
+  });
+
+  test("Resume download button has min-h-[44px] touch target", () => {
+    const resumeHref = src.indexOf("/resume/piyush-resume.pdf");
+    assert.ok(resumeHref !== -1, "Resume href must be present");
+    const block = src.slice(Math.max(0, resumeHref - 300), resumeHref + 200);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Resume button must have min-h-[44px] for touch target",
     );
   });
 

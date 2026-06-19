@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { GithubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -98,6 +98,17 @@ export function Hero() {
             )}
           >
             Get in touch
+          </a>
+          <a
+            href="/resume/piyush-resume.pdf"
+            download
+            className={cn(
+              buttonVariants({ variant: "outline", size: "lg" }),
+              "min-h-[44px]",
+            )}
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Resume
           </a>
           <div className="flex items-center gap-2">
             <a
