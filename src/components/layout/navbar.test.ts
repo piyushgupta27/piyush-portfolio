@@ -32,8 +32,8 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
       );
     });
 
-    it('has href="#blog"', () => {
-      assert.ok(src.includes('href: "#blog"') || src.includes('href="#blog"'));
+    it('has href="/blog" for the dedicated blog route (gh-68)', () => {
+      assert.ok(src.includes('href: "/blog"') || src.includes('href="/blog"'));
     });
 
     it('has href="#contact"', () => {
