@@ -47,9 +47,15 @@ export function Projects() {
                       )}
                     </div>
 
-                    <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                       {project.description}
                     </p>
+
+                    {project.highlight && (
+                      <p className="mb-4 text-xs font-medium text-primary/80 border border-primary/20 rounded px-2 py-1 inline-block bg-primary/5">
+                        {project.highlight}
+                      </p>
+                    )}
 
                     <div className="flex flex-wrap gap-2">
                       {project.tech.map((t) => (
