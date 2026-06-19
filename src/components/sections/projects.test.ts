@@ -5,6 +5,15 @@ import assert from "node:assert/strict";
 
 const src = readFileSync(resolve(import.meta.dirname, "projects.tsx"), "utf-8");
 
+describe("projects.tsx — highlight stat rendering (gh-69)", () => {
+  it("conditionally renders project.highlight using short-circuit &&", () => {
+    assert.ok(
+      src.includes("project.highlight &&"),
+      "projects.tsx must conditionally render highlight with project.highlight &&",
+    );
+  });
+});
+
 describe("projects.tsx — touch target ≥44px via padding-extend (gh-43)", () => {
   it("external link uses p-3.5 padding to extend tap area", () => {
     const anchorIdx = src.indexOf("aria-label={`View");
