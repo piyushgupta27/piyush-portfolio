@@ -8,7 +8,14 @@ describe("blog content — data layer (gh-68)", () => {
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {
-    const required = ["slug", "title", "date", "tag", "excerpt", "content"] as const;
+    const required = [
+      "slug",
+      "title",
+      "date",
+      "tag",
+      "excerpt",
+      "content",
+    ] as const;
     for (const post of seedPosts) {
       for (const key of required) {
         assert.ok(
