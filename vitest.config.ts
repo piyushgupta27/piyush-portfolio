@@ -15,6 +15,7 @@ export default defineConfig({
       provider: "v8",
       include: [
         "src/app/layout.tsx",
+        "src/app/opengraph-image.tsx",
         "src/components/sections/contact.tsx",
         "src/components/ui/icons.tsx",
       ],

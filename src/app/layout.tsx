@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://piyushgupta.io"),
   title: "Piyush Gupta — Sr Engineering Manager",
   description:
     "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     description:
       "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
     type: "website",
-    images: ["https://piyushgupta.io/og.png"],
+    url: "https://piyushgupta.io",
   },
   twitter: {
     card: "summary_large_image",
