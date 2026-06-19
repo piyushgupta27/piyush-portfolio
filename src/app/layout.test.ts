@@ -33,7 +33,7 @@ describe("layout metadata", () => {
   const TITLE = "Piyush Gupta — Sr Engineering Manager";
   const DESCRIPTION =
     "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).";
-  const OG_IMAGE = "https://piyushgupta.io/og.png";
+  const SITE_URL = "https://piyushgupta.io";
 
   it("sets the correct page title", () => {
     expect(metadata.title).toBe(TITLE);
@@ -41,6 +41,12 @@ describe("layout metadata", () => {
 
   it("sets the correct description", () => {
     expect(metadata.description).toBe(DESCRIPTION);
+  });
+
+  it("sets metadataBase to the canonical site URL", () => {
+    const base = metadata.metadataBase;
+    const href = base instanceof URL ? base.href : base;
+    expect(href).toBe(`${SITE_URL}/`);
   });
 
   describe("openGraph", () => {
@@ -56,10 +62,10 @@ describe("layout metadata", () => {
       );
     });
 
-    it("sets OG image to placeholder URL", () => {
-      const images = (metadata.openGraph as Record<string, unknown>)?.images;
-      const imageList = Array.isArray(images) ? images : [images];
-      expect(imageList).toContain(OG_IMAGE);
+    it("sets OG url to the canonical site URL", () => {
+      expect((metadata.openGraph as Record<string, unknown>)?.url).toBe(
+        SITE_URL,
+      );
     });
 
     it("sets OG type to website", () => {
