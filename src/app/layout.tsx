@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://piyushgupta.io"),
   title: "Piyush Gupta — Sr Engineering Manager",
   description:
-    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
+    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).",
   openGraph: {
     title: "Piyush Gupta — Sr Engineering Manager",
     description:
-      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
+      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).",
     type: "website",
     url: "https://piyushgupta.io",
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Piyush Gupta — Sr Engineering Manager",
     description:
-      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).",
+      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).",
   },
 };
 
