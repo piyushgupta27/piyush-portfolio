@@ -62,6 +62,11 @@ next-env.d.ts
 # machine-local continuation doc pointer (absolute path, never commit)
 .continuation-doc-path
 
+# internal planning docs — belong in vault, never public repo
+tasks/continuation.md
+tasks/lessons.md
+tasks/session-*.md
+
 # tdd-guard machine-generated test results
 .claude/tdd-guard/data/
 
