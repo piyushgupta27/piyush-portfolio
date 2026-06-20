@@ -60,7 +60,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6 text-xl font-semibold text-foreground sm:text-2xl"
         >
-          Building autonomous AI tooling I&apos;d use myself
+          Engineering Manager with 12 years building AI-native products at scale — hands-on coder, team builder, and zero-to-one founder.
         </motion.p>
 
         {/* Sub-tagline */}
@@ -70,8 +70,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          Sr Engineering Manager. Co-founder of jumpingMinds (3M+ users).
-          Currently leading platform engineering at Slice (10M+ users daily).
+          Co-Founder & CTO of jumpingMinds (1M+ users) · Engineering Manager
+          at Disney+ Hotstar (50M concurrent users) · Currently at Slice
         </motion.p>
 
         {/* CTAs */}
@@ -124,7 +124,7 @@ export function Hero() {
               <GithubIcon className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com/in/piyushguptaece"
+              href="https://linkedin.com/in/piyushgupta27"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

@@ -46,7 +46,7 @@ export function Contact() {
                   GitHub
                 </a>
                 <a
-                  href="https://linkedin.com/in/piyushguptaece"
+                  href="https://linkedin.com/in/piyushgupta27"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(

@@ -10,8 +10,8 @@ describe("experiences data", () => {
   });
 
   it("contains Slice as an entry", () => {
-    const slice = experiences.find((e) => e.company === "Slice");
-    assert.ok(slice, 'Should have an entry with company "Slice"');
+    const slice = experiences.find((e) => e.company.includes("Slice"));
+    assert.ok(slice, 'Should have an entry with company containing "Slice"');
   });
 
   it("contains jumpingMinds as an entry", () => {
@@ -68,7 +68,7 @@ describe("experiences data", () => {
   });
 
   it("Slice entry has correct role and period", () => {
-    const slice = experiences.find((e) => e.company === "Slice")!;
+    const slice = experiences.find((e) => e.company.includes("Slice"))!;
     assert.equal(slice.role, "Sr Engineering Manager");
     assert.match(slice.period, /2024/);
     assert.match(slice.period, /Present/);
@@ -76,8 +76,8 @@ describe("experiences data", () => {
 
   it("jumpingMinds entry has correct role and period", () => {
     const jm = experiences.find((e) => e.company === "jumpingMinds")!;
-    assert.equal(jm.role, "Co-founder & CPO");
-    assert.match(jm.period, /2018/);
+    assert.equal(jm.role, "Co-Founder & CTO");
+    assert.match(jm.period, /2021/);
     assert.match(jm.period, /2024/);
   });
 
