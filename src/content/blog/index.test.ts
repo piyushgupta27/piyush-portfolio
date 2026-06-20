@@ -24,8 +24,9 @@ describe("blog content — data layer (gh-68)", () => {
         );
       }
       assert.ok(
-        Array.isArray(post.content) && post.content.length > 0,
-        `post "${post.slug}" must have non-empty content array`,
+        Array.isArray(post.content) &&
+          (post.content.length > 0 || typeof post.mediumUrl === "string"),
+        `post "${post.slug}" must have non-empty content array or a mediumUrl`,
       );
     }
   });
