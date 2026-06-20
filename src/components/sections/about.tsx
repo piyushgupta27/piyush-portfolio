@@ -8,8 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const stats = [
   { label: "Slice users / day", value: "10M+" },
-  { label: "jM community", value: "3M+" },
-  { label: "Yrs eng leadership", value: "8" },
+  { label: "jM community", value: "1M+" },
+  { label: "Yrs eng leadership", value: "12" },
   { label: "Active projects", value: "5" },
 ];
 
@@ -72,10 +72,11 @@ $ echo $STATUS
             <div className="flex flex-col justify-center space-y-8">
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Senior engineering manager with deep IC chops — I still ship
-                  code as readily as I grow teams. I co-founded jumpingMinds in
-                  2018 and grew it into India&apos;s largest mental-health
-                  community, scaling past 3M users by 2024.
+                  IIT Roorkee graduate and senior engineering manager with 12
+                  years building at scale — I still ship code as readily as I
+                  grow teams. Led backend engineering at Disney+ Hotstar (50M
+                  concurrent users), then co-founded jumpingMinds in 2021,
+                  growing it to 1M+ users.
                 </p>
                 <p>
                   Currently leading platform engineering at Slice, where the

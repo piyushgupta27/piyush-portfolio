@@ -11,36 +11,36 @@ export interface SkillCategory {
 
 export const skillCategories: SkillCategory[] = [
   {
-    category: "AI / Machine Learning",
-    icon: "Brain",
+    category: "Engineering Leadership",
+    icon: "Users",
     skills: [
-      { name: "PyTorch", level: 95 },
-      { name: "LangChain", level: 90 },
-      { name: "Transformers", level: 88 },
-      { name: "Computer Vision", level: 85 },
-      { name: "MLOps", level: 82 },
+      { name: "Engineering Management", level: 95 },
+      { name: "Technical Strategy", level: 90 },
+      { name: "Team Building", level: 92 },
+      { name: "Agile Delivery", level: 88 },
+      { name: "Regulatory Compliance", level: 82 },
     ],
   },
   {
-    category: "Web Development",
-    icon: "Globe",
-    skills: [
-      { name: "TypeScript", level: 93 },
-      { name: "React / Next.js", level: 92 },
-      { name: "Node.js", level: 88 },
-      { name: "Python", level: 95 },
-      { name: "Go", level: 75 },
-    ],
-  },
-  {
-    category: "Infrastructure",
+    category: "Platform & Backend",
     icon: "Server",
     skills: [
-      { name: "Docker", level: 90 },
-      { name: "Kubernetes", level: 85 },
-      { name: "AWS", level: 88 },
-      { name: "CI/CD", level: 87 },
-      { name: "PostgreSQL", level: 83 },
+      { name: "Go", level: 85 },
+      { name: "TypeScript / Node.js", level: 88 },
+      { name: "Distributed Systems", level: 87 },
+      { name: "PostgreSQL / Redis", level: 83 },
+      { name: "AWS / Kubernetes", level: 85 },
+    ],
+  },
+  {
+    category: "AI & LLM Tooling",
+    icon: "Brain",
+    skills: [
+      { name: "LLM Integration", level: 82 },
+      { name: "AI Agent Pipelines", level: 80 },
+      { name: "NLP / Voice Bots", level: 78 },
+      { name: "Vector Search / RAG", level: 76 },
+      { name: "Python", level: 80 },
     ],
   },
 ];

@@ -18,8 +18,8 @@ describe("contact.tsx — Piyush's real contact info", () => {
     assert.ok(src.includes('href="https://github.com/piyushgupta27"'));
   });
 
-  it("links to https://linkedin.com/in/piyushguptaece", () => {
-    assert.ok(src.includes('href="https://linkedin.com/in/piyushguptaece"'));
+  it("links to https://linkedin.com/in/piyushgupta27", () => {
+    assert.ok(src.includes('href="https://linkedin.com/in/piyushgupta27"'));
   });
 
   it("links to https://piyushguptaece.medium.com", () => {
@@ -88,7 +88,7 @@ describe("contact.tsx — touch target ≥44px (gh-43)", () => {
   });
 
   it("LinkedIn button has min-h-[44px]", () => {
-    const liIdx = src.indexOf('href="https://linkedin.com/in/piyushguptaece"');
+    const liIdx = src.indexOf('href="https://linkedin.com/in/piyushgupta27"');
     assert.ok(liIdx !== -1, "LinkedIn href must be present");
     const block = src.slice(liIdx, liIdx + 300);
     assert.ok(
