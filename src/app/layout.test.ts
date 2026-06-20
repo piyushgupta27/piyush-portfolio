@@ -32,7 +32,7 @@ beforeAll(async () => {
 describe("layout metadata", () => {
   const TITLE = "Piyush Gupta — Sr Engineering Manager";
   const DESCRIPTION =
-    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (3M+ users), now leading platform engineering at Slice (10M+ users daily).";
+    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).";
   const SITE_URL = "https://piyushgupta.io";
 
   it("sets the correct page title", () => {
