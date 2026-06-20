@@ -27,16 +27,16 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test('shows "3M+" jM community', () => {
-      assert.ok(src.includes("3M+"), 'Expected stats to contain "3M+"');
+    test('shows "1M+" jM community', () => {
+      assert.ok(src.includes("1M+"), 'Expected stats to contain "1M+"');
       assert.ok(
         src.includes("jM community"),
         'Expected stats label "jM community"',
       );
     });
 
-    test('shows "8" yrs eng leadership', () => {
-      assert.ok(src.includes('"8"'), 'Expected stats to contain value "8"');
+    test('shows "12" yrs eng leadership', () => {
+      assert.ok(src.includes('"12"'), 'Expected stats to contain value "12"');
       assert.ok(
         src.includes("Yrs eng leadership"),
         'Expected stats label "Yrs eng leadership"',
@@ -53,28 +53,33 @@ describe("about.tsx — bio content (gh-2)", () => {
   });
 
   describe("bio paragraphs", () => {
-    test("mentions senior engineering manager with deep IC chops", () => {
+    test("mentions IIT Roorkee and 12 years building at scale", () => {
       assert.ok(
-        src.includes("Senior engineering manager with deep IC chops"),
-        'Expected bio to mention "Senior engineering manager with deep IC chops"',
+        src.includes("IIT Roorkee"),
+        'Expected bio to mention "IIT Roorkee"',
+      );
+      assert.ok(src.includes("12 years"), 'Expected bio to mention "12 years"');
+    });
+
+    test("mentions co-founding jumpingMinds in 2021 with 1M+ users", () => {
+      assert.ok(
+        src.includes("jumpingMinds in 2021"),
+        'Expected bio to mention "jumpingMinds in 2021"',
+      );
+      assert.ok(
+        src.includes("1M+ users"),
+        'Expected bio to mention "1M+ users"',
       );
     });
 
-    test("mentions co-founding jumpingMinds in 2018", () => {
+    test("mentions Disney+ Hotstar with 50M concurrent users", () => {
       assert.ok(
-        src.includes("jumpingMinds in 2018"),
-        'Expected bio to mention "jumpingMinds in 2018"',
-      );
-    });
-
-    test("mentions India largest mental-health community with 3M users by 2024", () => {
-      assert.ok(
-        src.includes("mental-health community"),
-        "Expected bio to mention mental-health community",
+        src.includes("Disney+ Hotstar"),
+        "Expected bio to mention Disney+ Hotstar",
       );
       assert.ok(
-        src.includes("3M users by 2024"),
-        'Expected bio to mention "3M users by 2024"',
+        src.includes("50M"),
+        "Expected bio to mention 50M concurrent users",
       );
     });
 

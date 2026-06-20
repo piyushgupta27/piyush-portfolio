@@ -16,12 +16,18 @@ describe("Hero – acceptance criteria", () => {
     );
   });
 
-  test('Tagline reads "Building autonomous AI tooling I\'d use myself"', () => {
-    // JSX source encodes the apostrophe as &apos;
+  test("Tagline reads approved hero positioning", () => {
     assert.ok(
-      src.includes("Building autonomous AI tooling I") &&
-        src.includes("d use myself"),
-      "Tagline text must be present in component source",
+      src.includes("Engineering Manager with 12 years"),
+      "Tagline must mention 12 years",
+    );
+    assert.ok(
+      src.includes("AI-native products at scale"),
+      "Tagline must mention AI-native products at scale",
+    );
+    assert.ok(
+      src.includes("zero-to-one founder"),
+      "Tagline must mention zero-to-one founder",
     );
   });
 
@@ -36,24 +42,20 @@ describe("Hero – acceptance criteria", () => {
     );
   });
 
-  test("Sub-tagline contains Sr Engineering Manager and jumpingMinds and Slice", () => {
-    assert.ok(
-      src.includes("Sr Engineering Manager"),
-      "Sub-tagline must mention title",
-    );
+  test("Sub-tagline contains jumpingMinds and Disney+ Hotstar and Slice", () => {
     assert.ok(
       src.includes("jumpingMinds"),
       "Sub-tagline must mention jumpingMinds",
     );
     assert.ok(
-      src.includes("3M+ users"),
+      src.includes("1M+ users"),
       "Sub-tagline must mention jumpingMinds user count",
     );
-    assert.ok(src.includes("Slice"), "Sub-tagline must mention Slice");
     assert.ok(
-      src.includes("10M+ users daily"),
-      "Sub-tagline must mention Slice daily users",
+      src.includes("Disney+ Hotstar"),
+      "Sub-tagline must mention Disney+ Hotstar",
     );
+    assert.ok(src.includes("Slice"), "Sub-tagline must mention Slice");
   });
 
   test('Primary CTA reads "See the work"', () => {
