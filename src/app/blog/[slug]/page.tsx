@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { getPostBySlug, getAllSlugs } from "@/content/blog";
 
 interface Props {
@@ -43,25 +44,46 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
         </div>
 
-        <div className="max-w-none">
-          {post.content.map((block, i) => {
-            if (block.type === "heading") {
+        {post.mediumUrl ? (
+          <div className="rounded-lg border border-border/50 bg-card/50 p-8 text-center">
+            <p className="mb-6 text-muted-foreground">
+              This article is published on Medium — with images, diagrams, and
+              full formatting.
+            </p>
+            <a
+              href={post.mediumUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Read on Medium
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        ) : (
+          <div className="max-w-none">
+            {post.content.map((block, i) => {
+              if (block.type === "heading") {
+                return (
+                  <h2
+                    key={i}
+                    className="mt-10 mb-4 text-xl font-semibold tracking-tight"
+                  >
+                    {block.text}
+                  </h2>
+                );
+              }
               return (
-                <h2
+                <p
                   key={i}
-                  className="mt-10 mb-4 text-xl font-semibold tracking-tight"
+                  className="mb-4 leading-relaxed text-muted-foreground"
                 >
                   {block.text}
-                </h2>
+                </p>
               );
-            }
-            return (
-              <p key={i} className="mb-4 leading-relaxed text-muted-foreground">
-                {block.text}
-              </p>
-            );
-          })}
-        </div>
+            })}
+          </div>
+        )}
       </div>
     </article>
   );

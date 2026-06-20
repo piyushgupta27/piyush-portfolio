@@ -9,4 +9,5 @@ export interface BlogPostData {
   tag: string;
   excerpt: string;
   content: ContentBlock[];
+  mediumUrl?: string;
 }

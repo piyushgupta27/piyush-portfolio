@@ -21,11 +21,11 @@ describe("blog route — /blog index page (gh-68)", () => {
     );
   });
 
-  it("blog index page links each post to its /blog/[slug] route (AC: /blog renders list)", () => {
+  it("blog index page links posts externally via mediumUrl or internally via /blog/[slug]", () => {
     const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
     assert.ok(
-      src.includes("/blog/${") || src.includes('"/blog/"'),
-      "blog index must link to /blog/[slug] routes via template literal or concatenation",
+      src.includes("mediumUrl") || src.includes("/blog/${"),
+      "blog index must handle mediumUrl for external posts or link to /blog/[slug]",
     );
   });
 
