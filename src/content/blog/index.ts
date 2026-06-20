@@ -1,14 +1,16 @@
-import engineeringLeadership from "./engineering-leadership-at-scale";
-import aiTooling from "./ai-tooling-for-engineering-teams";
-import shippingWithConfidence from "./shipping-with-confidence";
+import realtimePart1 from "./realtime-messaging-part-1";
+import realtimePart2 from "./realtime-messaging-part-2";
+import capturingEmojis from "./capturing-a-billion-emojis";
+import whyDisney from "./why-i-enjoyed-working-at-disney";
 import type { BlogPostData } from "./types";
 
 export type { BlogPostData, ContentBlock } from "./types";
 
 export const seedPosts: BlogPostData[] = [
-  engineeringLeadership,
-  aiTooling,
-  shippingWithConfidence,
+  realtimePart1,
+  realtimePart2,
+  capturingEmojis,
+  whyDisney,
 ];
 
 export function getPostBySlug(slug: string): BlogPostData | undefined {

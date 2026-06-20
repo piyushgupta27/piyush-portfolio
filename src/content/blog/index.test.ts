@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { seedPosts, getPostBySlug, getAllSlugs } from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
-  it("seedPosts exports exactly 3 seed posts", () => {
-    assert.equal(seedPosts.length, 3);
+  it("seedPosts exports exactly 4 posts", () => {
+    assert.equal(seedPosts.length, 4);
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {
@@ -37,9 +37,9 @@ describe("blog content — data layer (gh-68)", () => {
   });
 
   it("getPostBySlug returns the correct post for a valid slug (happy path)", () => {
-    const post = getPostBySlug("engineering-leadership-at-scale");
+    const post = getPostBySlug("realtime-messaging-infrastructure-part-1");
     assert.ok(post !== undefined, "should return a post for a known slug");
-    assert.equal(post.slug, "engineering-leadership-at-scale");
+    assert.equal(post.slug, "realtime-messaging-infrastructure-part-1");
   });
 
   it("getPostBySlug returns undefined for an unknown slug (negative path)", () => {
