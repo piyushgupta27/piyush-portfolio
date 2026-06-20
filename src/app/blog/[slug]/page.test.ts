@@ -31,11 +31,15 @@ describe("blog route — /blog/[slug] post page (gh-68)", () => {
     );
   });
 
-  it("blog post page renders post title and content", () => {
+  it("blog post page renders post title and handles mediumUrl or content blocks", () => {
     const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
     assert.ok(
-      src.includes("post.title") && src.includes("post.content"),
-      "blog post page must render post title and content blocks",
+      src.includes("post.title"),
+      "blog post page must render post title",
+    );
+    assert.ok(
+      src.includes("post.mediumUrl") || src.includes("post.content"),
+      "blog post page must handle mediumUrl redirect or render content blocks",
     );
   });
 
