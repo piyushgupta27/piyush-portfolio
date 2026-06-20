@@ -60,7 +60,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6 text-xl font-semibold text-foreground sm:text-2xl"
         >
-          Engineering Manager with 12 years building AI-native products at scale — hands-on coder, team builder, and zero-to-one founder.
+          Engineering Manager with 12 years building AI-native products at scale
+          — hands-on coder, team builder, and zero-to-one founder.
         </motion.p>
 
         {/* Sub-tagline */}
@@ -70,8 +71,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          Co-Founder & CTO of jumpingMinds (1M+ users) · Engineering Manager
-          at Disney+ Hotstar (50M concurrent users) · Currently at Slice
+          Co-Founder & CTO of jumpingMinds (1M+ users) · Engineering Manager at
+          Disney+ Hotstar (50M concurrent users) · Currently at Slice
         </motion.p>
 
         {/* CTAs */}

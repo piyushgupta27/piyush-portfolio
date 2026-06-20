@@ -58,10 +58,7 @@ describe("about.tsx — bio content (gh-2)", () => {
         src.includes("IIT Roorkee"),
         'Expected bio to mention "IIT Roorkee"',
       );
-      assert.ok(
-        src.includes("12 years"),
-        'Expected bio to mention "12 years"',
-      );
+      assert.ok(src.includes("12 years"), 'Expected bio to mention "12 years"');
     });
 
     test("mentions co-founding jumpingMinds in 2021 with 1M+ users", () => {
