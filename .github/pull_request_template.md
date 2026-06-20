@@ -1,3 +1,26 @@
+<!--
+  ai-sdlc PR template v1 — CANONICAL SOURCE.
+  Synced to each repo's .github/pull_request_template.md and consumed by the
+  orchestrator's PR-body auto-fill (see issue #26). Edit here, not the copies.
+
+  GOAL: a MANAGER can approve or reject from this description ALONE — no pinging.
+
+  STYLE (keep it clean — enforced by convention + the CI completeness gate):
+  - Reference issues/PRs as bare #N. GitHub auto-links them and shows the title
+    on hover. NEVER paste full issue titles as link text (that is pure noise).
+  - Inline `code` only for real identifiers — file paths, flags, symbols. Not prose,
+    not regexes. Aim for ≤1–2 code spans per bullet.
+  - Prose at the top (sections 1, 2, 8 are manager-facing). Terse / technical at the
+    bottom (4, 5). Don't make everything technical.
+  - One bold lead-label per bullet. Blank line between sections (GitHub draws a rule
+    under each ## heading — let it breathe).
+
+  TIERS: Tier 0–1 (Red-zone) fill every section. Tier 3–4 may write
+  "n/a — cosmetic" for sections 3, 3b, 6, and 10.
+
+  Delete this comment block when you fill the template in.
+-->
+
 ## 1 · TL;DR
 
 _One short paragraph: what this does and why it matters._
@@ -29,7 +52,7 @@ _The problem, the change, and the key trade-off — in prose. A reviewer should 
 - **Acceptance criteria** — each AC mapped to its evidence (test / `file:line`), or "n/a".
 - **Tests** — happy + sad + edge paths covered (what each asserts).
 - **CHECKER** — verdict · confidence · deficiencies resolved (or n/a).
-- **Preview evidence** — UI changes: screenshot or video of affected sections (agent-captured from Vercel preview) · Content changes: what changed (copy, data, assets) · URL/route changes: before → after · (or n/a per category).
+- **Manual** — UI: browser click-through + screenshot; CLI: transcript (or n/a).
 
 ## 5 · Diff map
 
@@ -57,6 +80,7 @@ _AI-SDLC; auto-filled for pipeline runs._ Audit run IDs · agents + prompt cohor
 ## 9 · Backlog
 
 _Deferred work, filed as issues (or "none")._
+- [Issue #<n>](<url>): <brief one-line description>
 - [Issue #<n>](<url>): <brief one-line description>
 
 ## 10 · Post-merge
