@@ -15,7 +15,7 @@ export function Contact() {
         <SectionHeading
           label="// contact"
           title="Let's Build Something"
-          description="Looking for Sr EM roles at Series A–D AI companies building products people actually use. Reply within 24h."
+          description="Open to Sr EM roles at Series A–D AI companies. Based in India — open to relocation: UK · Ireland · Europe · UAE · Saudi Arabia · Singapore. Reply within 24h."
         />
 
         <FadeIn>

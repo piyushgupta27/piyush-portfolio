@@ -15,7 +15,7 @@ export const projects: Project[] = [
     tech: ["TypeScript", "Node 22", "Claude Code"],
     gradient: "from-cyan-500/20 to-blue-600/20",
     link: "https://github.com/piyushgupta27/ai-sdlc",
-    highlight: "Self-managing: built by the pipeline it runs on",
+    highlight: "5× faster PR cycle · ~$3–5/ticket · blast-radius gates",
   },
   {
     title: "trip-research",

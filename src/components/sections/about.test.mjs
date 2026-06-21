@@ -19,53 +19,50 @@ const src = readFileSync(join(__dirname, "about.tsx"), "utf8").replace(
 
 describe("about.tsx — bio content (gh-2)", () => {
   describe("stats panel", () => {
-    test('shows "10M+" Slice users/day', () => {
-      assert.ok(src.includes("10M+"), 'Expected stats to contain "10M+"');
+    test('shows "50M" peak concurrent users', () => {
+      assert.ok(src.includes('"50M"'), 'Expected stats to contain value "50M"');
       assert.ok(
-        src.includes("Slice users / day"),
-        'Expected stats label "Slice users / day"',
+        src.includes("Peak concurrent users"),
+        'Expected stats label "Peak concurrent users"',
       );
     });
 
-    test('shows "1M+" jM community', () => {
+    test('shows "1M+" JumpingMinds users', () => {
       assert.ok(src.includes("1M+"), 'Expected stats to contain "1M+"');
       assert.ok(
-        src.includes("jM community"),
-        'Expected stats label "jM community"',
+        src.includes("JumpingMinds users"),
+        'Expected stats label "JumpingMinds users"',
       );
     });
 
-    test('shows "12" yrs eng leadership', () => {
+    test('shows "12" years building at scale', () => {
       assert.ok(src.includes('"12"'), 'Expected stats to contain value "12"');
       assert.ok(
-        src.includes("Yrs eng leadership"),
-        'Expected stats label "Yrs eng leadership"',
+        src.includes("Years building at scale"),
+        'Expected stats label "Years building at scale"',
       );
     });
 
-    test('shows "5" active projects', () => {
-      assert.ok(src.includes('"5"'), 'Expected stats to contain value "5"');
+    test('shows "15+" engineers led currently', () => {
+      assert.ok(src.includes('"15+"'), 'Expected stats to contain value "15+"');
       assert.ok(
-        src.includes("Active projects"),
-        'Expected stats label "Active projects"',
+        src.includes("Engineers led currently"),
+        'Expected stats label "Engineers led currently"',
       );
     });
   });
 
   describe("bio paragraphs", () => {
-    test("mentions IIT Roorkee and 12 years building at scale", () => {
-      assert.ok(
-        src.includes("IIT Roorkee"),
-        'Expected bio to mention "IIT Roorkee"',
-      );
+    test("mentions 12 years engineering experience", () => {
       assert.ok(src.includes("12 years"), 'Expected bio to mention "12 years"');
     });
 
-    test("mentions co-founding jumpingMinds in 2021 with 1M+ users", () => {
+    test("mentions co-founding JumpingMinds AI in 2021 with 1M+ users", () => {
       assert.ok(
-        src.includes("jumpingMinds in 2021"),
-        'Expected bio to mention "jumpingMinds in 2021"',
+        src.includes("JumpingMinds AI"),
+        'Expected bio to mention "JumpingMinds AI"',
       );
+      assert.ok(src.includes("2021"), 'Expected bio to mention "2021"');
       assert.ok(
         src.includes("1M+ users"),
         'Expected bio to mention "1M+ users"',
@@ -83,38 +80,30 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test("mentions leading platform engineering at Slice with 10M+ users daily", () => {
+    test("mentions leading squads at Slice with engineers", () => {
       assert.ok(
-        src.includes("platform engineering at Slice"),
-        'Expected bio to mention "platform engineering at Slice"',
+        src.includes("squads at Slice"),
+        'Expected bio to mention "squads at Slice"',
       );
       assert.ok(
-        src.includes("10M+ users daily"),
-        'Expected bio to mention "10M+ users daily"',
+        src.includes("15+ engineers"),
+        'Expected bio to mention "15+ engineers"',
       );
     });
 
-    test("mentions ai-sdlc as autonomous multi-agent SDLC pipeline", () => {
+    test("mentions building ai-sdlc", () => {
       assert.ok(src.includes("ai-sdlc"), 'Expected bio to mention "ai-sdlc"');
-      assert.ok(
-        src.includes("autonomous multi-agent SDLC"),
-        'Expected bio to mention "autonomous multi-agent SDLC"',
-      );
     });
 
-    test("mentions HITL gates calibrated to blast radius", () => {
-      assert.ok(
-        src.includes("HITL gates calibrated to blast radius"),
-        'Expected bio to mention "HITL gates calibrated to blast radius"',
-      );
-    });
-
-    test("mentions looking for Sr EM roles at Series A-D AI companies", () => {
+    test("mentions open to Sr EM roles and relocation", () => {
       assert.ok(
         src.includes("Sr EM roles"),
         'Expected bio to mention "Sr EM roles"',
       );
-      assert.ok(src.includes("Series A"), 'Expected bio to mention "Series A"');
+      assert.ok(
+        src.includes("relocation"),
+        'Expected bio to mention "relocation"',
+      );
     });
   });
 

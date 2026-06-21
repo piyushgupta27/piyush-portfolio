@@ -41,7 +41,8 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
           </span>
-          Available for Sr EM roles at Series A–D AI companies
+          Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia ·
+          Singapore · Remote
         </motion.div>
 
         {/* Name */}
@@ -61,8 +62,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-6 text-xl font-semibold text-foreground sm:text-2xl"
         >
-          Engineering Manager with 12 years building AI-native products at scale
-          — hands-on coder, team builder, and zero-to-one founder.
+          Built real-time infra for 50M+ concurrent users. Founded an AI
+          startup. Still ships AI code.
         </motion.p>
 
         {/* Sub-tagline */}
@@ -72,8 +73,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
         >
-          Co-Founder & CTO of jumpingMinds (1M+ users) · Engineering Manager at
-          Disney+ Hotstar (50M concurrent users) · Currently at Slice
+          Engineering Manager · IIT Roorkee · Ex-Disney+ Hotstar · Co-Founder
+          (JumpingMinds, 1M+ users) · Currently at Slice · Relocation-ready
         </motion.p>
 
         {/* CTAs */}
