@@ -7,10 +7,10 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
 
 const stats = [
-  { label: "Slice users / day", value: "10M+" },
-  { label: "jM community", value: "1M+" },
-  { label: "Yrs eng leadership", value: "12" },
-  { label: "Active projects", value: "5" },
+  { label: "Peak concurrent users", value: "50M" },
+  { label: "JumpingMinds users", value: "1M+" },
+  { label: "Years building at scale", value: "12" },
+  { label: "Engineers led currently", value: "15+" },
 ];
 
 export function About() {
@@ -72,22 +72,33 @@ $ echo $STATUS
             <div className="flex flex-col justify-center space-y-8">
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  IIT Roorkee graduate and senior engineering manager with 12
-                  years building at scale — I still ship code as readily as I
-                  grow teams. Led backend engineering at Disney+ Hotstar (50M
-                  concurrent users), then co-founded jumpingMinds in 2021,
-                  growing it to 1M+ users.
+                  Engineering manager with 12 years across backend, mobile, and
+                  frontend — the last 7 in management. Three chapters define the
+                  career.
                 </p>
                 <p>
-                  Currently leading platform engineering at Slice, where the
-                  lending product serves 10M+ users daily across one of
-                  India&apos;s fastest-growing fintechs. Alongside that,
-                  I&apos;m building ai-sdlc, an autonomous multi-agent SDLC
-                  pipeline with HITL gates calibrated to blast radius.
+                  At Disney+ Hotstar I built real-time messaging infrastructure
+                  that served 35M+ concurrent users at sub-second latency — 250
+                  billion messages during IPL 2019. The same architecture later
+                  scaled to 50M+ on the platform. The three most senior people I
+                  worked under there personally invested in my next venture.
                 </p>
                 <p>
-                  Now I&apos;m looking for Sr EM roles at Series A–D AI
-                  companies building products people actually use.
+                  In 2021 I co-founded JumpingMinds AI, a mental health
+                  platform. Grew from zero to 1M+ users across India, US, UK,
+                  and Scandinavia. Google for Startups Accelerator 2022. Wound
+                  down cleanly in 2024.
+                </p>
+                <p>
+                  Today I lead three squads at Slice (15+ engineers) across
+                  payments, merchant banking, and digital lending — and
+                  I&apos;ve shipped four AI systems now live org-wide: an AI
+                  oncall bot, an OpEx intelligence reporter, a PA/PG onboarding
+                  automation, and a managerial AI toolkit.
+                </p>
+                <p>
+                  Open to Sr EM roles and relocation: UK · Ireland · Europe ·
+                  UAE · Singapore.
                 </p>
               </div>
 
