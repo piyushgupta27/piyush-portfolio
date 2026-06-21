@@ -85,7 +85,7 @@ export function Experience() {
           className="mt-16"
         >
           <p className="mb-4 font-mono text-xs text-muted-foreground">
-            // full career arc
+            {"// full career arc"}
           </p>
           <div className="flex flex-wrap items-center gap-2">
             {careerArc.map((entry, i) => (
