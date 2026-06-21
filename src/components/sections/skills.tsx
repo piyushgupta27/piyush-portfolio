@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Globe, Server, Users } from "lucide-react";
+import { Brain, Code, CreditCard, Layers, Server, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -9,7 +9,9 @@ import { skillCategories } from "@/data/skills";
 
 const iconMap: Record<string, React.ElementType> = {
   Brain,
-  Globe,
+  Code,
+  CreditCard,
+  Layers,
   Server,
   Users,
 };
