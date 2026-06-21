@@ -61,4 +61,12 @@ describe("section IDs — navbar anchors resolve correctly (gh-35)", () => {
       'talks.tsx section element must have id="talks"',
     );
   });
+
+  it('education.tsx has section id="education"', () => {
+    const src = readFileSync(resolve(dir, "education.tsx"), "utf-8");
+    assert.ok(
+      src.includes('id="education"'),
+      'education.tsx section element must have id="education"',
+    );
+  });
 });
