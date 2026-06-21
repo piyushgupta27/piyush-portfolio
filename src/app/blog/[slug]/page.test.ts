@@ -50,4 +50,16 @@ describe("blog route — /blog/[slug] post page (gh-68)", () => {
       "generateStaticParams must use getAllSlugs() to enumerate all post routes",
     );
   });
+
+  it("blog post page exports generateMetadata with per-post OG tags (AC: OG/meta tags per post)", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(
+      src.includes("generateMetadata"),
+      "blog post page must export generateMetadata for per-post OG/meta tags",
+    );
+    assert.ok(
+      src.includes("openGraph"),
+      "generateMetadata must set openGraph fields",
+    );
+  });
 });
