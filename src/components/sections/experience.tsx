@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { experiences } from "@/data/experience";
+import { careerArc } from "@/data/career-arc";
 
 export function Experience() {
   return (
@@ -74,6 +75,46 @@ export function Experience() {
             ))}
           </div>
         </div>
+
+        {/* Full career arc */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-16"
+        >
+          <p className="mb-4 font-mono text-xs text-muted-foreground">
+            // full career arc
+          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            {careerArc.map((entry, i) => (
+              <div key={entry.org} className="flex items-center gap-2">
+                <div
+                  className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                    entry.current
+                      ? "border-primary/50 bg-primary/10 text-primary"
+                      : entry.type === "education"
+                        ? "border-border/50 bg-secondary/30 text-muted-foreground"
+                        : "border-border/50 bg-card/50 text-foreground/80"
+                  }`}
+                >
+                  {entry.type === "education" ? (
+                    <GraduationCap className="h-3 w-3 shrink-0" />
+                  ) : (
+                    <Briefcase className="h-3 w-3 shrink-0" />
+                  )}
+                  <span>{entry.org}</span>
+                  <span className="text-muted-foreground/60">·</span>
+                  <span className="text-muted-foreground">{entry.role}</span>
+                </div>
+                {i < careerArc.length - 1 && (
+                  <span className="text-muted-foreground/30 text-xs">→</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
