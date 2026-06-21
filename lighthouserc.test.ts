@@ -75,13 +75,13 @@ describe(".github/workflows/lighthouse.yml — CI gate (gh-72)", () => {
     expect(workflow).toContain("branches: [main]");
   });
 
-  it("uses treosh/lighthouse-ci-action and references .lighthouserc.json", () => {
+  it("uses treosh/lighthouse-ci-action, references .lighthouserc.json, and builds before auditing", () => {
     const workflow = readFileSync(
       resolve(dir, ".github/workflows/lighthouse.yml"),
       "utf-8",
     );
     expect(workflow).toContain("treosh/lighthouse-ci-action");
     expect(workflow).toContain(".lighthouserc.json");
-    expect(workflow).toContain("piyushgupta.io");
+    expect(workflow).toContain("pnpm build");
   });
 });
