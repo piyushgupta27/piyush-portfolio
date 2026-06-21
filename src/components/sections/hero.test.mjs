@@ -102,6 +102,15 @@ describe("Hero – acceptance criteria", () => {
   });
 });
 
+describe("Hero — LCP image fix (gh-72)", () => {
+  test('background fill Image has sizes="100vw" to generate a correct srcset', () => {
+    assert.ok(
+      src.includes('sizes="100vw"'),
+      "fill Image must include sizes='100vw' — omitting sizes causes Next.js to emit an incorrect srcset",
+    );
+  });
+});
+
 describe("Hero — touch target ≥44px (gh-43)", () => {
   test("GitHub icon link has min-h-[44px] and min-w-[44px]", () => {
     const ghIdx = src.indexOf('aria-label="GitHub"');
