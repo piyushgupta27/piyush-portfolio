@@ -1,7 +1,7 @@
 export interface Education {
   institution: string;
   degree: string;
-  field: string;
+  field?: string;
   location: string;
   note?: string;
 }
@@ -16,7 +16,6 @@ export const education: Education[] = [
   {
     institution: "FAU Erlangen-Nürnberg",
     degree: "Exchange Semester",
-    field: "Computer Science",
     location: "Erlangen, Germany",
     note: "European academic exchange",
   },

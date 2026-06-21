@@ -40,7 +40,8 @@ export function Education() {
                   </h3>
 
                   <p className="mb-3 text-sm text-muted-foreground">
-                    {edu.degree} · {edu.field}
+                    {edu.degree}
+                    {edu.field ? ` · ${edu.field}` : ""}
                   </p>
 
                   {edu.note && (
