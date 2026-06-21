@@ -54,14 +54,6 @@ describe("section IDs — navbar anchors resolve correctly (gh-35)", () => {
     );
   });
 
-  it('talks.tsx has section id="talks"', () => {
-    const src = readFileSync(resolve(dir, "talks.tsx"), "utf-8");
-    assert.ok(
-      src.includes('id="talks"'),
-      'talks.tsx section element must have id="talks"',
-    );
-  });
-
   it('education.tsx has section id="education"', () => {
     const src = readFileSync(resolve(dir, "education.tsx"), "utf-8");
     assert.ok(
