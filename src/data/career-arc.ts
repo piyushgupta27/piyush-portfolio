@@ -1,6 +1,6 @@
 export interface ArcEntry {
   org: string;
-  role: string;
+  role?: string;
   type: "education" | "work";
   current?: boolean;
 }
@@ -18,12 +18,10 @@ export const careerArc: ArcEntry[] = [
   },
   {
     org: "Shuttl",
-    role: "Software Engineer",
     type: "work",
   },
   {
     org: "HyperTrack",
-    role: "Software Engineer",
     type: "work",
   },
   {

@@ -105,8 +105,14 @@ export function Experience() {
                     <Briefcase className="h-3 w-3 shrink-0" />
                   )}
                   <span>{entry.org}</span>
-                  <span className="text-muted-foreground/60">·</span>
-                  <span className="text-muted-foreground">{entry.role}</span>
+                  {entry.role && (
+                    <>
+                      <span className="text-muted-foreground/60">·</span>
+                      <span className="text-muted-foreground">
+                        {entry.role}
+                      </span>
+                    </>
+                  )}
                 </div>
                 {i < careerArc.length - 1 && (
                   <span className="text-muted-foreground/30 text-xs">→</span>
