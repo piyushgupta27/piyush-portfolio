@@ -121,4 +121,13 @@ describe("RootLayout component", () => {
     );
     expect(html).toMatch(/class="[^"]*\bdark\b[^"]*"/);
   });
+
+  it("renders preconnect link for images.unsplash.com to reduce LCP connection overhead (gh-72)", async () => {
+    const { renderToString } = await import("react-dom/server");
+    const html = renderToString(
+      React.createElement(RootLayout, null, React.createElement("div")),
+    );
+    expect(html).toContain('rel="preconnect"');
+    expect(html).toContain('href="https://images.unsplash.com"');
+  });
 });

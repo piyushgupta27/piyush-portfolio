@@ -35,6 +35,9 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable} dark h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
+      </head>
       <body className="min-h-full flex flex-col bg-grid">
         <Navbar />
         <main className="flex-1">{children}</main>
