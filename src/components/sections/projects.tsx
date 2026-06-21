@@ -16,9 +16,9 @@ export function Projects() {
     <section id="projects" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          label="// side projects"
-          title="Side Projects"
-          description="Personal tools and experiments built outside of work."
+          label="// what i ship"
+          title="What I Ship"
+          description="Tools and experiments I build to solve my own problems."
         />
 
         <StaggerChildren className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
