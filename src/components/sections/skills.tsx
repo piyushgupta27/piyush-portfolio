@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Brain, Globe, Server, Users } from "lucide-react";
+import { Brain, Code, CreditCard, Layers, Server, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -9,7 +8,9 @@ import { skillCategories } from "@/data/skills";
 
 const iconMap: Record<string, React.ElementType> = {
   Brain,
-  Globe,
+  Code,
+  CreditCard,
+  Layers,
   Server,
   Users,
 };
@@ -40,31 +41,14 @@ export function Skills() {
                       </h3>
                     </div>
 
-                    <div className="space-y-4">
-                      {cat.skills.map((skill, skillIndex) => (
-                        <div key={skill.name}>
-                          <div className="mb-1.5 flex items-center justify-between">
-                            <span className="text-sm font-mono">
-                              {skill.name}
-                            </span>
-                            <span className="text-xs text-muted-foreground font-mono">
-                              {skill.level}%
-                            </span>
-                          </div>
-                          <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-                            <motion.div
-                              className="h-full rounded-full bg-gradient-to-r from-primary to-purple-500"
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.level}%` }}
-                              viewport={{ once: true }}
-                              transition={{
-                                duration: 0.8,
-                                delay: catIndex * 0.15 + skillIndex * 0.08,
-                                ease: [0.21, 0.47, 0.32, 0.98],
-                              }}
-                            />
-                          </div>
-                        </div>
+                    <div className="flex flex-wrap gap-2">
+                      {cat.skills.map((skill) => (
+                        <span
+                          key={skill.name}
+                          className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1 text-xs font-mono text-muted-foreground"
+                        >
+                          {skill.name}
+                        </span>
                       ))}
                     </div>
                   </CardContent>

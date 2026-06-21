@@ -14,9 +14,9 @@ describe("experiences data", () => {
     assert.ok(slice, 'Should have an entry with company containing "Slice"');
   });
 
-  it("contains jumpingMinds as an entry", () => {
-    const jm = experiences.find((e) => e.company === "jumpingMinds");
-    assert.ok(jm, 'Should have an entry with company "jumpingMinds"');
+  it("contains JumpingMinds AI as an entry", () => {
+    const jm = experiences.find((e) => e.company === "JumpingMinds AI");
+    assert.ok(jm, 'Should have an entry with company "JumpingMinds AI"');
   });
 
   // AC: old placeholder companies are gone
@@ -69,13 +69,13 @@ describe("experiences data", () => {
 
   it("Slice entry has correct role and period", () => {
     const slice = experiences.find((e) => e.company.includes("Slice"))!;
-    assert.equal(slice.role, "Sr Engineering Manager");
+    assert.equal(slice.role, "Engineering Manager");
     assert.match(slice.period, /2024/);
     assert.match(slice.period, /Present/);
   });
 
-  it("jumpingMinds entry has correct role and period", () => {
-    const jm = experiences.find((e) => e.company === "jumpingMinds")!;
+  it("JumpingMinds AI entry has correct role and period", () => {
+    const jm = experiences.find((e) => e.company === "JumpingMinds AI")!;
     assert.equal(jm.role, "Co-Founder & CTO");
     assert.match(jm.period, /2021/);
     assert.match(jm.period, /2024/);
