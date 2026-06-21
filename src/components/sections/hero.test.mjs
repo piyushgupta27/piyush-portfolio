@@ -18,39 +18,33 @@ describe("Hero – acceptance criteria", () => {
 
   test("Tagline reads approved hero positioning", () => {
     assert.ok(
-      src.includes("Engineering Manager with 12 years"),
-      "Tagline must mention 12 years",
+      src.includes("50M+ concurrent users"),
+      "Tagline must mention 50M+ concurrent users",
     );
     assert.ok(
-      src.includes("AI-native products at scale"),
-      "Tagline must mention AI-native products at scale",
+      src.includes("Founded an AI"),
+      "Tagline must mention founding an AI startup",
     );
     assert.ok(
-      src.includes("zero-to-one founder"),
-      "Tagline must mention zero-to-one founder",
+      src.includes("Still ships"),
+      "Tagline must mention still shipping",
     );
   });
 
-  test('Status badge reads "Available for Sr EM roles at Series A–D AI companies"', () => {
+  test("Status badge mentions open to Sr EM roles and geographies", () => {
     assert.ok(
-      src.includes("Available for Sr EM roles at Series A"),
-      "Status badge must include the correct text",
+      src.includes("Open to Sr EM roles"),
+      "Status badge must include open to Sr EM roles",
     );
-    assert.ok(
-      src.includes("D AI companies"),
-      "Status badge must reference AI companies",
-    );
+    assert.ok(src.includes("UK"), "Status badge must reference UK");
   });
 
-  test("Sub-tagline contains jumpingMinds and Disney+ Hotstar and Slice", () => {
+  test("Sub-tagline contains JumpingMinds and Disney+ Hotstar and Slice", () => {
     assert.ok(
-      src.includes("jumpingMinds"),
-      "Sub-tagline must mention jumpingMinds",
+      src.includes("JumpingMinds"),
+      "Sub-tagline must mention JumpingMinds",
     );
-    assert.ok(
-      src.includes("1M+ users"),
-      "Sub-tagline must mention jumpingMinds user count",
-    );
+    assert.ok(src.includes("1M+ users"), "Sub-tagline must mention user count");
     assert.ok(
       src.includes("Disney+ Hotstar"),
       "Sub-tagline must mention Disney+ Hotstar",
