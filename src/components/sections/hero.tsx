@@ -40,8 +40,8 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
           </span>
-          Open to Sr EM roles · UK · EU · UAE · Saudi Arabia · Singapore ·
-          Remote
+          Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia ·
+          Singapore · Remote
         </motion.div>
 
         {/* Name */}

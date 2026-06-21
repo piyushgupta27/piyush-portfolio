@@ -80,8 +80,15 @@ $ echo $STATUS
                   At Disney+ Hotstar I built real-time messaging infrastructure
                   that served 35M+ concurrent users at sub-second latency — 250
                   billion messages during IPL 2019. The same architecture later
-                  scaled to 50M+ on the platform. The three most senior people I
-                  worked under there personally invested in my next venture.
+                  scaled to 50M+ on the platform.
+                </p>
+                <p className="rounded-lg border border-border/50 bg-card/50 px-4 py-3 text-sm">
+                  <span className="font-semibold text-foreground">
+                    Disney vote of confidence:
+                  </span>{" "}
+                  Three of my most senior colleagues from Hotstar — the India
+                  CEO, CTO, and SVP Product — personally backed JumpingMinds AI
+                  as investors.
                 </p>
                 <p>
                   In 2021 I co-founded JumpingMinds AI, a mental health
@@ -98,7 +105,7 @@ $ echo $STATUS
                 </p>
                 <p>
                   Open to Sr EM roles and relocation: UK · Ireland · Europe ·
-                  UAE · Singapore.
+                  UAE · Saudi Arabia · Singapore.
                 </p>
               </div>
 
