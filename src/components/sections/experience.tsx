@@ -56,9 +56,17 @@ export function Experience() {
                       <p className="mb-3 text-sm text-muted-foreground">
                         {exp.role}
                       </p>
-                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                        {exp.description}
-                      </p>
+                      <ul className="mb-4 space-y-1.5">
+                        {exp.description.map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
+                          >
+                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
                       <div className="flex flex-wrap gap-2">
                         {exp.tech.map((t) => (
                           <TechBadge key={t}>{t}</TechBadge>

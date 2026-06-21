@@ -81,13 +81,16 @@ describe("experiences data", () => {
     assert.match(jm.period, /2024/);
   });
 
-  it("all description fields are non-empty strings", () => {
+  it("all description fields are non-empty string arrays", () => {
     for (const exp of experiences) {
-      assert.equal(typeof exp.description, "string");
       assert.ok(
-        exp.description.length > 0,
-        `Entry "${exp.company}" has empty description`,
+        Array.isArray(exp.description) && exp.description.length > 0,
+        `Entry "${exp.company}" must have a non-empty description array`,
       );
+      for (const point of exp.description) {
+        assert.equal(typeof point, "string");
+        assert.ok(point.length > 0, `Entry "${exp.company}" has empty bullet`);
+      }
     }
   });
 });
