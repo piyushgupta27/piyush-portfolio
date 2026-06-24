@@ -99,6 +99,33 @@ describe("contact.tsx — Calendly secondary CTA (gh-111)", () => {
   it("imports Calendar icon from lucide-react", () => {
     assert.ok(src.includes("Calendar"), "Must import Calendar icon");
   });
+
+  it("Calendly link is styled as muted/secondary (text-muted-foreground)", () => {
+    const idx = src.indexOf('href="https://calendly.com/piyushguptaece/30min"');
+    assert.ok(idx !== -1, "Calendly href must be present");
+    const block = src.slice(idx, idx + 300);
+    assert.ok(
+      block.includes("text-muted-foreground"),
+      "Calendly link must use text-muted-foreground to signal secondary priority",
+    );
+  });
+
+  it("Calendly link uses text-sm (smaller than email's text-lg)", () => {
+    const idx = src.indexOf('href="https://calendly.com/piyushguptaece/30min"');
+    assert.ok(idx !== -1, "Calendly href must be present");
+    const block = src.slice(idx, idx + 300);
+    assert.ok(block.includes("text-sm"), "Calendly link must use text-sm");
+  });
+
+  it("email link uses text-primary to signal primary CTA priority", () => {
+    const idx = src.indexOf('href="mailto:piyushguptaece@gmail.com"');
+    assert.ok(idx !== -1, "Email href must be present");
+    const block = src.slice(idx, idx + 300);
+    assert.ok(
+      block.includes("text-primary"),
+      "Email link must use text-primary to signal it is the primary CTA",
+    );
+  });
 });
 
 describe("contact.tsx — touch target ≥44px (gh-43)", () => {
