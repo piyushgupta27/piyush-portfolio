@@ -66,6 +66,41 @@ describe("contact.tsx — Piyush's real contact info", () => {
   });
 });
 
+describe("contact.tsx — Calendly secondary CTA (gh-111)", () => {
+  it("includes Calendly booking link", () => {
+    assert.ok(
+      src.includes('href="https://calendly.com/piyushguptaece/30min"'),
+      "Must have Calendly href",
+    );
+  });
+
+  it("renders 'Book a 30-min intro call' label", () => {
+    assert.ok(src.includes("Book a 30-min intro call"));
+  });
+
+  it("Calendly link opens in a new tab", () => {
+    const idx = src.indexOf("calendly.com/piyushguptaece/30min");
+    assert.ok(idx !== -1, "Calendly href must be present");
+    const block = src.slice(idx, idx + 300);
+    assert.ok(block.includes('target="_blank"'));
+    assert.ok(block.includes('rel="noopener noreferrer"'));
+  });
+
+  it("Calendly link has min-h-[44px] touch target", () => {
+    const idx = src.indexOf('href="https://calendly.com/piyushguptaece/30min"');
+    assert.ok(idx !== -1, "Calendly href must be present");
+    const block = src.slice(idx, idx + 300);
+    assert.ok(
+      block.includes("min-h-[44px]"),
+      "Calendly link className must include min-h-[44px]",
+    );
+  });
+
+  it("imports Calendar icon from lucide-react", () => {
+    assert.ok(src.includes("Calendar"), "Must import Calendar icon");
+  });
+});
+
 describe("contact.tsx — touch target ≥44px (gh-43)", () => {
   it("email link has min-h-[44px]", () => {
     const mailIdx = src.indexOf('href="mailto:piyushguptaece@gmail.com"');
