@@ -46,7 +46,6 @@
     "eslint-config-next": "16.2.9",
     "shadcn": "^4.11.0",
     "tailwindcss": "^4",
-    "tdd-guard-vitest": "^0.2.0",
     "typescript": "^6",
     "vitest": "^4.1.9"
   }
