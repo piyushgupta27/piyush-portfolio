@@ -47,4 +47,27 @@ describe("blog content — data layer (gh-68)", () => {
     const result = getPostBySlug("this-slug-does-not-exist");
     assert.strictEqual(result, undefined);
   });
+
+  it("getPostBySlug returns the correct post for ai-leadership-toolkit (gh-120)", () => {
+    const post = getPostBySlug("ai-leadership-toolkit");
+    assert.ok(post !== undefined, "should find the ai-leadership-toolkit post");
+    assert.equal(post.slug, "ai-leadership-toolkit");
+  });
+
+  it("ai-leadership-toolkit post is self-hosted — no mediumUrl, non-empty inline content (gh-120)", () => {
+    const post = getPostBySlug("ai-leadership-toolkit");
+    assert.ok(post !== undefined);
+    assert.equal(post.mediumUrl, undefined, "self-hosted post must not have a mediumUrl");
+    assert.ok(post.content.length > 0, "self-hosted post must have inline content");
+  });
+
+  it("ai-leadership-toolkit content has at least 4 heading blocks covering the four tools (gh-120)", () => {
+    const post = getPostBySlug("ai-leadership-toolkit");
+    assert.ok(post !== undefined);
+    const headings = post.content.filter((b) => b.type === "heading");
+    assert.ok(
+      headings.length >= 4,
+      `expected at least 4 headings for four tools, got ${headings.length}`,
+    );
+  });
 });
