@@ -96,16 +96,37 @@ describe("experiences data", () => {
     assert.ok(jm, "JumpingMinds AI entry must exist");
     const d = jm.description;
     // Snuggles AI companion chatbot pre-ChatGPT
-    assert.ok(d.includes("Snuggles"), "must mention the Snuggles AI companion chatbot");
+    assert.ok(
+      d.includes("Snuggles"),
+      "must mention the Snuggles AI companion chatbot",
+    );
     assert.ok(d.includes("2022"), "must mention early 2022 launch year");
-    assert.ok(d.toLowerCase().includes("chatgpt"), "must reference ChatGPT for the pre-launch comparison");
+    assert.ok(
+      d.toLowerCase().includes("chatgpt"),
+      "must reference ChatGPT for the pre-launch comparison",
+    );
     // Engagement metrics
-    assert.ok(d.includes("35 min"), "must include '35 min' daily engagement metric");
-    assert.ok(d.includes("2.3"), "must include '2.3×' industry average multiplier");
-    assert.ok(d.includes("40M+"), "must include '40M+' AI training data points");
-    assert.ok(d.includes("30% positive mood shift"), "must include '30% positive mood shift' outcome");
+    assert.ok(
+      d.includes("35 min"),
+      "must include '35 min' daily engagement metric",
+    );
+    assert.ok(
+      d.includes("2.3"),
+      "must include '2.3×' industry average multiplier",
+    );
+    assert.ok(
+      d.includes("40M+"),
+      "must include '40M+' AI training data points",
+    );
+    assert.ok(
+      d.includes("30% positive mood shift"),
+      "must include '30% positive mood shift' outcome",
+    );
     // Content-first GTM metrics
-    assert.ok(d.includes("118K"), "must include '118K' Instagram followers metric");
+    assert.ok(
+      d.includes("118K"),
+      "must include '118K' Instagram followers metric",
+    );
     assert.ok(d.includes("7M+"), "must include '7M+' Reels impressions metric");
   });
 });
