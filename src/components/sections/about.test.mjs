@@ -35,11 +35,14 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test('shows "12" years building at scale', () => {
-      assert.ok(src.includes('"12"'), 'Expected stats to contain value "12"');
+    test('shows "250B+" messages delivered IPL 2019', () => {
       assert.ok(
-        src.includes("Years building at scale"),
-        'Expected stats label "Years building at scale"',
+        src.includes('"250B+"'),
+        'Expected stats to contain value "250B+"',
+      );
+      assert.ok(
+        src.includes("Messages delivered IPL 2019"),
+        'Expected stats label "Messages delivered IPL 2019"',
       );
     });
 

@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const stats = [
   { label: "Peak concurrent users", value: "50M" },
   { label: "JumpingMinds users", value: "1M+" },
-  { label: "Years building at scale", value: "12" },
+  { label: "Messages delivered IPL 2019", value: "250B+" },
   { label: "Engineers led currently", value: "15+" },
 ];
 
