@@ -63,3 +63,33 @@ describe("blog route — /blog/[slug] post page (gh-68)", () => {
     );
   });
 });
+
+describe("blog post page — inline content + CTA rendering (gh-118)", () => {
+  it("page renders inline content when content.length > 0 (not only for mediumUrl-less posts)", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(
+      src.includes("post.content.length > 0"),
+      "page must branch on content.length > 0 to render inline content first",
+    );
+  });
+
+  it("page renders a GitHub CTA link when post has githubUrl (gh-118)", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(
+      src.includes("post.githubUrl"),
+      "page must reference post.githubUrl for conditional CTA rendering",
+    );
+    assert.ok(
+      src.includes("View on GitHub"),
+      "page must include 'View on GitHub' link text for the GitHub CTA",
+    );
+  });
+
+  it("page falls back to mediumUrl redirect card when content is empty (negative path)", () => {
+    const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+    assert.ok(
+      src.includes(": post.mediumUrl ?"),
+      "page must fall back to mediumUrl redirect card when content array is empty",
+    );
+  });
+});

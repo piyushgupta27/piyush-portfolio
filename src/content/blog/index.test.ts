@@ -48,3 +48,53 @@ describe("blog content — data layer (gh-68)", () => {
     assert.strictEqual(result, undefined);
   });
 });
+
+describe("blog content — githubUrl field (gh-118)", () => {
+  it("agentic-sdlc post has githubUrl pointing to the ai-sdlc repo", () => {
+    const post = getPostBySlug("agentic-sdlc");
+    assert.ok(post !== undefined, "agentic-sdlc post must exist");
+    assert.ok(
+      typeof post.githubUrl === "string" && post.githubUrl.length > 0,
+      "agentic-sdlc post must have a githubUrl string",
+    );
+    assert.ok(
+      post.githubUrl.startsWith("https://"),
+      "githubUrl must be an https:// URL",
+    );
+  });
+
+  it("githubUrl is optional — existing posts without it remain valid", () => {
+    const postsWithoutGithubUrl = seedPosts.filter(
+      (p) => p.githubUrl === undefined,
+    );
+    assert.ok(
+      postsWithoutGithubUrl.length > 0,
+      "at least one post should have no githubUrl (it is optional)",
+    );
+    for (const post of postsWithoutGithubUrl) {
+      assert.strictEqual(
+        post.githubUrl,
+        undefined,
+        `post "${post.slug}" githubUrl should be undefined, not null or empty string`,
+      );
+    }
+  });
+
+  it("agentic-sdlc post has inline content blocks enabling self-hosted rendering", () => {
+    const post = getPostBySlug("agentic-sdlc");
+    assert.ok(post !== undefined, "agentic-sdlc post must exist");
+    assert.ok(
+      Array.isArray(post.content) && post.content.length > 0,
+      "agentic-sdlc post must have non-empty inline content blocks",
+    );
+    const types = post.content.map((b) => b.type);
+    assert.ok(
+      types.includes("heading"),
+      "agentic-sdlc content must include at least one heading block",
+    );
+    assert.ok(
+      types.includes("paragraph"),
+      "agentic-sdlc content must include at least one paragraph block",
+    );
+  });
+});
