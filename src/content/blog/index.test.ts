@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { seedPosts, getPostBySlug, getAllSlugs } from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
-  it("seedPosts exports exactly 4 posts", () => {
-    assert.equal(seedPosts.length, 4);
+  it("seedPosts exports exactly 5 posts", () => {
+    assert.equal(seedPosts.length, 5);
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {

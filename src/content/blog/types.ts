@@ -10,4 +10,5 @@ export interface BlogPostData {
   excerpt: string;
   content: ContentBlock[];
   mediumUrl?: string;
+  githubUrl?: string;
 }

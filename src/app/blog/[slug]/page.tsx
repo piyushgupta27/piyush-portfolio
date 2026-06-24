@@ -68,7 +68,58 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
         </div>
 
-        {post.mediumUrl ? (
+        {post.content.length > 0 ? (
+          <>
+            <div className="max-w-none">
+              {post.content.map((block, i) => {
+                if (block.type === "heading") {
+                  return (
+                    <h2
+                      key={i}
+                      className="mt-10 mb-4 text-xl font-semibold tracking-tight"
+                    >
+                      {block.text}
+                    </h2>
+                  );
+                }
+                return (
+                  <p
+                    key={i}
+                    className="mb-4 leading-relaxed text-muted-foreground"
+                  >
+                    {block.text}
+                  </p>
+                );
+              })}
+            </div>
+            {(post.githubUrl || post.mediumUrl) && (
+              <div className="mt-12 flex flex-wrap gap-4 border-t border-border/50 pt-8">
+                {post.githubUrl && (
+                  <a
+                    href={post.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md border border-border/70 px-5 py-2.5 text-sm font-medium transition-colors hover:bg-card"
+                  >
+                    View on GitHub
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
+                {post.mediumUrl && (
+                  <a
+                    href={post.mediumUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    Read on Medium
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            )}
+          </>
+        ) : post.mediumUrl ? (
           <div className="rounded-lg border border-border/50 bg-card/50 p-8 text-center">
             <p className="mb-6 text-muted-foreground">
               This article is published on Medium — with images, diagrams, and
@@ -84,30 +135,7 @@ export default async function BlogPostPage({ params }: Props) {
               <ArrowUpRight className="h-4 w-4" />
             </a>
           </div>
-        ) : (
-          <div className="max-w-none">
-            {post.content.map((block, i) => {
-              if (block.type === "heading") {
-                return (
-                  <h2
-                    key={i}
-                    className="mt-10 mb-4 text-xl font-semibold tracking-tight"
-                  >
-                    {block.text}
-                  </h2>
-                );
-              }
-              return (
-                <p
-                  key={i}
-                  className="mb-4 leading-relaxed text-muted-foreground"
-                >
-                  {block.text}
-                </p>
-              );
-            })}
-          </div>
-        )}
+        ) : null}
       </div>
     </article>
   );
