@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, Calendar } from "lucide-react";
 import { GithubIcon, LinkedInIcon, MediumIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -30,6 +30,18 @@ export function Contact() {
                   piyushguptaece@gmail.com
                   <ArrowUpRight className="h-4 w-4 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </a>
+                <div>
+                  <a
+                    href="https://calendly.com/piyushguptaece/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex min-h-[44px] items-center gap-2 text-sm font-mono text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Book a 30-min intro call
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </div>
               </div>
 
               <div className="flex justify-center gap-4">
