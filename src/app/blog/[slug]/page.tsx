@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { getPostBySlug, getAllSlugs } from "@/content/blog";
+import type { ContentBlock } from "@/content/blog";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -35,10 +36,124 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function renderBlock(block: ContentBlock, i: number) {
+  switch (block.type) {
+    case "heading":
+      return (
+        <h2
+          key={i}
+          className="mt-10 mb-4 text-xl font-semibold tracking-tight"
+        >
+          {block.text}
+        </h2>
+      );
+
+    case "subheading":
+      return (
+        <h3
+          key={i}
+          className="mt-8 mb-3 text-base font-semibold tracking-tight text-foreground/90"
+        >
+          {block.text}
+        </h3>
+      );
+
+    case "paragraph":
+      return (
+        <p key={i} className="mb-4 leading-relaxed text-muted-foreground">
+          {block.text}
+        </p>
+      );
+
+    case "image":
+      return (
+        <figure key={i} className="my-8">
+          <img
+            src={block.src}
+            alt={block.alt}
+            className="w-full rounded-lg border border-border/30"
+          />
+          {block.caption && (
+            <figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">
+              {block.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
+
+    case "table":
+      return (
+        <div key={i} className="my-8 overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr>
+                {block.headers.map((h) => (
+                  <th
+                    key={h}
+                    className="border border-border/50 bg-card/80 px-4 py-2.5 text-left font-semibold text-foreground font-mono text-xs"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr key={ri} className="odd:bg-card/30">
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      className="border border-border/50 px-4 py-2.5 text-sm text-muted-foreground"
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+
+    case "callout": {
+      const variantStyles: Record<string, string> = {
+        info: "border-primary/30 bg-primary/5 text-foreground/80",
+        warning: "border-yellow-500/30 bg-yellow-500/10 text-foreground/80",
+        tip: "border-green-500/30 bg-green-500/10 text-foreground/80",
+      };
+      const style =
+        variantStyles[block.variant ?? "info"] ?? variantStyles.info;
+      return (
+        <div
+          key={i}
+          className={`my-6 rounded-lg border p-4 text-sm leading-relaxed ${style}`}
+        >
+          {block.text}
+        </div>
+      );
+    }
+
+    case "code":
+      return (
+        <pre
+          key={i}
+          className="my-6 overflow-x-auto rounded-lg border border-border/50 bg-card/80 p-4 font-mono text-sm leading-relaxed"
+        >
+          <code className="text-foreground/90">{block.text}</code>
+        </pre>
+      );
+
+    default:
+      return null;
+  }
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+
+  const hasContent = post.content.length > 0;
 
   return (
     <article className="py-24 px-6">
@@ -68,7 +183,38 @@ export default async function BlogPostPage({ params }: Props) {
           </p>
         </div>
 
-        {post.mediumUrl ? (
+        {hasContent ? (
+          <div className="max-w-none">
+            {post.content.map((block, i) => renderBlock(block, i))}
+
+            {(post.mediumUrl || post.githubUrl) && (
+              <div className="mt-12 flex flex-wrap gap-4 border-t border-border/50 pt-8">
+                {post.mediumUrl && (
+                  <a
+                    href={post.mediumUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    Read on Medium
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
+                {post.githubUrl && (
+                  <a
+                    href={post.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    View on GitHub
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        ) : (
           <div className="rounded-lg border border-border/50 bg-card/50 p-8 text-center">
             <p className="mb-6 text-muted-foreground">
               This article is published on Medium — with images, diagrams, and
@@ -83,29 +229,6 @@ export default async function BlogPostPage({ params }: Props) {
               Read on Medium
               <ArrowUpRight className="h-4 w-4" />
             </a>
-          </div>
-        ) : (
-          <div className="max-w-none">
-            {post.content.map((block, i) => {
-              if (block.type === "heading") {
-                return (
-                  <h2
-                    key={i}
-                    className="mt-10 mb-4 text-xl font-semibold tracking-tight"
-                  >
-                    {block.text}
-                  </h2>
-                );
-              }
-              return (
-                <p
-                  key={i}
-                  className="mb-4 leading-relaxed text-muted-foreground"
-                >
-                  {block.text}
-                </p>
-              );
-            })}
           </div>
         )}
       </div>
