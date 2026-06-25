@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { getPostBySlug, getAllSlugs } from "@/content/blog";
 import type { ContentBlock } from "@/content/blog";
@@ -179,9 +180,11 @@ export default async function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
           <div className="mt-4 flex items-center gap-3">
-            <img
+            <Image
               src="/images/headshot.jpg"
               alt="Piyush Gupta"
+              width={28}
+              height={28}
               className="h-7 w-7 rounded-full object-cover border border-border/30"
             />
             <span className="font-mono text-xs text-muted-foreground">

@@ -65,8 +65,7 @@ describe("blog route — /blog/[slug] post page (gh-68)", () => {
 });
 
 describe("blog post page — gh-141 changes", () => {
-  let src: string;
-  src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+  const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
 
   it("renders author headshot image (AC1: author byline)", () => {
     assert.ok(
