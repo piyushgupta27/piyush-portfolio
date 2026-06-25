@@ -1,6 +1,11 @@
 import { describe, it } from "vitest";
 import assert from "node:assert/strict";
-import { seedPosts, getAllPosts, getPostBySlug, getAllSlugs } from "@/content/blog";
+import {
+  seedPosts,
+  getAllPosts,
+  getPostBySlug,
+  getAllSlugs,
+} from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
   it("seedPosts exports exactly 6 posts", () => {

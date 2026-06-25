@@ -187,10 +187,30 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="max-w-none">
             {post.githubUrl && (
               <div className="mb-10 flex flex-wrap gap-x-8 gap-y-2 border-t border-border/30 pt-6 font-mono text-xs">
-                <span><span className="text-primary font-bold">14 min</span> <span className="text-muted-foreground">· full 4-agent cycle</span></span>
-                <span><span className="text-primary font-bold">4 agents</span> <span className="text-muted-foreground">· BUILDER → TESTER → REVIEWER → CHECKER</span></span>
-                <span><span className="text-primary font-bold">$3.49</span> <span className="text-muted-foreground">· AI compute (gh-118)</span></span>
-                <span><span className="text-primary font-bold">87%</span> <span className="text-muted-foreground">· straight-through success</span></span>
+                <span>
+                  <span className="text-primary font-bold">14 min</span>{" "}
+                  <span className="text-muted-foreground">
+                    · full 4-agent cycle
+                  </span>
+                </span>
+                <span>
+                  <span className="text-primary font-bold">4 agents</span>{" "}
+                  <span className="text-muted-foreground">
+                    · BUILDER → TESTER → REVIEWER → CHECKER
+                  </span>
+                </span>
+                <span>
+                  <span className="text-primary font-bold">$3.49</span>{" "}
+                  <span className="text-muted-foreground">
+                    · AI compute (gh-118)
+                  </span>
+                </span>
+                <span>
+                  <span className="text-primary font-bold">87%</span>{" "}
+                  <span className="text-muted-foreground">
+                    · straight-through success
+                  </span>
+                </span>
               </div>
             )}
             {post.content.map((block, i) => renderBlock(block, i))}
@@ -198,7 +218,9 @@ export default async function BlogPostPage({ params }: Props) {
             {(post.mediumUrl || post.githubUrl) && (
               <div className="mt-16 rounded-xl border border-primary/30 bg-primary/5 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
-                  The full implementation — dispatch layer, agent prompts, hash-chaining, blast-radius enforcement — is open source. Issues and PRs run through the pipeline itself.
+                  The full implementation — dispatch layer, agent prompts,
+                  hash-chaining, blast-radius enforcement — is open source.
+                  Issues and PRs run through the pipeline itself.
                 </p>
                 <div className="flex flex-wrap gap-4 shrink-0">
                   {post.mediumUrl && (

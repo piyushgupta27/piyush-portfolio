@@ -2,7 +2,8 @@ import type { BlogPostData } from "./types";
 
 const post: BlogPostData = {
   slug: "agentic-sdlc",
-  title: "Building an Agentic CI/CD Pipeline: Four Agents, One Human Gate, and What Actually Breaks",
+  title:
+    "Building an Agentic CI/CD Pipeline: Four Agents, One Human Gate, and What Actually Breaks",
   date: "2026-06-24",
   tag: "AI-Native Engineering",
   excerpt:
@@ -43,7 +44,8 @@ const post: BlogPostData = {
       type: "image",
       src: "/blog/pipeline-flow.svg",
       alt: "ai-sdlc pipeline: GitHub Issue → Dispatch → BUILDER → TESTER → REVIEWER → CHECKER → Human Gate → Merge, with real timing from gh-118",
-      caption: "The full pipeline. Timing numbers are from gh-118 — this post's own dispatch run.",
+      caption:
+        "The full pipeline. Timing numbers are from gh-118 — this post's own dispatch run.",
     },
     {
       type: "paragraph",
@@ -103,7 +105,8 @@ const post: BlogPostData = {
       type: "image",
       src: "/blog/blast-radius-tiers.svg",
       alt: "Blast-radius tier pyramid: Tier 0 (Critical) at top through Tier 3/4 (Low) at base, with examples and gate requirements at each level",
-      caption: "Every file write is pre-checked against this tier map before execution.",
+      caption:
+        "Every file write is pre-checked against this tier map before execution.",
     },
     {
       type: "paragraph",
@@ -195,13 +198,37 @@ const post: BlogPostData = {
       type: "table",
       headers: ["Metric", "Number", "What it means"],
       rows: [
-        ["Total agent runs", "150+", "Across piyush-portfolio, ai-sdlc, trip-research, career-automation"],
-        ["Tasks dispatched end-to-end", "45+", "Full BUILDER→TESTER→REVIEWER→CHECKER cycles"],
-        ["Straight-through success rate", "87%", "13% escalated correctly — none silently failed"],
+        [
+          "Total agent runs",
+          "150+",
+          "Across piyush-portfolio, ai-sdlc, trip-research, career-automation",
+        ],
+        [
+          "Tasks dispatched end-to-end",
+          "45+",
+          "Full BUILDER→TESTER→REVIEWER→CHECKER cycles",
+        ],
+        [
+          "Straight-through success rate",
+          "87%",
+          "13% escalated correctly — none silently failed",
+        ],
         ["Tier 0/1 runs", "Nearly 40", "High-stakes paths, zero incidents"],
-        ["Total AI compute cost", "$136", "Across all four repos, all tiers, all agents"],
-        ["Average cost per task", "Under $4", "Including REVIEWER running Opus 4.8"],
-        ["Estimated engineering hours replaced", "100+", "At 3h average per Tier-2 task done manually"],
+        [
+          "Total AI compute cost",
+          "$136",
+          "Across all four repos, all tiers, all agents",
+        ],
+        [
+          "Average cost per task",
+          "Under $4",
+          "Including REVIEWER running Opus 4.8",
+        ],
+        [
+          "Estimated engineering hours replaced",
+          "100+",
+          "At 3h average per Tier-2 task done manually",
+        ],
       ],
     },
     {
