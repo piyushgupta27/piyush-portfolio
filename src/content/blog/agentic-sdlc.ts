@@ -9,7 +9,8 @@ const post: BlogPostData = {
   excerpt:
     "Engineering attention is the scarcest resource in any team. ai-sdlc is a four-agent pipeline — BUILDER, TESTER, REVIEWER, CHECKER — that takes a GitHub issue and delivers a reviewed, gated PR in under 15 minutes, for under $4 in AI compute. This is how it works. And the proof: this post was written, tested, reviewed, and shipped by the system it describes.",
   githubUrl: "https://github.com/piyushgupta27/ai-sdlc",
-  ctaText: "The full implementation — dispatch layer, agent prompts, hash-chaining, blast-radius enforcement — is open source. Issues and PRs run through the pipeline itself.",
+  ctaText:
+    "The full implementation — dispatch layer, agent prompts, hash-chaining, blast-radius enforcement — is open source. Issues and PRs run through the pipeline itself.",
   content: [
     {
       type: "paragraph",
