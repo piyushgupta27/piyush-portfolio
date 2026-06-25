@@ -16,4 +16,5 @@ export interface BlogPostData {
   content: ContentBlock[];
   mediumUrl?: string;
   githubUrl?: string;
+  ctaText?: string;
 }
