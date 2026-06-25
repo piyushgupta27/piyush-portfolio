@@ -74,4 +74,13 @@ describe("blog content — data layer (gh-68)", () => {
     const result = getPostBySlug("this-slug-does-not-exist");
     assert.strictEqual(result, undefined);
   });
+
+  it("agentic-sdlc post has ctaText field set (AC4/AC5: ctaText schema)", () => {
+    const post = getPostBySlug("agentic-sdlc");
+    assert.ok(post !== undefined, "agentic-sdlc post must exist");
+    assert.ok(
+      typeof post.ctaText === "string" && post.ctaText.length > 0,
+      "agentic-sdlc post must have a non-empty ctaText string",
+    );
+  });
 });

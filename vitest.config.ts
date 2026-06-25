@@ -16,6 +16,7 @@ export default defineConfig({
       include: [
         "src/app/layout.tsx",
         "src/app/opengraph-image.tsx",
+        "src/app/blog/[slug]/opengraph-image.tsx",
         "src/components/sections/contact.tsx",
         "src/components/ui/icons.tsx",
       ],
