@@ -4,11 +4,13 @@ import capturingEmojis from "./capturing-a-billion-emojis";
 import whyDisney from "./why-i-enjoyed-working-at-disney";
 import androidScheduling from "./android-scheduling";
 import agenticSdlc from "./agentic-sdlc";
+import aiLeadershipToolkit from "./ai-leadership-toolkit";
 import type { BlogPostData } from "./types";
 
 export type { BlogPostData, ContentBlock } from "./types";
 
 export const seedPosts: BlogPostData[] = [
+  aiLeadershipToolkit,
   agenticSdlc,
   realtimePart1,
   realtimePart2,

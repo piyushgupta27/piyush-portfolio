@@ -8,8 +8,8 @@ import {
 } from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
-  it("seedPosts exports exactly 6 posts", () => {
-    assert.equal(seedPosts.length, 6);
+  it("seedPosts exports exactly 7 posts", () => {
+    assert.equal(seedPosts.length, 7);
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {
@@ -58,6 +58,16 @@ describe("blog content — data layer (gh-68)", () => {
     const post = getPostBySlug("realtime-messaging-infrastructure-part-1");
     assert.ok(post !== undefined, "should return a post for a known slug");
     assert.equal(post.slug, "realtime-messaging-infrastructure-part-1");
+  });
+
+  it("getPostBySlug returns the correct post for ai-leadership-toolkit slug (gh-120)", () => {
+    const post = getPostBySlug("engineering-leadership-with-ai");
+    assert.ok(post !== undefined, "should return the ai leadership post");
+    assert.equal(post.slug, "engineering-leadership-with-ai");
+    assert.ok(
+      post.content.length > 0,
+      "ai leadership post must have inline content",
+    );
   });
 
   it("getPostBySlug returns undefined for an unknown slug (negative path)", () => {
