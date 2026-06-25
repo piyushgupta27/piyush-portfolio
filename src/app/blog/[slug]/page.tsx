@@ -42,7 +42,7 @@ function renderBlock(block: ContentBlock, i: number) {
       return (
         <h2
           key={i}
-          className="mt-10 mb-4 text-xl font-semibold tracking-tight"
+          className="mt-14 mb-5 text-xl font-bold tracking-tight border-l-2 border-primary pl-4"
         >
           {block.text}
         </h2>
@@ -185,32 +185,45 @@ export default async function BlogPostPage({ params }: Props) {
 
         {hasContent ? (
           <div className="max-w-none">
+            {post.githubUrl && (
+              <div className="mb-10 flex flex-wrap gap-x-8 gap-y-2 border-t border-border/30 pt-6 font-mono text-xs">
+                <span><span className="text-primary font-bold">14 min</span> <span className="text-muted-foreground">· full 4-agent cycle</span></span>
+                <span><span className="text-primary font-bold">4 agents</span> <span className="text-muted-foreground">· BUILDER → TESTER → REVIEWER → CHECKER</span></span>
+                <span><span className="text-primary font-bold">$3.49</span> <span className="text-muted-foreground">· AI compute (gh-118)</span></span>
+                <span><span className="text-primary font-bold">87%</span> <span className="text-muted-foreground">· straight-through success</span></span>
+              </div>
+            )}
             {post.content.map((block, i) => renderBlock(block, i))}
 
             {(post.mediumUrl || post.githubUrl) && (
-              <div className="mt-12 flex flex-wrap gap-4 border-t border-border/50 pt-8">
-                {post.mediumUrl && (
-                  <a
-                    href={post.mediumUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    Read on Medium
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                )}
-                {post.githubUrl && (
-                  <a
-                    href={post.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    View on GitHub
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                )}
+              <div className="mt-16 rounded-xl border border-primary/30 bg-primary/5 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+                  The full implementation — dispatch layer, agent prompts, hash-chaining, blast-radius enforcement — is open source. Issues and PRs run through the pipeline itself.
+                </p>
+                <div className="flex flex-wrap gap-4 shrink-0">
+                  {post.mediumUrl && (
+                    <a
+                      href={post.mediumUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      Read on Medium
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  )}
+                  {post.githubUrl && (
+                    <a
+                      href={post.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-2 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
+                    >
+                      View on GitHub
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
               </div>
             )}
           </div>
