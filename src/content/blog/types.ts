@@ -1,6 +1,11 @@
 export type ContentBlock =
   | { type: "paragraph"; text: string }
-  | { type: "heading"; text: string };
+  | { type: "heading"; text: string }
+  | { type: "subheading"; text: string }
+  | { type: "image"; src: string; alt: string; caption?: string }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "callout"; text: string; variant?: "info" | "warning" | "tip" }
+  | { type: "code"; language?: string; text: string };
 
 export interface BlogPostData {
   slug: string;
@@ -10,4 +15,5 @@ export interface BlogPostData {
   excerpt: string;
   content: ContentBlock[];
   mediumUrl?: string;
+  githubUrl?: string;
 }

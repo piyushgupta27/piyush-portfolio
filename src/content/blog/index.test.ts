@@ -1,10 +1,15 @@
 import { describe, it } from "vitest";
 import assert from "node:assert/strict";
-import { seedPosts, getPostBySlug, getAllSlugs } from "@/content/blog";
+import {
+  seedPosts,
+  getAllPosts,
+  getPostBySlug,
+  getAllSlugs,
+} from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
-  it("seedPosts exports exactly 4 posts", () => {
-    assert.equal(seedPosts.length, 4);
+  it("seedPosts exports exactly 6 posts", () => {
+    assert.equal(seedPosts.length, 6);
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {
@@ -35,6 +40,18 @@ describe("blog content — data layer (gh-68)", () => {
     const slugs = getAllSlugs();
     assert.equal(slugs.length, seedPosts.length);
     assert.ok(slugs.every((s) => typeof s === "string" && s.length > 0));
+  });
+
+  it("getAllPosts returns all posts sorted newest first", () => {
+    const posts = getAllPosts();
+    assert.equal(posts.length, seedPosts.length);
+    for (let i = 0; i < posts.length - 1; i++) {
+      assert.ok(
+        new Date(posts[i].date).getTime() >=
+          new Date(posts[i + 1].date).getTime(),
+        `posts not sorted: "${posts[i].slug}" (${posts[i].date}) should be >= "${posts[i + 1].slug}" (${posts[i + 1].date})`,
+      );
+    }
   });
 
   it("getPostBySlug returns the correct post for a valid slug (happy path)", () => {

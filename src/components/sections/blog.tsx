@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Mic } from "lucide-react";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -10,8 +11,10 @@ import {
   StaggerChildren,
   staggerItem,
 } from "@/components/motion/stagger-children";
-import { blogPosts } from "@/data/blog";
+import { getAllPosts } from "@/content/blog";
 import { talks } from "@/data/talks";
+
+const recentPosts = getAllPosts().slice(0, 4);
 
 export function Blog() {
   return (
@@ -20,20 +23,16 @@ export function Blog() {
         <SectionHeading
           label="// blog & talks"
           title="Blog & Talks"
-          description="Writing on AI engineering, distributed systems, and building at scale — plus conference talks."
+          description="What I've learned building at 50M CCU, founding at zero, and shipping AI in production."
         />
 
         <StaggerChildren className="grid gap-6 md:grid-cols-2">
-          {blogPosts.map((post) => (
-            <motion.div key={post.title} variants={staggerItem}>
-              <a
-                href={post.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block h-full"
-              >
-                <Card className="group h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
-                  <CardContent className="p-6">
+          {recentPosts.map((post) => (
+            <motion.div key={post.slug} variants={staggerItem}>
+              <Link href={`/blog/${post.slug}`} className="block h-full">
+                <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
+                  <CardContent className="relative p-6">
                     <div className="mb-4 flex items-center justify-between">
                       <Badge variant="secondary" className="font-mono text-xs">
                         {post.tag}
@@ -47,12 +46,21 @@ export function Blog() {
                       {post.excerpt}
                     </p>
                     <div className="flex items-center gap-4 font-mono text-xs text-muted-foreground">
-                      <span>{post.date}</span>
-                      <span>Read on Medium →</span>
+                      <span>
+                        {new Date(post.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                        })}
+                      </span>
+                      <span>
+                        {post.content.length > 0
+                          ? "Read post →"
+                          : "Read on Medium →"}
+                      </span>
                     </div>
                   </CardContent>
                 </Card>
-              </a>
+              </Link>
             </motion.div>
           ))}
 
