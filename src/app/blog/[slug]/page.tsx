@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { getPostBySlug, getAllSlugs } from "@/content/blog";
 import type { ContentBlock } from "@/content/blog";
@@ -42,7 +43,7 @@ function renderBlock(block: ContentBlock, i: number) {
       return (
         <h2
           key={i}
-          className="mt-14 mb-5 text-xl font-bold tracking-tight border-l-2 border-primary pl-4"
+          className="mt-16 mb-5 text-2xl font-bold tracking-tight border-l-4 border-primary pl-4"
         >
           {block.text}
         </h2>
@@ -60,7 +61,7 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "paragraph":
       return (
-        <p key={i} className="mb-4 leading-relaxed text-muted-foreground">
+        <p key={i} className="mb-4 leading-relaxed text-foreground/75">
           {block.text}
         </p>
       );
@@ -157,7 +158,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="py-24 px-6">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-2xl">
         <div className="mb-12">
           <Link
             href="/blog"
@@ -178,6 +179,18 @@ export default async function BlogPostPage({ params }: Props) {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {post.title}
           </h1>
+          <div className="mt-4 flex items-center gap-3">
+            <Image
+              src="/images/headshot.jpg"
+              alt="Piyush Gupta"
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-full object-cover border border-border/30"
+            />
+            <span className="font-mono text-xs text-muted-foreground">
+              Piyush Gupta · Sr EM · ex-Hotstar/Disney · Slice
+            </span>
+          </div>
           <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
             {post.excerpt}
           </p>
@@ -215,39 +228,45 @@ export default async function BlogPostPage({ params }: Props) {
             )}
             {post.content.map((block, i) => renderBlock(block, i))}
 
-            {(post.mediumUrl || post.githubUrl) && (
-              <div className="mt-16 rounded-xl border border-primary/30 bg-primary/5 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="mt-16 rounded-xl border border-primary/30 bg-primary/5 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              {post.ctaText && (
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
-                  The full implementation — dispatch layer, agent prompts,
-                  hash-chaining, blast-radius enforcement — is open source.
-                  Issues and PRs run through the pipeline itself.
+                  {post.ctaText}
                 </p>
-                <div className="flex flex-wrap gap-4 shrink-0">
-                  {post.mediumUrl && (
-                    <a
-                      href={post.mediumUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      Read on Medium
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                  )}
-                  {post.githubUrl && (
-                    <a
-                      href={post.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-2 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
-                    >
-                      View on GitHub
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  )}
-                </div>
+              )}
+              <div className="flex flex-wrap gap-4 shrink-0">
+                <a
+                  href="https://calendly.com/piyushguptaece/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
+                >
+                  Book a call
+                </a>
+                {post.githubUrl && (
+                  <a
+                    href={post.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-2 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
+                  >
+                    View on GitHub
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                )}
+                {post.mediumUrl && (
+                  <a
+                    href={post.mediumUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    Read on Medium
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                )}
               </div>
-            )}
+            </div>
           </div>
         ) : (
           <div className="rounded-lg border border-border/50 bg-card/50 p-8 text-center">

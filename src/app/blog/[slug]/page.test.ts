@@ -63,3 +63,39 @@ describe("blog route — /blog/[slug] post page (gh-68)", () => {
     );
   });
 });
+
+describe("blog post page — gh-141 changes", () => {
+  const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+
+  it("renders author headshot image (AC1: author byline)", () => {
+    assert.ok(
+      src.includes("/images/headshot.jpg"),
+      "blog post page must render author headshot img",
+    );
+  });
+
+  it("renders author name in byline (AC1)", () => {
+    assert.ok(
+      src.includes("Piyush Gupta"),
+      "blog post page must render author name in byline",
+    );
+  });
+
+  it("CTA always includes Calendly link regardless of post fields (AC3)", () => {
+    assert.ok(
+      src.includes("calendly.com"),
+      "CTA must include Calendly link for all hasContent posts",
+    );
+    assert.ok(
+      !src.includes("(post.mediumUrl || post.githubUrl)"),
+      "CTA must not be gated behind mediumUrl/githubUrl condition",
+    );
+  });
+
+  it("renders post.ctaText when present (AC3/AC5)", () => {
+    assert.ok(
+      src.includes("post.ctaText"),
+      "blog post page must conditionally render post.ctaText",
+    );
+  });
+});
