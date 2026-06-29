@@ -10,8 +10,17 @@ const post: BlogPostData = {
     "Engineering attention is the scarcest resource in any team. ai-sdlc is a four-agent pipeline — BUILDER, TESTER, REVIEWER, CHECKER — that takes a GitHub issue and delivers a reviewed, gated PR in under 15 minutes, for under $4 in AI compute. This is how it works.",
   githubUrl: "https://github.com/piyushgupta27/ai-sdlc",
   stats: [
-    { value: "14", unit: "min", label: "Cycle time", sub: "per gh-118 proof run" },
-    { value: "83%", label: "Success rate", sub: "12 escalated, 9 self-corrected" },
+    {
+      value: "14",
+      unit: "min",
+      label: "Cycle time",
+      sub: "per gh-118 proof run",
+    },
+    {
+      value: "83%",
+      label: "Success rate",
+      sub: "12 escalated, 9 self-corrected",
+    },
     { value: "$173", label: "AI compute", sub: "across 47 tasks" },
     { value: "47", label: "Tasks dispatched", sub: "174 agent runs" },
   ],
@@ -36,6 +45,7 @@ const post: BlogPostData = {
     },
     {
       type: "table",
+      wide: true,
       headers: ["Stage", "Reads from", "What it does", "Output"],
       rows: [
         [
@@ -121,6 +131,7 @@ const post: BlogPostData = {
     {
       type: "image",
       src: "/blog/pipeline-flow.svg",
+      mobileSrc: "/blog/pipeline-flow-mobile.svg",
       alt: "gh-118 run log: DISPATCH classifies Tier-1 in 31s, BUILDER implements 2 files and 164 tests in 6m, isolation boundary, TESTER and REVIEWER both PASS, CHECKER 164/164, APPROVED at 14:02 for $3.49",
       wide: true,
     },
@@ -167,11 +178,7 @@ const post: BlogPostData = {
           "Ran straight through — no refire, no escalation, no human touch",
         ],
         ["Tier 0/1 entries", "52", "Highest-risk paths, zero incidents"],
-        [
-          "Total AI compute",
-          "$173",
-          "Across all 4 repos, 32 days",
-        ],
+        ["Total AI compute", "$173", "Across all 4 repos, 32 days"],
         [
           "Avg cost per completed task",
           "~$6",
