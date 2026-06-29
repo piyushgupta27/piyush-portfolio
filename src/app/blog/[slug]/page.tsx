@@ -117,35 +117,40 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "table":
       return (
-        <div key={i} className={`my-8 overflow-x-auto${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}>
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr>
-                {block.headers.map((h) => (
-                  <th
-                    key={h}
-                    className="border border-border/50 bg-card/80 px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
-                  >
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {block.rows.map((row, ri) => (
-                <tr key={ri} className="odd:bg-card/30">
-                  {row.map((cell, ci) => (
-                    <td
-                      key={ci}
-                      className={`border border-border/50 px-4 py-2.5 text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/70"}`}
+        <div key={i} className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr>
+                  {block.headers.map((h) => (
+                    <th
+                      key={h}
+                      className="border border-border/50 bg-card/80 px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
                     >
-                      {cell}
-                    </td>
+                      {h}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {block.rows.map((row, ri) => (
+                  <tr key={ri} className="odd:bg-card/30">
+                    {row.map((cell, ci) => (
+                      <td
+                        key={ci}
+                        className={`border border-border/50 px-4 py-2.5 text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/70"}`}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-1.5 text-right font-mono text-[10px] text-muted-foreground/40 sm:hidden">
+            scroll to explore →
+          </p>
         </div>
       );
 
