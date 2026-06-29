@@ -45,8 +45,6 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
-
-
 function renderBlock(block: ContentBlock, i: number) {
   switch (block.type) {
     case "heading": {
@@ -85,8 +83,15 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "image":
       return (
-        <figure key={i} className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}>
-          <div className={block.wide ? "overflow-x-auto sm:overflow-x-visible" : undefined}>
+        <figure
+          key={i}
+          className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
+        >
+          <div
+            className={
+              block.wide ? "overflow-x-auto sm:overflow-x-visible" : undefined
+            }
+          >
             {block.mobileSrc && (
               <img
                 src={block.mobileSrc}
@@ -117,7 +122,10 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "table":
       return (
-        <div key={i} className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}>
+        <div
+          key={i}
+          className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
+        >
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm">
               <thead>
@@ -156,11 +164,22 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "callout": {
       const variant = block.variant ?? "info";
-      const variantConfig: Record<string, { className: string; icon: string }> = {
-        info: { className: "border-primary/50 bg-primary/10 text-foreground/90", icon: "⚡" },
-        warning: { className: "border-yellow-500/30 bg-yellow-500/10 text-foreground/80", icon: "⚠️" },
-        tip: { className: "border-green-500/30 bg-green-500/10 text-foreground/80", icon: "✦" },
-      };
+      const variantConfig: Record<string, { className: string; icon: string }> =
+        {
+          info: {
+            className: "border-primary/50 bg-primary/10 text-foreground/90",
+            icon: "⚡",
+          },
+          warning: {
+            className:
+              "border-yellow-500/30 bg-yellow-500/10 text-foreground/80",
+            icon: "⚠️",
+          },
+          tip: {
+            className: "border-green-500/30 bg-green-500/10 text-foreground/80",
+            icon: "✦",
+          },
+        };
       const config = variantConfig[variant] ?? variantConfig.info;
       return (
         <div
@@ -199,7 +218,10 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "links":
       return (
-        <div key={i} className="my-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs">
+        <div
+          key={i}
+          className="my-4 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs"
+        >
           {block.items.map((item) => (
             <a
               key={item.href}
@@ -211,7 +233,9 @@ function renderBlock(block: ContentBlock, i: number) {
               <span className="text-primary/60">↗</span>
               <span>{item.label}</span>
               {item.description && (
-                <span className="text-muted-foreground/40">— {item.description}</span>
+                <span className="text-muted-foreground/40">
+                  — {item.description}
+                </span>
               )}
             </a>
           ))}
@@ -246,7 +270,9 @@ export default async function BlogPostPage({ params }: Props) {
       }
     });
   }
-  const introParagraphs = post.content.filter((_, i) => introParaIndices.has(i)) as { type: "paragraph"; text: string }[];
+  const introParagraphs = post.content.filter((_, i) =>
+    introParaIndices.has(i),
+  ) as { type: "paragraph"; text: string }[];
 
   return (
     <article className="py-24 px-6">
@@ -294,7 +320,11 @@ export default async function BlogPostPage({ params }: Props) {
               Piyush Gupta
             </span>
             <span className="block font-mono text-xs text-muted-foreground">
-              Engineering Manager · Slice<span className="hidden sm:inline"> · ex-Disney+Hotstar · ex-JumpingMinds</span>
+              Engineering Manager · Slice
+              <span className="hidden sm:inline">
+                {" "}
+                · ex-Disney+Hotstar · ex-JumpingMinds
+              </span>
             </span>
           </div>
         </div>
@@ -367,7 +397,9 @@ export default async function BlogPostPage({ params }: Props) {
             )}
 
             {/* Article body — skip first 2 paragraphs shown above stats */}
-            {post.content.map((block, i) => introParaIndices.has(i) ? null : renderBlock(block, i))}
+            {post.content.map((block, i) =>
+              introParaIndices.has(i) ? null : renderBlock(block, i),
+            )}
 
             {/* CTA */}
             <div className="mt-16 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">

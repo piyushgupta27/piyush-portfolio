@@ -88,12 +88,16 @@ describe("blog content — data layer (gh-68)", () => {
 
 describe("calculateReadTime", () => {
   it("returns '1 min read' for exactly 200 words", () => {
-    const content = [{ type: "paragraph" as const, text: "word ".repeat(200).trim() }];
+    const content = [
+      { type: "paragraph" as const, text: "word ".repeat(200).trim() },
+    ];
     assert.equal(calculateReadTime(content), "1 min read");
   });
 
   it("rounds up: 201 words = 2 min read", () => {
-    const content = [{ type: "paragraph" as const, text: "word ".repeat(201).trim() }];
+    const content = [
+      { type: "paragraph" as const, text: "word ".repeat(201).trim() },
+    ];
     assert.equal(calculateReadTime(content), "2 min read");
   });
 

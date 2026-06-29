@@ -2,11 +2,21 @@ export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string }
   | { type: "subheading"; text: string }
-  | { type: "image"; src: string; alt: string; caption?: string; wide?: boolean; mobileSrc?: string }
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+      wide?: boolean;
+      mobileSrc?: string;
+    }
   | { type: "table"; headers: string[]; rows: string[][]; wide?: boolean }
   | { type: "callout"; text: string; variant?: "info" | "warning" | "tip" }
   | { type: "code"; language?: string; text: string }
-  | { type: "links"; items: { label: string; href: string; description?: string }[] }
+  | {
+      type: "links";
+      items: { label: string; href: string; description?: string }[];
+    }
   | { type: "list"; items: string[] };
 
 export interface BlogPostData {
