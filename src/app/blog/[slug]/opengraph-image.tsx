@@ -78,12 +78,11 @@ export default async function BlogOGImage({ params }: Props) {
             fontSize: "18px",
           }}
         >
-          <span style={{ color: "#6ee7c0", fontWeight: 700 }}>14 min</span>
+          <span style={{ color: "#6ee7c0", fontWeight: 700 }}>14 min cycle</span>
           <span style={{ color: "#64748b" }}>·</span>
           <span style={{ color: "#6ee7c0", fontWeight: 700 }}>4 agents</span>
           <span style={{ color: "#64748b" }}>·</span>
-          <span style={{ color: "#6ee7c0", fontWeight: 700 }}>87%</span>
-          <span style={{ color: "#64748b" }}>straight-through</span>
+          <span style={{ color: "#6ee7c0", fontWeight: 700 }}>87% success</span>
         </div>
       )}
 
@@ -105,7 +104,7 @@ export default async function BlogOGImage({ params }: Props) {
             fontFamily: "sans-serif",
           }}
         >
-          Piyush Gupta · Sr Engineering Manager
+          Piyush Gupta · Engineering Manager
         </div>
         <div
           style={{

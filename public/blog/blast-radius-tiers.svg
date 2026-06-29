@@ -1,4 +1,4 @@
-<svg viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg" font-family="'Geist Mono', 'Courier New', monospace">
+<svg viewBox="0 0 960 400" xmlns="http://www.w3.org/2000/svg" font-family="'Geist Mono', 'Courier New', monospace">
   <defs>
     <filter id="softglow">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -6,67 +6,49 @@
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="960" height="440" fill="#0b0c15" rx="14"/>
+  <rect width="960" height="400" fill="#0b0c15" rx="14"/>
 
-  <!-- Title block -->
-  <text x="480" y="40" fill="#f0f0f0" font-size="13" text-anchor="middle" letter-spacing="4" opacity="0.45" font-weight="500">BLAST-RADIUS TIER MODEL</text>
-  <text x="480" y="60" fill="#606060" font-size="10" text-anchor="middle" letter-spacing="1">pre-write hook enforced on every file write · zero silent escalations</text>
+  <!-- T0 -->
+  <polygon points="380,28 600,28 632,94 348,94" fill="#ef44441a" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.7"/>
+  <text x="480" y="68" fill="#ef4444" font-size="16" text-anchor="middle" font-weight="700" letter-spacing="1" filter="url(#softglow)">TIER 0 · CRITICAL</text>
+  <line x1="364" y1="61" x2="228" y2="61" stroke="#ef4444" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="220" y="57" fill="#ef4444" font-size="13" text-anchor="end" font-weight="600">Irreversible if wrong</text>
+  <text x="220" y="73" fill="#808080" font-size="12" text-anchor="end">MANAGER approves</text>
+  <line x1="616" y1="61" x2="740" y2="61" stroke="#ef4444" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="748" y="54" fill="#ef4444" font-size="13" font-weight="600">DB Schema · Migrations</text>
+  <text x="748" y="70" fill="#808080" font-size="12">Infra · Security config</text>
 
-  <!-- ═══ TIER 0 TRAPEZOID ═══ -->
-  <polygon points="400,82 560,82 592,148 368,148" fill="#ef44441a" stroke="#ef4444" stroke-width="1.5" stroke-opacity="0.7"/>
-  <!-- label -->
-  <text x="480" y="122" fill="#ef4444" font-size="12" text-anchor="middle" font-weight="700" letter-spacing="2" filter="url(#softglow)">TIER 0 · CRITICAL</text>
-  <!-- left annotation -->
-  <line x1="368" y1="115" x2="290" y2="115" stroke="#ef4444" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="282" y="111" fill="#ef4444" font-size="10" text-anchor="end" font-weight="600">All 5 gates</text>
-  <text x="282" y="125" fill="#808080" font-size="9" text-anchor="end">explicit T0 auth required</text>
-  <!-- right annotation -->
-  <line x1="592" y1="115" x2="670" y2="115" stroke="#ef4444" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="678" y="108" fill="#ef4444" font-size="10" font-weight="600">Ledger entries</text>
-  <text x="678" y="122" fill="#808080" font-size="9">Idempotency keys</text>
-  <text x="678" y="135" fill="#808080" font-size="9">Settlement reconciliation</text>
+  <!-- T1 -->
+  <polygon points="348,98 632,98 666,166 314,166" fill="#f973161a" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.6"/>
+  <text x="480" y="139" fill="#f97316" font-size="16" text-anchor="middle" font-weight="700" letter-spacing="2">TIER 1 · HIGH</text>
+  <line x1="331" y1="132" x2="228" y2="132" stroke="#f97316" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="220" y="128" fill="#f97316" font-size="13" text-anchor="end" font-weight="600">Payments or Auth breaks</text>
+  <text x="220" y="144" fill="#808080" font-size="12" text-anchor="end">TEAM LEAD+ approves</text>
+  <line x1="649" y1="132" x2="740" y2="132" stroke="#f97316" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="748" y="125" fill="#f97316" font-size="13" font-weight="600">Auth · Session Mgmt</text>
+  <text x="748" y="141" fill="#808080" font-size="12">Webhooks · Integrations</text>
 
-  <!-- ═══ TIER 1 TRAPEZOID ═══ -->
-  <polygon points="368,152 592,152 626,220 334,220" fill="#f973161a" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.6"/>
-  <text x="480" y="193" fill="#f97316" font-size="12" text-anchor="middle" font-weight="700" letter-spacing="2">TIER 1 · HIGH</text>
-  <!-- left annotation -->
-  <line x1="334" y1="186" x2="282" y2="186" stroke="#f97316" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="274" y="182" fill="#f97316" font-size="10" text-anchor="end" font-weight="600">4-agent gate</text>
-  <text x="274" y="196" fill="#808080" font-size="9" text-anchor="end">+ REVIEWER sign-off</text>
-  <!-- right annotation -->
-  <line x1="626" y1="186" x2="670" y2="186" stroke="#f97316" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="678" y="179" fill="#f97316" font-size="10" font-weight="600">Payment callbacks</text>
-  <text x="678" y="193" fill="#808080" font-size="9">Auth middleware</text>
-  <text x="678" y="207" fill="#808080" font-size="9">Session management</text>
+  <!-- T2 -->
+  <polygon points="314,170 666,170 702,240 278,240" fill="#eab3081a" stroke="#eab308" stroke-width="1.5" stroke-opacity="0.55"/>
+  <text x="480" y="212" fill="#eab308" font-size="16" text-anchor="middle" font-weight="700" letter-spacing="2">TIER 2 · STANDARD</text>
+  <line x1="296" y1="205" x2="228" y2="205" stroke="#eab308" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="220" y="200" fill="#eab308" font-size="13" text-anchor="end" font-weight="600">Regression, fixable</text>
+  <text x="220" y="216" fill="#808080" font-size="12" text-anchor="end">ENGINEER+ approves</text>
+  <line x1="684" y1="205" x2="740" y2="205" stroke="#eab308" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="748" y="198" fill="#eab308" font-size="13" font-weight="600">APIs · Business logic</text>
+  <text x="748" y="214" fill="#808080" font-size="12">Feature flags · Services</text>
 
-  <!-- ═══ TIER 2 TRAPEZOID ═══ -->
-  <polygon points="334,224 626,224 662,294 298,294" fill="#eab3081a" stroke="#eab308" stroke-width="1.5" stroke-opacity="0.55"/>
-  <text x="480" y="266" fill="#eab308" font-size="12" text-anchor="middle" font-weight="700" letter-spacing="2">TIER 2 · STANDARD</text>
-  <!-- left annotation -->
-  <line x1="298" y1="259" x2="264" y2="259" stroke="#eab308" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="256" y="254" fill="#eab308" font-size="10" text-anchor="end" font-weight="600">Standard gate</text>
-  <text x="256" y="268" fill="#808080" font-size="9" text-anchor="end">all 4 agents + human</text>
-  <!-- right annotation -->
-  <line x1="662" y1="259" x2="670" y2="259" stroke="#eab308" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="678" y="252" fill="#eab308" font-size="10" font-weight="600">Product logic</text>
-  <text x="678" y="266" fill="#808080" font-size="9">Feature flags</text>
-  <text x="678" y="280" fill="#808080" font-size="9">API handlers</text>
+  <!-- T3/4 -->
+  <polygon points="278,244 702,244 740,314 240,314" fill="#6ee7c01a" stroke="#6ee7c0" stroke-width="1.5" stroke-opacity="0.5"/>
+  <text x="480" y="286" fill="#6ee7c0" font-size="16" text-anchor="middle" font-weight="700" letter-spacing="2">TIER 3 / 4 · LOW RISK</text>
+  <line x1="259" y1="279" x2="228" y2="279" stroke="#6ee7c0" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="220" y="274" fill="#6ee7c0" font-size="13" text-anchor="end" font-weight="600">Minimal blast radius</text>
+  <text x="220" y="290" fill="#808080" font-size="12" text-anchor="end">auto-merge eligible</text>
+  <line x1="721" y1="279" x2="740" y2="279" stroke="#6ee7c0" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
+  <text x="748" y="272" fill="#6ee7c0" font-size="13" font-weight="600">Config · Tests · Docs</text>
+  <text x="748" y="288" fill="#808080" font-size="12">Dependency bumps</text>
 
-  <!-- ═══ TIER 3/4 TRAPEZOID (base) ═══ -->
-  <polygon points="298,298 662,298 700,368 260,368" fill="#6ee7c01a" stroke="#6ee7c0" stroke-width="1.5" stroke-opacity="0.5"/>
-  <text x="480" y="340" fill="#6ee7c0" font-size="12" text-anchor="middle" font-weight="700" letter-spacing="2">TIER 3 / 4 · LOW RISK</text>
-  <!-- left annotation -->
-  <line x1="260" y1="333" x2="228" y2="333" stroke="#6ee7c0" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="220" y="328" fill="#6ee7c0" font-size="10" text-anchor="end" font-weight="600">Lightweight</text>
-  <text x="220" y="342" fill="#808080" font-size="9" text-anchor="end">TESTER + CHECKER</text>
-  <!-- right annotation -->
-  <line x1="700" y1="333" x2="670" y2="333" stroke="#6ee7c0" stroke-width="1" opacity="0.45" stroke-dasharray="4,3"/>
-  <text x="678" y="326" fill="#6ee7c0" font-size="10" font-weight="600">Config · Docs</text>
-  <text x="678" y="340" fill="#808080" font-size="9">Test files · UI copy</text>
-  <text x="678" y="354" fill="#808080" font-size="9">Dependency bumps</text>
-
-  <!-- Bottom stat -->
-  <rect x="200" y="392" width="560" height="30" rx="6" fill="#6ee7c00d" stroke="#6ee7c018" stroke-width="1"/>
-  <text x="480" y="412" fill="#6ee7c0" font-size="10" text-anchor="middle" opacity="0.75" letter-spacing="0.3">Nearly 40 Tier 0/1 agent runs · 0 incidents · pre-write hook blocked every unauthorised path</text>
+  <!-- Chip -->
+  <rect x="200" y="346" width="560" height="30" rx="6" fill="#6ee7c00d" stroke="#6ee7c018" stroke-width="1"/>
+  <text x="480" y="366" fill="#6ee7c0" font-size="12" text-anchor="middle" opacity="0.75" letter-spacing="0.3">40+ Tier 0/1 runs · 0 incidents · hook blocked every unauthorised write</text>
 </svg>

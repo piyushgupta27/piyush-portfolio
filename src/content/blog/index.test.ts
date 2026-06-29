@@ -5,6 +5,7 @@ import {
   getAllPosts,
   getPostBySlug,
   getAllSlugs,
+  calculateReadTime,
 } from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
@@ -82,5 +83,37 @@ describe("blog content — data layer (gh-68)", () => {
       typeof post.ctaText === "string" && post.ctaText.length > 0,
       "agentic-sdlc post must have a non-empty ctaText string",
     );
+  });
+});
+
+describe("calculateReadTime", () => {
+  it("returns '1 min read' for exactly 200 words", () => {
+    const content = [{ type: "paragraph" as const, text: "word ".repeat(200).trim() }];
+    assert.equal(calculateReadTime(content), "1 min read");
+  });
+
+  it("rounds up: 201 words = 2 min read", () => {
+    const content = [{ type: "paragraph" as const, text: "word ".repeat(201).trim() }];
+    assert.equal(calculateReadTime(content), "2 min read");
+  });
+
+  it("counts words across multiple paragraph blocks", () => {
+    const content = [
+      { type: "paragraph" as const, text: "word ".repeat(100).trim() },
+      { type: "paragraph" as const, text: "word ".repeat(100).trim() },
+    ];
+    assert.equal(calculateReadTime(content), "1 min read");
+  });
+
+  it("ignores non-text blocks (heading type has text, image does not)", () => {
+    const content = [
+      { type: "heading" as const, text: "word ".repeat(200).trim() },
+      { type: "image" as const, src: "/img.png", alt: "img" },
+    ];
+    assert.equal(calculateReadTime(content), "1 min read");
+  });
+
+  it("returns '0 min read' for empty content", () => {
+    assert.equal(calculateReadTime([]), "0 min read");
   });
 });

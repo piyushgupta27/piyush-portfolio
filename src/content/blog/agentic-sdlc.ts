@@ -7,146 +7,104 @@ const post: BlogPostData = {
   date: "2026-06-24",
   tag: "AI-Native Engineering",
   excerpt:
-    "Engineering attention is the scarcest resource in any team. ai-sdlc is a four-agent pipeline — BUILDER, TESTER, REVIEWER, CHECKER — that takes a GitHub issue and delivers a reviewed, gated PR in under 15 minutes, for under $4 in AI compute. This is how it works. And the proof: this post was written, tested, reviewed, and shipped by the system it describes.",
+    "Engineering attention is the scarcest resource in any team. ai-sdlc is a four-agent pipeline — BUILDER, TESTER, REVIEWER, CHECKER — that takes a GitHub issue and delivers a reviewed, gated PR in under 15 minutes, for under $4 in AI compute. This is how it works.",
   githubUrl: "https://github.com/piyushgupta27/ai-sdlc",
+  stats: [
+    { value: "14", unit: "min", label: "Cycle time", sub: "per gh-118 proof run" },
+    { value: "83%", label: "Success rate", sub: "12 escalated, 9 self-corrected" },
+    { value: "$173", label: "AI compute", sub: "across 47 tasks" },
+    { value: "47", label: "Tasks dispatched", sub: "174 agent runs" },
+  ],
   ctaText:
     "The full implementation — dispatch layer, agent prompts, hash-chaining, blast-radius enforcement — is open source. Issues and PRs run through the pipeline itself.",
   content: [
     {
       type: "paragraph",
-      text: "At 50M concurrent users, the leverage problem isn't individual velocity. It's what happens when 30 engineers each spend a fifth of their sprint on work that is structurally identical. Same bug class. Same fix pattern. Same PR template filled in for the fiftieth time. You don't fix that by making engineers faster. You fix it by removing that category of work from their cognitive load entirely.",
+      text: "The leverage problem in any growing engineering team isn't individual velocity. It's what happens when 30 engineers each spend a fifth of their sprint on work that is structurally identical. Same bug class. Same fix pattern. Same PR template filled in for the fiftieth time. You don't fix that by making engineers faster. You fix it by removing that category of work from their cognitive load entirely.",
     },
     {
       type: "paragraph",
-      text: "I built ai-sdlc to test a specific hypothesis: can a four-agent pipeline take a well-formed ticket and produce a reviewed, gated PR with zero human involvement until the final approval decision? Not a copilot that autocompletes — an agent that runs the full cycle autonomously, with a human at the signal gate rather than in the loop for every keystroke.",
-    },
-    {
-      type: "callout",
-      text: "Most 'AI-assisted' development is still human-driven with suggestions injected. Agentic development is different: the AI runs multi-step tasks autonomously, with humans at checkpoints. Copilots speed up each engineer 20–40%. Agentic pipelines restructure which decisions need human attention at all. The leverage model is different in kind, not just degree.",
-      variant: "info",
+      text: "I built ai-sdlc to test a specific hypothesis: can a multi-agent pipeline take a well-formed ticket and produce a reviewed, gated PR with zero human involvement until the final approval decision? Not a copilot that autocompletes — an agent that runs the full cycle autonomously, with a human at the signal gate rather than in the loop for every keystroke.",
     },
     {
       type: "paragraph",
-      text: "Execution got cheap. The scaffolding tax around it didn't. That's the problem worth solving.",
-    },
-    {
-      type: "paragraph",
-      text: "So I built ai-sdlc. Today it runs on four personal codebases — 150+ automated agent executions, 45+ tasks dispatched end-to-end, $136 in total AI compute across all of it. The architecture is shaped by one constraint I internalized managing infrastructure at hyperscale: an automated system that can touch anything with the right prompt is a liability. A system structurally prevented from reaching high-risk paths without a human checkpoint is a controlled system.",
-    },
-    {
-      type: "callout",
-      text: "What follows is where the system is today — early, opinionated, and not production-ready at team scale. It runs on my own projects. The design decisions, though, are the same ones you'd make building a safe autonomous system for a team.",
-      variant: "info",
+      text: "Today it runs on four personal codebases — 174 automated agent executions, 47 tasks dispatched end-to-end, $173 in total AI compute across all of it. The architecture has two non-negotiables: every write is pre-checked against a blast-radius tier map that prevents touching high-risk paths without authorization, and every agent run executes against a documented harness — defined inputs, automated validation before human review, and a clear escalation path. Trust expands on data. Not intuition.",
     },
     {
       type: "heading",
       text: "Four agents, one human gate",
     },
     {
-      type: "image",
-      src: "/blog/pipeline-flow.svg",
-      alt: "ai-sdlc pipeline: GitHub Issue → Dispatch → BUILDER → TESTER → REVIEWER → CHECKER → Human Gate → Merge, with real timing from gh-118",
-      caption:
-        "The full pipeline. Timing numbers are from gh-118 — this post's own dispatch run.",
-    },
-    {
-      type: "paragraph",
-      text: "The pipeline has four agents and one moment where a human makes a decision. Everything else is automated.",
-    },
-    {
       type: "table",
-      headers: ["Stage", "Who", "What it does", "Output"],
+      headers: ["Stage", "Reads from", "What it does", "Output"],
       rows: [
         [
-          "Dispatch",
-          "Webhook layer",
-          "Reads the GitHub issue or Sentry alert, enriches with context, assigns blast-radius tier",
+          "DISPATCH",
+          "GitHub issue + context",
+          "Enriches with codebase context, assigns blast-radius tier",
           "Structured task brief",
         ],
         [
           "BUILDER",
-          "Agent 1",
-          "Reads affected files, writes the minimal diff, runs typecheck + lint + tests verbatim",
+          "Issue + existing code + type definitions",
+          "Reads affected files, writes the minimal diff, runs typecheck + lint + tests",
           "Commit SHA",
         ],
         [
           "TESTER",
-          "Agent 2",
-          "Reads the diff independently — never the BUILDER's reasoning — checks coverage, identifies edge cases",
-          "PASS / PASS_WITH_CAVEATS / FAIL",
+          "Diff only — never BUILDER's reasoning",
+          "Checks coverage, identifies edge cases",
+          "PASS / PASS (flagged) / FAIL",
         ],
         [
           "REVIEWER",
-          "Agent 3",
-          "Maps touched files to blast-radius tiers, verifies no high-risk paths were reached without authorization, produces structured summary",
+          "Diff + TESTER verdict",
+          "Maps touched files to blast-radius tiers, verifies no unauthorized paths reached",
           "Blast-radius map + verdict",
         ],
         [
           "CHECKER",
-          "Agent 4",
-          "Deterministic re-run: tsc + lint + tests, independent of prior agents. Confidence score. PASS → proceeds to COMMIT; ESCALATE → human gate fires",
-          "PASS / ESCALATE",
+          "Diff + all prior verdicts + deterministic re-run (tsc/lint/tests)",
+          "Deterministic tsc + lint + tests, independent of prior agents",
+          "PASS / REFIRE / ESCALATE",
         ],
         [
-          "Human gate",
-          "You",
-          "Reviews diff + TESTER verdict + blast-radius map. Approve → automated merge. Reject → back to BUILDER with notes.",
+          "MANAGER",
+          "Diff + all verdicts + blast-radius map",
+          "Approve → automated merge. Reject → back to BUILDER with notes.",
           "Decision",
         ],
       ],
     },
     {
       type: "paragraph",
-      text: "Each agent's output is hash-chained: every step signs what it received and what it produced. If a downstream agent's hash doesn't match the upstream output, the pipeline fails. That audit trail matters when someone eventually asks 'who changed what and on whose authority.' At fintech scale, that question has a regulatory dimension, not just a process one.",
+      text: "Every handoff between agents is a typed contract — not a raw file or text summary. Each agent's output is validated by the receiving stage before proceeding. A malformed or incomplete handoff is rejected immediately and goes back to the producing agent before the next stage sees it.",
+    },
+    {
+      type: "paragraph",
+      text: "When CHECKER finds a semantic gap, it doesn't escalate immediately. It issues a targeted deficiency — what's wrong, which agent owns it, why it matters — and the owning agent retries. The pipeline does this up to twice. Only if the gap persists does it escalate to the MANAGER. The MANAGER sees escalations, not every run.",
+    },
+    {
+      type: "paragraph",
+      text: "Each agent's output is hash-chained: every step signs what it received and what it produced. If a downstream agent's hash doesn't match the upstream output, the pipeline fails. That audit trail matters when someone eventually asks 'who changed what and on whose authority.' At team scale, that question has a compliance dimension, not just a process one.",
     },
     {
       type: "heading",
-      text: "Blast-radius tiers: the design decision that makes this safe",
+      text: "Blast-radius tiers",
+    },
+    {
+      type: "paragraph",
+      text: "REVIEWER maps every file the BUILDER touches against a tier assignment. Here's what those tiers mean.",
     },
     {
       type: "image",
       src: "/blog/blast-radius-tiers.svg",
       alt: "Blast-radius tier pyramid: Tier 0 (Critical) at top through Tier 3/4 (Low) at base, with examples and gate requirements at each level",
-      caption:
-        "Every file write is pre-checked against this tier map before execution.",
+      wide: true,
     },
     {
       type: "paragraph",
-      text: "The differentiating architectural decision isn't the agents — it's the blast-radius tier model. Every file write is pre-checked against a tier assignment before the write executes. A Tier-0 write from a Tier-2 task doesn't fail quietly. It escalates immediately, before a single byte reaches a critical path.",
-    },
-    {
-      type: "table",
-      headers: ["Tier", "Risk level", "Examples", "Gate"],
-      rows: [
-        [
-          "Tier 0",
-          "Critical",
-          "Ledger entries, idempotency keys, settlement reconciliation",
-          "All agents + explicit Tier-0 authorization in task brief",
-        ],
-        [
-          "Tier 1",
-          "High",
-          "Payment callbacks, auth middleware, session management",
-          "Full 4-agent gate + REVIEWER sign-off",
-        ],
-        [
-          "Tier 2",
-          "Standard",
-          "Product logic, feature flags, API handlers",
-          "Standard gate — all 4 agents + human",
-        ],
-        [
-          "Tier 3",
-          "Low",
-          "Configuration, docs, test files, UI copy",
-          "Lightweight — TESTER + CHECKER + human",
-        ],
-      ],
-    },
-    {
-      type: "paragraph",
-      text: "The constraint this enforces: the BUILDER cannot complete a write to a Tier-0 or Tier-1 path without an explicit tier authorization in the original task brief. If the task brief says Tier-2 and the BUILDER attempts to touch a payment callback handler, the pre-write hook escalates and the human gate fires — not after the commit, before it. Across nearly 40 Tier-0 and Tier-1 agent runs to date, zero incidents. That's the number that justifies the architecture.",
+      text: "The constraint this enforces: the BUILDER cannot complete a write to a Tier-0 or Tier-1 path without an explicit tier authorization in the original task brief. If the task brief says Tier-2 and the BUILDER attempts to touch a payment callback handler, the pre-write hook escalates to the MANAGER — not after the commit, before it. Across 52 Tier-0 and Tier-1 agent runs to date, zero incidents. That's the number that justifies the architecture.",
     },
     {
       type: "paragraph",
@@ -154,28 +112,32 @@ const post: BlogPostData = {
     },
     {
       type: "heading",
-      text: "The proof: this post was dispatched through ai-sdlc",
+      text: "The proof",
     },
     {
       type: "paragraph",
-      text: "The most credible proof of a system is when it can do the meta-thing. This post — the one you're reading — was dispatched through ai-sdlc. The ticket was gh-118: 'Agentic SDLC — from Jira ticket to merged PR without touching a keyboard.' I filed the issue. The pipeline ran it.",
+      text: "gh-118 is a real dispatch run — unedited. Issue #94: cost-route BUILDER and TESTER by tier without compromising the guardian quality floor. The file it needed to change is Tier-1. Red-zone. The pipeline classified it correctly before a single line was written.",
     },
     {
-      type: "paragraph",
-      text: "The BUILDER read the issue, the existing blog file structure, and the TypeScript types. It wrote the full blog post across 6 sections, extended the BlogPostData type with a githubUrl field, and updated the rendering logic so posts with content render inline instead of redirecting to Medium. 9 files touched. 153 tests passing before the commit. Stage complete in 398 seconds.",
+      type: "image",
+      src: "/blog/pipeline-flow.svg",
+      alt: "gh-118 run log: DISPATCH classifies Tier-1 in 31s, BUILDER implements 2 files and 164 tests in 6m, isolation boundary, TESTER and REVIEWER both PASS, CHECKER 164/164, APPROVED at 14:02 for $3.49",
+      wide: true,
     },
     {
-      type: "paragraph",
-      text: "The TESTER read the diff independently. It added 6 tests across two files: githubUrl field validation, the content.length > 0 rendering path, the GitHub CTA presence, and the Medium fallback path. 159 tests passing. Stage complete in 233 seconds.",
-    },
-    {
-      type: "paragraph",
-      text: "The REVIEWER ran the full gate empirically — pnpm test, typecheck, lint — and verified that all pre-existing posts were unaffected. Two P3 informational findings, neither blocking. Stage complete in 129 seconds. The CHECKER confirmed PASS at confidence 0.85.",
-    },
-    {
-      type: "callout",
-      text: "Total agentic time: 14 minutes across four agents. The blog post about ai-sdlc was written, tested, reviewed, and validated by ai-sdlc. That's the loop closing.",
-      variant: "tip",
+      type: "links",
+      items: [
+        {
+          label: "Issue #94",
+          href: "https://github.com/piyushgupta27/ai-sdlc/issues/94",
+          description: "the task brief",
+        },
+        {
+          label: "PR #118",
+          href: "https://github.com/piyushgupta27/ai-sdlc/pull/118",
+          description: "the merged diff",
+        },
+      ],
     },
     {
       type: "heading",
@@ -183,67 +145,72 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "14 minutes, four agents, under $4. The same task done manually: 3–4 hours of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. That's the comparison that matters, and it comes from the audit logs, not a projection.",
-    },
-
-    {
-      type: "image",
-      src: "/blog/metrics-stats.svg",
-      alt: "Four key metrics: 150+ automated runs, 87% straight-through success, $136 total AI compute, 14 minutes per 4-agent cycle",
-      caption: "All numbers from .audit/ logs — not projected.",
-    },
-    {
-      type: "paragraph",
-      text: "45+ tasks dispatched across four codebases. 150+ autonomous agent executions. 87% straight-through success rate. The remaining 13% escalated correctly — CHECKER detected lint failures, coverage gaps, or tasks that required context the agents didn't have. Escalation is the right behavior; silent failure would be worse.",
+      text: "All numbers are audit-verified across 4 repos — not projected. When CHECKER finds a gap — lint failure, coverage miss, or a task without sufficient context in the ticket — it refires or escalates. Refires self-correct without human involvement. Escalations reach the MANAGER as a structured packet. Across 174 runs, 12 escalated, 9 self-corrected via refire. None produced a silent failure.",
     },
     {
       type: "table",
       headers: ["Metric", "Number", "What it means"],
       rows: [
         [
-          "Total agent runs",
-          "150+",
-          "Across piyush-portfolio, ai-sdlc, trip-research, career-automation",
+          "Agent runs",
+          "174",
+          "Audit-verified across 4 codebases — not projected",
         ],
         [
-          "Tasks dispatched end-to-end",
-          "45+",
-          "Full BUILDER→TESTER→REVIEWER→CHECKER cycles",
+          "Tasks dispatched",
+          "47",
+          "Complete BUILDER→TESTER→REVIEWER→CHECKER cycles",
         ],
         [
-          "Straight-through success rate",
+          "Run success rate",
+          "83%",
+          "Ran straight through — no refire, no escalation, no human touch",
+        ],
+        ["Tier 0/1 entries", "52", "Highest-risk paths, zero incidents"],
+        [
+          "Total AI compute",
+          "$173",
+          "Across all 4 repos, 32 days",
+        ],
+        [
+          "Avg cost per completed task",
+          "~$6",
+          "Including Opus on REVIEWER and CHECKER every run",
+        ],
+        [
+          "Zero-comment merge rate",
           "87%",
-          "13% escalated correctly — none silently failed",
-        ],
-        ["Tier 0/1 runs", "Nearly 40", "High-stakes paths, zero incidents"],
-        [
-          "Total AI compute cost",
-          "$136",
-          "Across all four repos, all tiers, all agents",
+          "13 of 15 dispatched PRs — no human review feedback needed",
         ],
         [
-          "Average cost per task",
-          "Under $4",
-          "Including REVIEWER running Opus 4.8",
+          "Refire rate",
+          "5%",
+          "9/174 runs self-corrected — CHECKER refired the owning agent, no human",
         ],
         [
-          "Estimated engineering hours replaced",
-          "100+",
-          "At 3h average per Tier-2 task done manually",
+          "Escalation rate",
+          "7%",
+          "12/174 runs surfaced to MANAGER as a structured packet",
+        ],
+        [
+          "Silent failures",
+          "None",
+          "Every gap surfaced before merge — no invisible failures",
+        ],
+        [
+          "Tier 0 path violations",
+          "None",
+          "BUILDER never touched permanently off-limits paths",
         ],
       ],
     },
     {
       type: "paragraph",
-      text: "The cost picture is the most interesting number. $136 in AI compute to handle tasks that would conservatively take 3–4 hours each to process manually — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the pipeline has redirected well over 100 engineering hours from scaffolding to higher-leverage work. That's not projected; it's the inference from the audit log task count and a conservative per-task time estimate.",
+      text: "The cost picture: $173 in AI compute across 47 tasks — ~$6 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
     },
     {
       type: "paragraph",
       text: "The forcing function I didn't anticipate: the pipeline only works on tickets with verifiable acceptance criteria. 'Fix the null pointer' → works. 'Improve reliability' → escalates immediately. That constraint pushes ticket quality up across all tickets, not just the ones the pipeline handles. The tool improves the process around it.",
-    },
-    {
-      type: "paragraph",
-      text: "Anthropic's 2026 Agentic Coding Trends report found engineers are spending more time on orchestration, review, and system design — and less on write-test-fix cycles. ai-sdlc is one implementation of that shift: redirect human attention from the cycle to the gate.",
     },
     {
       type: "heading",
@@ -251,19 +218,11 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "The endgame isn't faster engineers. It's engineers who stop reconstructing what a change does before deciding on it — they receive a structured packet and make a call. The BUILDER handles write-test-fix. The human handles architecture, trust expansion, and escalation routing.",
-    },
-    {
-      type: "paragraph",
-      text: "The next agent isn't another specialist — it's a TEAM LEAD that coordinates work across a team's pipelines: sequencing dependent tasks, surfacing cross-repo blast-radius conflicts, routing escalations to the right EM. Four agents on one repo becomes a network.",
-    },
-    {
-      type: "paragraph",
-      text: "Three things need to be true before this works at team scale:",
+      text: "The endgame isn't faster engineers. It's engineers who stop reconstructing what a change does before deciding on it — they receive a structured packet and make a call. The BUILDER handles write-test-fix. The human handles architecture, escalation routing, and the decisions the machine isn't authorized to make.",
     },
     {
       type: "subheading",
-      text: "Context",
+      text: "Architectural context",
     },
     {
       type: "paragraph",
@@ -271,11 +230,11 @@ const post: BlogPostData = {
     },
     {
       type: "subheading",
-      text: "Governed trust expansion",
+      text: "Trust policy",
     },
     {
       type: "paragraph",
-      text: "Right now the trust threshold is a personal config file. At team scale it becomes a data-driven policy: N successful Tier-2 runs before Tier-1 gates loosen, reviewed by an EM, not adjusted ad-hoc.",
+      text: "Right now the trust threshold is a personal call — I move it by hand. At team scale it becomes policy: a tier's gates loosen only after a clean track record — a set number of incident-free runs above a coverage floor, signed off by an owner — never adjusted ad hoc by whoever's blocked that day.",
     },
     {
       type: "subheading",
@@ -283,23 +242,27 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "Who maintains the tier map as the codebase evolves? Who reviews trust expansion decisions? Who gets escalation notifications? These are EM decisions, not engineering decisions. The pipeline forces those conversations. That's a feature, not a bug.",
+      text: "Who maintains the tier map as the codebase evolves? Who reviews trust decisions? Who gets escalation notifications? These are leadership decisions, not engineering decisions. The pipeline forces the conversation instead of letting it stay implicit. That's a feature, not a bug.",
+    },
+    {
+      type: "paragraph",
+      text: "The next agent isn't another specialist — it's a TEAM LEAD that coordinates work across a team's pipelines: sequencing dependent tasks, surfacing cross-repo blast-radius conflicts, routing escalations to the right EM. Four agents on one repo becomes a network.",
     },
     {
       type: "heading",
-      text: "What 'Pipeline-Ready' means — and what breaks without it",
+      text: "Pipeline prerequisites",
     },
     {
       type: "paragraph",
-      text: "The pipeline is only as good as the repo it runs against. A Pipeline-Ready repo has three things: verifiable acceptance criteria on tickets, a deterministic CI suite, and a calibrated blast-radius tier map. Remove any of the three and the pipeline degrades predictably.",
+      text: "The pipeline is only as good as the repo it runs against. A pipeline-ready repo has three things: verifiable acceptance criteria on every ticket, a deterministic CI suite, and a calibrated blast-radius tier map. Remove any one and the pipeline degrades in a predictable way.",
     },
     {
-      type: "paragraph",
-      text: "Ambiguity breaks it first. A ticket without verifiable ACs either escalates or produces a conservative no-op. Novel architecture breaks it second — if the fix requires a design decision that lives in a Slack thread from six months ago, the BUILDER doesn't have that context. Flaky tests break it third: if CI is non-deterministic, the BUILDER retries, fails to converge, and escalates. The pipeline is only as reliable as the test suite it runs against.",
-    },
-    {
-      type: "paragraph",
-      text: "The full implementation — dispatch layer, agent prompt structure, hash-chaining scheme, blast-radius enforcement, and webhook wiring — is on GitHub. The README covers how to onboard a new repo and what the pipeline expects from a ticket to run straight-through.",
+      type: "list",
+      items: [
+        "Ambiguity breaks it first. A ticket without verifiable ACs either escalates immediately or produces a conservative no-op — CHECKER has no ground truth to verify against.",
+        "Flaky tests break it second. If CI is non-deterministic, BUILDER can't converge — what should be a straight-through run becomes an escalation instead.",
+        "Novel architecture breaks it third, for the reason covered above — BUILDER has bounded context, not architectural intent.",
+      ],
     },
     {
       type: "heading",
