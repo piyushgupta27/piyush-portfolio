@@ -37,13 +37,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+const POST_STATS = [
+  { value: "14 min", label: "Cycle time", sub: "vs 3–4h manual" },
+  { value: "4", label: "Agents", sub: "fully automated pipeline" },
+  { value: "$3.49", label: "AI cost", sub: "end-to-end, this issue" },
+  { value: "87%", label: "Straight-thru", sub: "zero human loops" },
+];
+
 function renderBlock(block: ContentBlock, i: number) {
   switch (block.type) {
     case "heading":
       return (
         <h2
           key={i}
-          className="mt-16 mb-5 text-2xl font-bold tracking-tight border-l-4 border-primary pl-4"
+          id={slugify(block.text)}
+          className="mt-14 mb-4 scroll-mt-24 text-2xl font-bold tracking-tight"
         >
           {block.text}
         </h2>
@@ -53,7 +68,7 @@ function renderBlock(block: ContentBlock, i: number) {
       return (
         <h3
           key={i}
-          className="mt-8 mb-3 text-base font-semibold tracking-tight text-foreground/90"
+          className="mt-8 mb-3 text-lg font-semibold tracking-tight text-foreground/90"
         >
           {block.text}
         </h3>
@@ -61,7 +76,10 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "paragraph":
       return (
-        <p key={i} className="mb-4 leading-relaxed text-foreground/75">
+        <p
+          key={i}
+          className="mb-6 leading-relaxed text-pretty text-foreground/90"
+        >
           {block.text}
         </p>
       );
@@ -72,10 +90,11 @@ function renderBlock(block: ContentBlock, i: number) {
           <img
             src={block.src}
             alt={block.alt}
+            loading="lazy"
             className="w-full rounded-lg border border-border/30"
           />
           {block.caption && (
-            <figcaption className="mt-3 text-center font-mono text-xs text-muted-foreground">
+            <figcaption className="mt-3 text-center font-mono text-sm text-muted-foreground">
               {block.caption}
             </figcaption>
           )}
@@ -91,7 +110,7 @@ function renderBlock(block: ContentBlock, i: number) {
                 {block.headers.map((h) => (
                   <th
                     key={h}
-                    className="border border-border/50 bg-card/80 px-4 py-2.5 text-left font-semibold text-foreground font-mono text-xs"
+                    className="border border-border/50 bg-card/80 px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
                   >
                     {h}
                   </th>
@@ -104,7 +123,7 @@ function renderBlock(block: ContentBlock, i: number) {
                   {row.map((cell, ci) => (
                     <td
                       key={ci}
-                      className="border border-border/50 px-4 py-2.5 text-sm text-muted-foreground"
+                      className="border border-border/50 px-4 py-2.5 text-sm text-foreground/70"
                     >
                       {cell}
                     </td>
@@ -156,90 +175,130 @@ export default async function BlogPostPage({ params }: Props) {
 
   const hasContent = post.content.length > 0;
 
+  const headings = post.content
+    .filter((b): b is { type: "heading"; text: string } => b.type === "heading")
+    .map((b) => ({ text: b.text, id: slugify(b.text) }));
+
+  const hasToc = hasContent && headings.length > 2;
+
   return (
     <article className="py-24 px-6">
-      <div className="mx-auto max-w-2xl">
-        <div className="mb-12">
-          <Link
-            href="/blog"
-            className="mb-8 inline-flex items-center gap-2 font-mono text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            ← Blog
-          </Link>
-          <div className="mt-8 mb-4 flex items-center gap-4 font-mono text-xs text-muted-foreground">
-            <span className="text-primary">{post.tag}</span>
-            <span>
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            {post.title}
-          </h1>
-          <div className="mt-4 flex items-center gap-3">
-            <Image
-              src="/images/headshot.jpg"
-              alt="Piyush Gupta"
-              width={28}
-              height={28}
-              className="h-7 w-7 rounded-full object-cover border border-border/30"
-            />
-            <span className="font-mono text-xs text-muted-foreground">
-              Piyush Gupta · Sr EM · ex-Hotstar/Disney · Slice
-            </span>
-          </div>
-          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-            {post.excerpt}
-          </p>
+      <div className="mx-auto max-w-3xl">
+        {/* Hero */}
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          ← Blog
+        </Link>
+
+        <div className="mt-6 mb-4 flex items-center gap-4 font-mono text-xs text-muted-foreground">
+          <span className="text-primary">{post.tag}</span>
+          <span>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
         </div>
 
+        <h1 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+          {post.title}
+        </h1>
+
+        <div className="mt-5 flex items-center gap-3">
+          <Image
+            src="/images/headshot.jpg"
+            alt="Piyush Gupta"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full border border-border/30 object-cover object-top"
+          />
+          <div>
+            <span className="block font-mono text-xs text-foreground/85">
+              Piyush Gupta
+            </span>
+            <span className="block font-mono text-xs text-muted-foreground">
+              Engineering Manager · Slice · ex-Disney+Hotstar · ex-JumpingMinds
+            </span>
+          </div>
+        </div>
+
+        <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+          {post.excerpt}
+        </p>
+
         {hasContent ? (
-          <div className="max-w-none">
+          <div className="mt-12">
+            {/* Stats graphic — only on posts with a github source */}
             {post.githubUrl && (
-              <div className="mb-10 flex flex-wrap gap-x-8 gap-y-2 border-t border-border/30 pt-6 font-mono text-xs">
-                <span>
-                  <span className="text-primary font-bold">14 min</span>{" "}
-                  <span className="text-muted-foreground">
-                    · full 4-agent cycle
-                  </span>
-                </span>
-                <span>
-                  <span className="text-primary font-bold">4 agents</span>{" "}
-                  <span className="text-muted-foreground">
-                    · BUILDER → TESTER → REVIEWER → CHECKER
-                  </span>
-                </span>
-                <span>
-                  <span className="text-primary font-bold">$3.49</span>{" "}
-                  <span className="text-muted-foreground">
-                    · AI compute (gh-118)
-                  </span>
-                </span>
-                <span>
-                  <span className="text-primary font-bold">87%</span>{" "}
-                  <span className="text-muted-foreground">
-                    · straight-through success
-                  </span>
-                </span>
+              <div className="mb-10 flex flex-wrap gap-y-6 sm:flex-nowrap">
+                {POST_STATS.map((stat, i) => (
+                  <div
+                    key={stat.label}
+                    className={`flex-1 min-w-[120px]${
+                      i > 0 ? " sm:border-l sm:border-border/25 sm:pl-8" : ""
+                    }`}
+                  >
+                    <div className="mb-2.5 h-px w-8 bg-primary/60" />
+                    <div className="whitespace-nowrap font-mono text-3xl font-bold leading-none text-primary sm:text-4xl">
+                      {stat.value}
+                    </div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-wide text-foreground/75">
+                      {stat.label}
+                    </div>
+                    <div className="mt-0.5 font-mono text-xs text-muted-foreground/60">
+                      {stat.sub}
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
+
+            {/* Inline TOC */}
+            {hasToc && (
+              <nav
+                aria-label="Table of contents"
+                className="mb-10 border-y border-border/40 py-5"
+              >
+                <p className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground/50">
+                  Jump to
+                </p>
+                <ol className="flex flex-col gap-2.5">
+                  {headings.map((h, i) => (
+                    <li key={h.id} className="flex items-baseline gap-3">
+                      <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground/35">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <a
+                        href={`#${h.id}`}
+                        className="text-sm leading-snug text-foreground/50 transition-colors hover:text-primary"
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+
+            {/* Article body */}
             {post.content.map((block, i) => renderBlock(block, i))}
 
-            <div className="mt-16 rounded-xl border border-primary/30 bg-primary/5 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            {/* CTA */}
+            <div className="mt-16 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">
               {post.ctaText && (
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
+                <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
                   {post.ctaText}
                 </p>
               )}
-              <div className="flex flex-wrap gap-4 shrink-0">
+              <div className="flex shrink-0 flex-wrap gap-4">
                 <a
                   href="https://calendly.com/piyushguptaece/30min"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-2 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
+                  className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   Book a call
                 </a>
@@ -248,7 +307,7 @@ export default async function BlogPostPage({ params }: Props) {
                     href={post.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-2 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
+                    className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-3 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
                   >
                     View on GitHub
                     <ExternalLink className="h-4 w-4" />
@@ -269,7 +328,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </div>
         ) : (
-          <div className="rounded-lg border border-border/50 bg-card/50 p-8 text-center">
+          <div className="mt-12 rounded-lg border border-border/50 bg-card/50 p-8 text-center">
             <p className="mb-6 text-muted-foreground">
               This article is published on Medium — with images, diagrams, and
               full formatting.
