@@ -247,31 +247,43 @@ const post: BlogPostData = {
     },
     {
       type: "heading",
-      text: "What this looks like at team scale",
+      text: "At team scale",
     },
     {
       type: "paragraph",
-      text: "The design decisions in ai-sdlc are the same ones you'd make building a safe autonomous system for a team of 20+ engineers. The blast-radius tier model scales: you calibrate the tier map to your specific codebase rather than generic path patterns. The trust expansion model is explicit — 20+ tickets processed with zero incidents at Tier 2/3 before gates loosen at Tier 1. The audit trail becomes more important at team scale, not less.",
+      text: "The endgame isn't faster engineers. It's engineers who stop reconstructing what a change does before deciding on it — they receive a structured packet and make a call. The BUILDER handles write-test-fix. The human handles architecture, trust expansion, and escalation routing.",
     },
     {
       type: "paragraph",
-      text: "What breaks first at team scale: context. The BUILDER has the code, the tests, and the ticket. It doesn't have the Slack thread from six months ago where the team decided why the API contract looks the way it does. Context injection — pulling from ADRs, decision records, internal wikis — is the next layer. Without it, the pipeline handles well-bounded changes well but escalates anything requiring architectural intent.",
+      text: "The next agent isn't another specialist — it's a TEAM LEAD that coordinates work across a team's pipelines: sequencing dependent tasks, surfacing cross-repo blast-radius conflicts, routing escalations to the right EM. Four agents on one repo becomes a network.",
     },
     {
       type: "paragraph",
-      text: "The governance question at team scale is the most interesting one: who owns the tier-map? Who reviews trust expansion decisions? Who gets escalation notifications? These are Engineering Manager decisions, not engineering decisions. The pipeline forces those conversations. That's a feature, not a bug.",
+      text: "Three things need to be true before this works at team scale:",
     },
     {
-      type: "heading",
-      text: "The vision",
-    },
-    {
-      type: "paragraph",
-      text: "The north star metric is merged-PRs per review-hour. Right now that number is constrained because humans still spend time re-deriving context the machine already has. The goal is to make the human review gate a genuine signal gate — five minutes of sanity-checking a structured packet rather than 30 minutes reconstructing what the change actually does.",
+      type: "subheading",
+      text: "Context",
     },
     {
       type: "paragraph",
-      text: "The next layer: context injection from ADRs and internal decision history, multi-file refactors with stronger pre-change analysis, and tier-mapping drift detection as codebases evolve. Longer term: team-scale ticket volumes, blast-radius tiers calibrated per codebase, and the trust expansion threshold as a managed team policy rather than a personal config file.",
+      text: "The BUILDER knows your code and your ticket. It doesn't know your architectural intent — why the contract looks the way it does, what was considered and rejected. Context injection from ADRs and decision records is the gap between 'handles bounded changes' and 'handles anything.'",
+    },
+    {
+      type: "subheading",
+      text: "Governed trust expansion",
+    },
+    {
+      type: "paragraph",
+      text: "Right now the trust threshold is a personal config file. At team scale it becomes a data-driven policy: N successful Tier-2 runs before Tier-1 gates loosen, reviewed by an EM, not adjusted ad-hoc.",
+    },
+    {
+      type: "subheading",
+      text: "Tier-map ownership",
+    },
+    {
+      type: "paragraph",
+      text: "Who maintains the tier map as the codebase evolves? Who reviews trust expansion decisions? Who gets escalation notifications? These are EM decisions, not engineering decisions. The pipeline forces those conversations. That's a feature, not a bug.",
     },
     {
       type: "heading",
@@ -284,10 +296,6 @@ const post: BlogPostData = {
     {
       type: "paragraph",
       text: "Ambiguity breaks it first. A ticket without verifiable ACs either escalates or produces a conservative no-op. Novel architecture breaks it second — if the fix requires a design decision that lives in a Slack thread from six months ago, the BUILDER doesn't have that context. Flaky tests break it third: if CI is non-deterministic, the BUILDER retries, fails to converge, and escalates. The pipeline is only as reliable as the test suite it runs against.",
-    },
-    {
-      type: "paragraph",
-      text: "Multi-file refactors don't work yet. A fix that requires touching five files in three packages to change a shared interface is a task the pipeline escalates rather than attempts. Blast-radius gates work best when the change is bounded — an open-ended refactor isn't bounded by definition.",
     },
     {
       type: "paragraph",
