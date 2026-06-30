@@ -141,7 +141,8 @@ function renderBlock(block: ContentBlock, i: number) {
                   {block.headers.map((h) => (
                     <th
                       key={h}
-                      className="border border-white/[0.15] bg-white/[0.08] px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
+                      className="border border-white/[0.15] px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
+                      style={{ backgroundColor: "oklch(12% 0.008 250)" }}
                     >
                       {h}
                     </th>
