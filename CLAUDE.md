@@ -30,3 +30,31 @@ Run before any feature work — no exceptions:
 5. Read `tasks/lessons.md`
 
 **Employer-detail boundary (privacy):** company names in hero/experience = keep (intentional portfolio content). Scrub: `/Users/piyush/`, `ai-workspace`, `mind-palace`, tokens, credentials.
+
+## Local CI gate (run before every commit — not just before push)
+
+`pnpm` is broken locally (Node 20 + pnpm 11 incompatible). Use the local binaries directly:
+
+```bash
+# Formatter — must show 0 files changed
+./node_modules/.bin/biome format src/
+
+# Linter — must show 0 errors
+./node_modules/.bin/eslint 'src/**/*.{ts,tsx}'
+
+# Apply formatter fixes when needed
+./node_modules/.bin/biome format --write src/
+```
+
+Run **both** checks and see **0 errors on each** before `git commit`. Fixing one and committing is banned — the next CI failure will be the check you skipped.
+
+## Post-merge CI confirmation (mandatory — do not close out PR without this)
+
+After merge, confirm the base-branch CI run passes:
+
+```bash
+gh run list --branch main -L 3
+gh run watch <run-id>   # wait for green
+```
+
+Do not mark the task done, update continuation docs, or move to next work until the run is green.
