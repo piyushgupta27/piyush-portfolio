@@ -80,7 +80,7 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
   describe("brand", () => {
     it("shows piyushgupta.io brand name", () => {
       assert.ok(
-        src.includes("piyushgupta.io"),
+        src.includes(">piyushgupta.io<"),
         "Navbar must show the brand name piyushgupta.io",
       );
     });
