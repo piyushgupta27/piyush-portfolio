@@ -9,8 +9,8 @@ import {
 } from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
-  it("seedPosts exports exactly 7 posts", () => {
-    assert.equal(seedPosts.length, 7);
+  it("seedPosts exports exactly 6 posts", () => {
+    assert.equal(seedPosts.length, 6);
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {
@@ -61,14 +61,9 @@ describe("blog content — data layer (gh-68)", () => {
     assert.equal(post.slug, "realtime-messaging-infrastructure-part-1");
   });
 
-  it("getPostBySlug returns the correct post for ai-leadership-toolkit slug (gh-120)", () => {
+  it("getPostBySlug returns undefined for hidden ai-leadership-toolkit post (sprint-7: hidden pending content review)", () => {
     const post = getPostBySlug("engineering-leadership-with-ai");
-    assert.ok(post !== undefined, "should return the ai leadership post");
-    assert.equal(post.slug, "engineering-leadership-with-ai");
-    assert.ok(
-      post.content.length > 0,
-      "ai leadership post must have inline content",
-    );
+    assert.strictEqual(post, undefined);
   });
 
   it("getPostBySlug returns undefined for an unknown slug (negative path)", () => {
