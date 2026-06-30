@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface StaggerChildrenProps {
   children: ReactNode;
@@ -33,15 +33,6 @@ export function StaggerChildren({
     </motion.div>
   );
 }
-
-export const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] as const },
-  },
-};
 
 export function useStaggerItem() {
   const shouldReduce = useReducedMotion();

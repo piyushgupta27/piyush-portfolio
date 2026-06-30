@@ -82,7 +82,10 @@ export function Experience() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{
+            duration: shouldReduce ? 0 : 0.5,
+            delay: shouldReduce ? 0 : 0.2,
+          }}
           className="mt-16"
         >
           <p className="mb-4 font-mono text-xs text-muted-foreground">
