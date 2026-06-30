@@ -135,8 +135,8 @@ function renderBlock(block: ContentBlock, i: number) {
           className={`mt-10 mb-10${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
         >
           <div
-            className="overflow-x-auto rounded-sm border border-white/[0.10]"
-            style={{ background: "oklch(7% 0.012 250)" }}
+            className="overflow-x-auto rounded-sm border border-white/20"
+            style={{ background: "oklch(9% 0.012 250)" }}
           >
             <table className="w-full border-collapse text-sm">
               <thead>
@@ -144,8 +144,8 @@ function renderBlock(block: ContentBlock, i: number) {
                   {block.headers.map((h) => (
                     <th
                       key={h}
-                      className="border-b border-white/[0.12] px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
-                      style={{ backgroundColor: "oklch(12% 0.010 250)" }}
+                      className="border-b border-white/20 px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
+                      style={{ backgroundColor: "oklch(20% 0.012 250)" }}
                     >
                       {h}
                     </th>
@@ -154,11 +154,11 @@ function renderBlock(block: ContentBlock, i: number) {
               </thead>
               <tbody>
                 {block.rows.map((row, ri) => (
-                  <tr key={ri} className="border-b border-white/[0.06] last:border-b-0 odd:bg-white/[0.03]">
+                  <tr key={ri} className="border-b border-white/[0.10] last:border-b-0 odd:bg-white/[0.05]">
                     {row.map((cell, ci) => (
                       <td
                         key={ci}
-                        className={`px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/65"}${ci < row.length - 1 ? " border-r border-white/[0.06]" : ""}`}
+                        className={`px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/70"}${ci < row.length - 1 ? " border-r border-white/[0.10]" : ""}`}
                       >
                         {cell}
                       </td>
