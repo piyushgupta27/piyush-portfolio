@@ -1,6 +1,13 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 
+function prefersReducedMotion() {
+  return (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+}
+
 export function ScrollFade({
   children,
   className = "",
@@ -11,13 +18,10 @@ export function ScrollFade({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(prefersReducedMotion);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
+    if (prefersReducedMotion()) return;
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
