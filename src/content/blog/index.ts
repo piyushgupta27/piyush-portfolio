@@ -5,12 +5,14 @@ import whyDisney from "./why-i-enjoyed-working-at-disney";
 import androidScheduling from "./android-scheduling";
 import agenticSdlc from "./agentic-sdlc";
 import aiLeadershipToolkit from "./ai-leadership-toolkit";
+import managerialAiToolkit from "./managerial-ai-toolkit";
 import type { BlogPostData, ContentBlock } from "./types";
 
 export type { BlogPostData, ContentBlock } from "./types";
 
 export const seedPosts: BlogPostData[] = [
   // aiLeadershipToolkit — hidden: content under review, will restore in sprint 8
+  managerialAiToolkit,
   agenticSdlc,
   realtimePart1,
   realtimePart2,
