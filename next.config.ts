@@ -25,11 +25,11 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "img-src 'self' https://images.unsplash.com data:",
+              "img-src 'self' https://images.unsplash.com data: blob:",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "style-src 'self' 'unsafe-inline'",
               "font-src 'self' https://fonts.gstatic.com data:",
-              "connect-src 'self'",
+              "connect-src 'self' https://vitals.vercel-insights.com",
               "frame-ancestors 'none'",
             ].join("; "),
           },
