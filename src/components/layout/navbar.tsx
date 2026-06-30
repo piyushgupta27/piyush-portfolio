@@ -25,7 +25,7 @@ export function Navbar() {
           href="#"
           className="inline-flex h-11 items-center font-mono text-sm font-bold tracking-wider"
         >
-          <span className="gradient-text">piyush.gupta</span>
+          <span className="gradient-text">piyushgupta.io</span>
         </a>
 
         {/* Desktop */}
