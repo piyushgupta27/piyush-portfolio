@@ -5,7 +5,7 @@ import whyDisney from "./why-i-enjoyed-working-at-disney";
 import androidScheduling from "./android-scheduling";
 import agenticSdlc from "./agentic-sdlc";
 import aiLeadershipToolkit from "./ai-leadership-toolkit";
-import type { BlogPostData } from "./types";
+import type { BlogPostData, ContentBlock } from "./types";
 
 export type { BlogPostData, ContentBlock } from "./types";
 
@@ -31,4 +31,11 @@ export function getPostBySlug(slug: string): BlogPostData | undefined {
 
 export function getAllSlugs(): string[] {
   return seedPosts.map((p) => p.slug);
+}
+
+export function calculateReadTime(content: ContentBlock[]): string {
+  const words = content
+    .filter((b): b is Extract<ContentBlock, { text: string }> => "text" in b)
+    .reduce((count, b) => count + b.text.split(/\s+/).length, 0);
+  return `${Math.ceil(words / 200)} min read`;
 }
