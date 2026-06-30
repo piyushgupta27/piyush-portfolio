@@ -45,7 +45,6 @@ const post: BlogPostData = {
     },
     {
       type: "table",
-      wide: true,
       headers: ["Stage", "Reads from", "What it does", "Output"],
       rows: [
         [
@@ -229,6 +228,7 @@ const post: BlogPostData = {
     },
     {
       type: "subheading",
+      number: "01",
       text: "Architectural context",
     },
     {
@@ -237,6 +237,7 @@ const post: BlogPostData = {
     },
     {
       type: "subheading",
+      number: "02",
       text: "Trust policy",
     },
     {
@@ -245,6 +246,7 @@ const post: BlogPostData = {
     },
     {
       type: "subheading",
+      number: "03",
       text: "Tier-map ownership",
     },
     {

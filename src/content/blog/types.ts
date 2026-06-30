@@ -1,7 +1,7 @@
 export type ContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "heading"; text: string }
-  | { type: "subheading"; text: string }
+  | { type: "subheading"; text: string; number?: string }
   | {
       type: "image";
       src: string;

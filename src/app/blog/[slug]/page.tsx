@@ -6,6 +6,7 @@ import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { getPostBySlug, getAllSlugs, calculateReadTime } from "@/content/blog";
 import type { ContentBlock } from "@/content/blog";
 import { AnchorLink } from "./anchor-link";
+import { ScrollFade } from "./scroll-fade";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -53,7 +54,7 @@ function renderBlock(block: ContentBlock, i: number) {
         <h2
           key={i}
           id={id}
-          className="group mt-14 mb-4 scroll-mt-24 text-2xl font-bold tracking-tight"
+          className="group mt-14 mb-6 scroll-mt-24 text-2xl font-bold tracking-tight"
         >
           {block.text}
           <AnchorLink id={id} label={block.text} />
@@ -65,8 +66,13 @@ function renderBlock(block: ContentBlock, i: number) {
       return (
         <h3
           key={i}
-          className="mt-8 mb-3 text-lg font-semibold tracking-tight text-foreground/90"
+          className="mt-8 mb-3 flex items-center gap-3 text-lg font-semibold tracking-tight text-foreground/90"
         >
+          {block.number && (
+            <span className="shrink-0 font-mono text-xs font-semibold text-primary/70">
+              {block.number}
+            </span>
+          )}
           {block.text}
         </h3>
       );
@@ -83,57 +89,63 @@ function renderBlock(block: ContentBlock, i: number) {
 
     case "image":
       return (
-        <figure
+        <ScrollFade
           key={i}
-          className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
+          className={`mt-8 mb-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
         >
-          <div
-            className={
-              block.wide ? "overflow-x-auto sm:overflow-x-visible" : undefined
-            }
-          >
-            {block.mobileSrc && (
+          <figure>
+            <div
+              className={
+                block.wide ? "overflow-x-auto sm:overflow-x-visible" : undefined
+              }
+            >
+              {block.mobileSrc && (
+                <img
+                  src={block.mobileSrc}
+                  alt={block.alt}
+                  loading="lazy"
+                  className="block sm:hidden w-full rounded-lg border border-border/30"
+                />
+              )}
               <img
-                src={block.mobileSrc}
+                src={block.src}
                 alt={block.alt}
                 loading="lazy"
-                className="block sm:hidden w-full rounded-lg border border-border/30"
+                className={`rounded-lg border border-border/30${block.wide ? " min-w-[800px] sm:min-w-0 sm:w-full" : " w-full"}${block.mobileSrc ? " hidden sm:block" : ""}`}
               />
+            </div>
+            {block.wide && !block.mobileSrc && (
+              <p className="mt-1.5 text-right font-mono text-[10px] text-muted-foreground/40 sm:hidden">
+                scroll to explore →
+              </p>
             )}
-            <img
-              src={block.src}
-              alt={block.alt}
-              loading="lazy"
-              className={`rounded-lg border border-border/30${block.wide ? " min-w-[800px] sm:min-w-0 sm:w-full" : " w-full"}${block.mobileSrc ? " hidden sm:block" : ""}`}
-            />
-          </div>
-          {block.wide && !block.mobileSrc && (
-            <p className="mt-1.5 text-right font-mono text-[10px] text-muted-foreground/40 sm:hidden">
-              scroll to explore →
-            </p>
-          )}
-          {block.caption && (
-            <figcaption className="mt-3 text-center font-mono text-sm text-muted-foreground">
-              {block.caption}
-            </figcaption>
-          )}
-        </figure>
+            {block.caption && (
+              <figcaption className="mt-3 text-center font-mono text-sm text-muted-foreground">
+                {block.caption}
+              </figcaption>
+            )}
+          </figure>
+        </ScrollFade>
       );
 
     case "table":
       return (
         <div
           key={i}
-          className={`my-8${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
+          className={`mt-10 mb-10${block.wide ? " -mx-6 sm:-mx-12 lg:-mx-24" : ""}`}
         >
-          <div className="overflow-x-auto">
+          <div
+            className="overflow-x-auto rounded-sm border border-white/20"
+            style={{ background: "oklch(9% 0.012 250)" }}
+          >
             <table className="w-full border-collapse text-sm">
               <thead>
                 <tr>
                   {block.headers.map((h) => (
                     <th
                       key={h}
-                      className="border border-border/50 bg-card/80 px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
+                      className="border-b border-white/20 px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
+                      style={{ backgroundColor: "oklch(20% 0.012 250)" }}
                     >
                       {h}
                     </th>
@@ -142,11 +154,14 @@ function renderBlock(block: ContentBlock, i: number) {
               </thead>
               <tbody>
                 {block.rows.map((row, ri) => (
-                  <tr key={ri} className="odd:bg-card/30">
+                  <tr
+                    key={ri}
+                    className="border-b border-white/[0.10] last:border-b-0 odd:bg-white/[0.05]"
+                  >
                     {row.map((cell, ci) => (
                       <td
                         key={ci}
-                        className={`border border-border/50 px-4 py-2.5 text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/70"}`}
+                        className={`px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/70"}${ci < row.length - 1 ? " border-r border-white/[0.10]" : ""}`}
                       >
                         {cell}
                       </td>
@@ -329,7 +344,7 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         </div>
 
-        <div className="mt-5 space-y-4">
+        <div className="mt-8 space-y-4">
           <p className="leading-relaxed text-foreground/90">
             {post.excerpt.split(".")[0]}.
           </p>
@@ -345,9 +360,10 @@ export default async function BlogPostPage({ params }: Props) {
             {/* Stats graphic — only on posts with stats defined */}
             {post.stats && post.stats.length > 0 && (
               <div className="mb-10 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-                {post.stats.map((stat) => (
-                  <div
+                {post.stats.map((stat, idx) => (
+                  <ScrollFade
                     key={stat.label}
+                    delay={idx * 80}
                     className="rounded-lg border border-primary/20 bg-primary/5 p-3 sm:p-4"
                   >
                     <div className="font-mono text-2xl font-bold leading-none text-primary sm:text-3xl">
@@ -361,10 +377,10 @@ export default async function BlogPostPage({ params }: Props) {
                     <div className="mt-2 text-[10px] font-bold uppercase tracking-wide text-foreground/65">
                       {stat.label}
                     </div>
-                    <div className="mt-0.5 font-mono text-[10px] text-muted-foreground/40">
+                    <div className="mt-0.5 font-mono text-[10px] text-muted-foreground/70">
                       {stat.sub}
                     </div>
-                  </div>
+                  </ScrollFade>
                 ))}
               </div>
             )}
@@ -375,15 +391,12 @@ export default async function BlogPostPage({ params }: Props) {
                 aria-label="Table of contents"
                 className="mb-10 border-y border-border/40 py-5"
               >
-                <p className="mb-4 font-mono text-xs uppercase tracking-widest text-muted-foreground/50">
-                  Jump to
+                <p className="mb-3 font-mono text-xs text-muted-foreground/50">
+                  Contents
                 </p>
                 <ol className="flex flex-col gap-2.5">
-                  {headings.map((h, i) => (
-                    <li key={h.id} className="flex items-baseline gap-3">
-                      <span className="shrink-0 font-mono text-xs tabular-nums text-muted-foreground/35">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
+                  {headings.map((h) => (
+                    <li key={h.id}>
                       <a
                         href={`#${h.id}`}
                         className="text-sm leading-snug text-foreground/50 transition-colors hover:text-primary"
