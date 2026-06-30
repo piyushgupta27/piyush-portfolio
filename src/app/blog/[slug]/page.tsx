@@ -137,24 +137,24 @@ function renderBlock(block: ContentBlock, i: number) {
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-sm">
               <thead>
-                <tr className="border-y border-primary/25 bg-primary/10">
+                <tr>
                   {block.headers.map((h) => (
                     <th
                       key={h}
-                      className="px-4 py-2.5 text-left font-mono text-[10px] font-bold uppercase tracking-widest text-primary/70"
+                      className="border border-white/10 bg-white/[0.04] px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
                     >
                       {h}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/[0.08]">
+              <tbody>
                 {block.rows.map((row, ri) => (
-                  <tr key={ri}>
+                  <tr key={ri} className="odd:bg-white/[0.03]">
                     {row.map((cell, ci) => (
                       <td
                         key={ci}
-                        className={`px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/65"}`}
+                        className={`border border-white/10 px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/65"}`}
                       >
                         {cell}
                       </td>
