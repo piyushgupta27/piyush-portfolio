@@ -154,7 +154,10 @@ function renderBlock(block: ContentBlock, i: number) {
               </thead>
               <tbody>
                 {block.rows.map((row, ri) => (
-                  <tr key={ri} className="border-b border-white/[0.10] last:border-b-0 odd:bg-white/[0.05]">
+                  <tr
+                    key={ri}
+                    className="border-b border-white/[0.10] last:border-b-0 odd:bg-white/[0.05]"
+                  >
                     {row.map((cell, ci) => (
                       <td
                         key={ci}
