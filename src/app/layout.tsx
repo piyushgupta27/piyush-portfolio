@@ -35,6 +35,25 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Piyush Gupta",
+  url: SITE_URL,
+  jobTitle: "Sr Engineering Manager",
+  alumniOf: [
+    {
+      "@type": "CollegeOrUniversity",
+      name: "Indian Institute of Technology Roorkee",
+    },
+  ],
+  sameAs: [
+    "https://github.com/piyushgupta27",
+    "https://linkedin.com/in/piyushgupta27",
+    "https://twitter.com/piyushgupta27",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,6 +66,10 @@ export default function RootLayout({
     >
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="min-h-full flex flex-col bg-grid">
         <MotionProvider>
