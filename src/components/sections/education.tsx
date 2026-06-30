@@ -29,11 +29,18 @@ export function Education() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <CardContent className="relative p-6">
-                  <div className="mb-3 flex items-center gap-2">
-                    <GraduationCap className="h-4 w-4 text-primary shrink-0" />
-                    <span className="font-mono text-xs text-primary">
-                      {edu.location}
-                    </span>
+                  <div className="mb-3 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <GraduationCap className="h-4 w-4 text-primary shrink-0" />
+                      <span className="font-mono text-xs text-primary">
+                        {edu.location}
+                      </span>
+                    </div>
+                    {edu.period && (
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {edu.period}
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="mb-1 font-semibold text-lg leading-snug">

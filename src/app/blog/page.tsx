@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge";
 import { seedPosts } from "@/content/blog";
 
 export const metadata: Metadata = {
-  title: "Blog — Piyush Gupta",
+  title: "Blog",
   description:
-    "Writing on engineering leadership, AI tooling, and platform engineering.",
+    "Writing on engineering leadership, AI systems, and platform engineering at scale.",
 };
 
 export default function BlogIndexPage() {
