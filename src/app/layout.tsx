@@ -6,23 +6,31 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
+const SITE_URL = "https://piyushgupta.io";
+const DESCRIPTION =
+  "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Founded JumpingMinds AI (1M+ users) · AI systems at Slice · Open to Sr EM roles globally.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://piyushgupta.io"),
-  title: "Piyush Gupta — Sr Engineering Manager",
-  description:
-    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Piyush Gupta — Sr Engineering Manager",
+    template: "%s — Piyush Gupta",
+  },
+  description: DESCRIPTION,
+  authors: [{ name: "Piyush Gupta", url: SITE_URL }],
+  robots: { index: true, follow: true },
   openGraph: {
     title: "Piyush Gupta — Sr Engineering Manager",
-    description:
-      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).",
+    description: DESCRIPTION,
     type: "website",
-    url: "https://piyushgupta.io",
+    url: SITE_URL,
+    siteName: "Piyush Gupta",
   },
   twitter: {
     card: "summary_large_image",
     title: "Piyush Gupta — Sr Engineering Manager",
-    description:
-      "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).",
+    description: DESCRIPTION,
+    creator: "@piyushgupta27",
   },
 };
 
