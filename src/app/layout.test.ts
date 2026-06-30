@@ -32,11 +32,17 @@ beforeAll(async () => {
 describe("layout metadata", () => {
   const TITLE = "Piyush Gupta — Sr Engineering Manager";
   const DESCRIPTION =
-    "Senior Engineering Manager building autonomous AI tooling. Co-founder of jumpingMinds (1M+ users), now leading platform engineering at Slice (10M+ users daily).";
+    "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Founded JumpingMinds AI (1M+ users) · AI systems at Slice · Open to Sr EM roles globally.";
   const SITE_URL = "https://piyushgupta.io";
 
-  it("sets the correct page title", () => {
-    expect(metadata.title).toBe(TITLE);
+  it("sets the correct page title (default)", () => {
+    const title = metadata.title as { default: string; template: string };
+    expect(title.default).toBe(TITLE);
+  });
+
+  it("sets the title template for child pages", () => {
+    const title = metadata.title as { default: string; template: string };
+    expect(title.template).toBe("%s — Piyush Gupta");
   });
 
   it("sets the correct description", () => {
