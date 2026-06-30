@@ -141,7 +141,7 @@ function renderBlock(block: ContentBlock, i: number) {
                   {block.headers.map((h) => (
                     <th
                       key={h}
-                      className="border border-white/10 bg-white/[0.04] px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
+                      className="border border-white/[0.15] bg-white/[0.08] px-4 py-2.5 text-left font-mono text-xs font-semibold text-foreground"
                     >
                       {h}
                     </th>
@@ -150,11 +150,11 @@ function renderBlock(block: ContentBlock, i: number) {
               </thead>
               <tbody>
                 {block.rows.map((row, ri) => (
-                  <tr key={ri} className="odd:bg-white/[0.03]">
+                  <tr key={ri} className="odd:bg-white/[0.04]">
                     {row.map((cell, ci) => (
                       <td
                         key={ci}
-                        className={`border border-white/10 px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/65"}`}
+                        className={`border border-white/[0.15] px-4 py-2.5 align-top text-sm ${ci === 0 ? "font-semibold text-foreground" : "text-foreground/65"}`}
                       >
                         {cell}
                       </td>
