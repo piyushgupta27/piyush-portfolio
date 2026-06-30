@@ -9,8 +9,8 @@ import {
 } from "@/content/blog";
 
 describe("blog content — data layer (gh-68)", () => {
-  it("seedPosts exports exactly 6 posts", () => {
-    assert.equal(seedPosts.length, 6);
+  it("seedPosts exports exactly 7 posts", () => {
+    assert.equal(seedPosts.length, 7);
   });
 
   it("every post has required fields: slug, title, date, tag, excerpt, content", () => {
@@ -69,6 +69,15 @@ describe("blog content — data layer (gh-68)", () => {
   it("getPostBySlug returns undefined for an unknown slug (negative path)", () => {
     const result = getPostBySlug("this-slug-does-not-exist");
     assert.strictEqual(result, undefined);
+  });
+
+  it("managerial-ai-toolkit post exists and has required stats field", () => {
+    const post = getPostBySlug("managerial-ai-toolkit");
+    assert.ok(post !== undefined, "managerial-ai-toolkit post must exist");
+    assert.ok(
+      Array.isArray(post.stats) && post.stats.length > 0,
+      "managerial-ai-toolkit post must have non-empty stats array for OG image",
+    );
   });
 
   it("agentic-sdlc post has ctaText field set (AC4/AC5: ctaText schema)", () => {
