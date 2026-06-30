@@ -178,6 +178,14 @@
   background-clip: text;
 }
 
+/* Restore visible text in forced-colors (Windows high-contrast) mode */
+@media (forced-colors: active) {
+  .gradient-text {
+    -webkit-text-fill-color: currentColor;
+    background: none;
+  }
+}
+
 /* Animated gradient border */
 .gradient-border {
   position: relative;
