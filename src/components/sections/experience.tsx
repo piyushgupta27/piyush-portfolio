@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -9,6 +9,7 @@ import { experiences } from "@/data/experience";
 import { careerArc } from "@/data/career-arc";
 
 export function Experience() {
+  const shouldReduce = useReducedMotion();
   return (
     <section id="experience" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-4xl">
@@ -30,8 +31,8 @@ export function Experience() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{
-                  duration: 0.5,
-                  delay: i * 0.1,
+                  duration: shouldReduce ? 0 : 0.5,
+                  delay: shouldReduce ? 0 : i * 0.1,
                   ease: [0.21, 0.47, 0.32, 0.98],
                 }}
                 className={`relative flex flex-col gap-4 pl-12 md:pl-0 ${

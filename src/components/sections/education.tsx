@@ -7,11 +7,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
 import {
   StaggerChildren,
-  staggerItem,
+  useStaggerItem,
 } from "@/components/motion/stagger-children";
 import { education } from "@/data/education";
 
 export function Education() {
+  const staggerItem = useStaggerItem();
   return (
     <section id="education" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
