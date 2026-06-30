@@ -75,32 +75,48 @@ describe("BlogOGImage function (gh-141)", () => {
     expect(html).toContain("AI-Native Engineering");
   });
 
-  it("renders proof strip (14 min / 4 agents) for posts with githubUrl", async () => {
+  it("renders stat cards for posts with stats", async () => {
     mockGetPostBySlug.mockReturnValue({
       slug: "agentic-sdlc",
       title: "Test Post",
       tag: "Test Tag",
-      githubUrl: "https://github.com/example/repo",
+      stats: [
+        {
+          value: "14",
+          unit: "min",
+          label: "Cycle time",
+          sub: "per gh-118 proof run",
+        },
+        {
+          value: "83%",
+          label: "Success rate",
+          sub: "12 escalated, 9 self-corrected",
+        },
+        { value: "$173", label: "AI compute", sub: "across 47 tasks" },
+        { value: "47", label: "Tasks dispatched", sub: "174 agent runs" },
+      ],
     });
     await BlogOGImage({ params: Promise.resolve({ slug: "agentic-sdlc" }) });
     const element = mockImageResponse.mock.calls[0][0] as React.ReactElement;
     const { renderToString } = await import("react-dom/server");
     const html = renderToString(element);
-    expect(html).toContain("14 min");
-    expect(html).toContain("4 agents");
+    expect(html).toContain("14");
+    expect(html).toContain("83%");
+    expect(html).toContain("Cycle time");
+    expect(html).toContain("Success rate");
   });
 
-  it("omits proof strip for posts without githubUrl", async () => {
+  it("omits stat cards for posts without stats", async () => {
     mockGetPostBySlug.mockReturnValue({
-      slug: "no-github",
+      slug: "no-stats",
       title: "Test Post",
       tag: "Test Tag",
     });
-    await BlogOGImage({ params: Promise.resolve({ slug: "no-github" }) });
+    await BlogOGImage({ params: Promise.resolve({ slug: "no-stats" }) });
     const element = mockImageResponse.mock.calls[0][0] as React.ReactElement;
     const { renderToString } = await import("react-dom/server");
     const html = renderToString(element);
-    expect(html).not.toContain("14 min");
+    expect(html).not.toContain("Cycle time");
   });
 
   it("renders author name and site URL in footer", async () => {
