@@ -12,7 +12,7 @@ export type { BlogPostData, ContentBlock } from "./types";
 
 export const seedPosts: BlogPostData[] = [
   // aiLeadershipToolkit — hidden: content under review, will restore in sprint 8
-  managerialAiToolkit,
+  // managerialAiToolkit — hidden: AMJ internal content needs review before publish
   agenticSdlc,
   realtimePart1,
   realtimePart2,
