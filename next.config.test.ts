@@ -38,6 +38,14 @@ describe("next.config security headers", () => {
         return headers.find((h) => h.key === key);
       }
 
+      it("sets Strict-Transport-Security for HSTS preload", () => {
+        const h = getHeader("Strict-Transport-Security");
+        expect(h).toBeDefined();
+        expect(h!.value).toBe(
+          "max-age=63072000; includeSubDomains; preload",
+        );
+      });
+
       it("sets X-Frame-Options to DENY", () => {
         const h = getHeader("X-Frame-Options");
         expect(h).toBeDefined();
@@ -105,6 +113,12 @@ describe("next.config security headers", () => {
           expect(cspValue).toContain("frame-ancestors 'none'");
         });
       });
+    });
+  });
+
+  describe("poweredByHeader", () => {
+    it("disables X-Powered-By header", () => {
+      expect(nextConfig.poweredByHeader).toBe(false);
     });
   });
 
