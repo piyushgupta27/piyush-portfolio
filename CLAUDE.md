@@ -33,20 +33,21 @@ Run before any feature work — no exceptions:
 
 ## Local CI gate (run before every commit — not just before push)
 
-`pnpm` is broken locally (Node 20 + pnpm 11 incompatible). Use the local binaries directly:
+Node version must be ≥22 (`.nvmrc` pins v22). Run `nvm use` first if needed.
 
 ```bash
-# Formatter — must show 0 files changed
-./node_modules/.bin/biome format src/
-
-# Linter — must show 0 errors
-./node_modules/.bin/eslint 'src/**/*.{ts,tsx}'
+# All 5 steps — must all pass simultaneously before git commit
+pnpm typecheck        # tsc --noEmit
+pnpm lint             # eslint (whole project)
+pnpm format:check     # biome format . (whole repo)
+pnpm test --run       # vitest
+pnpm build            # next build
 
 # Apply formatter fixes when needed
-./node_modules/.bin/biome format --write src/
+pnpm format           # biome format --write .
 ```
 
-Run **both** checks and see **0 errors on each** before `git commit`. Fixing one and committing is banned — the next CI failure will be the check you skipped.
+Run **all 5** and see **0 errors on each** before `git commit`. Fixing one check and committing is banned — the next CI failure will be the check you skipped.
 
 ## Post-merge CI confirmation (mandatory — do not close out PR without this)
 
@@ -54,7 +55,7 @@ After merge, confirm the base-branch CI run passes:
 
 ```bash
 gh run list --branch main -L 3
-gh run watch <run-id>   # wait for green
+gh run watch $(gh run list --branch main -L 1 --json databaseId -q '.[0].databaseId')
 ```
 
 Do not mark the task done, update continuation docs, or move to next work until the run is green.
