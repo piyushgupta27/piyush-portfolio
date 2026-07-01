@@ -18,10 +18,16 @@ export function ScrollFade({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(prefersReducedMotion);
+  const [mounted, setMounted] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true); // intentional mount gate: keeps SSR opacity:1, client defers to scroll
+    if (prefersReducedMotion()) {
+      setVisible(true);
+      return;
+    }
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
@@ -42,9 +48,12 @@ export function ScrollFade({
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(14px)",
-        transition: `opacity 500ms ease-out ${delay}ms, transform 500ms ease-out ${delay}ms`,
+        opacity: mounted ? (visible ? 1 : 0) : 1,
+        transform: mounted && !visible ? "translateY(14px)" : "translateY(0)",
+        transition:
+          mounted && !prefersReducedMotion()
+            ? `opacity 500ms ease-out ${delay}ms, transform 500ms ease-out ${delay}ms`
+            : "none",
       }}
     >
       {children}
