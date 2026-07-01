@@ -71,7 +71,7 @@ describe("blog content — data layer (gh-68)", () => {
     assert.strictEqual(result, undefined);
   });
 
-  it("getPostBySlug returns undefined for hidden managerial-ai-toolkit post (AMJ content under review)", () => {
+  it("getPostBySlug returns undefined for hidden managerial-ai-toolkit post (content under review)", () => {
     const post = getPostBySlug("managerial-ai-toolkit");
     assert.strictEqual(post, undefined);
   });
