@@ -40,7 +40,7 @@ Node version must be ≥22 (`.nvmrc` pins v22). Run `nvm use` first if needed.
 pnpm typecheck        # tsc --noEmit
 pnpm lint             # eslint (whole project)
 pnpm format:check     # biome format . (whole repo)
-pnpm test --run       # vitest
+pnpm test             # vitest (package.json runs "vitest run" — non-watch)
 pnpm build            # next build
 
 # Apply formatter fixes when needed
