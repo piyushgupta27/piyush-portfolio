@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/content/blog";
 
-const SITE_URL = "https://piyushgupta.io";
+const SITE_URL = "https://www.piyushgupta.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts().filter((p) => !p.mediumUrl);
+  const posts = getAllPosts().filter((p) => p.content.length > 0);
 
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
@@ -16,13 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_URL,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${SITE_URL}/blog`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
