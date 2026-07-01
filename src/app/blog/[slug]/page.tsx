@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      url: `https://piyushgupta.io/blog/${slug}`,
+      url: `https://www.piyushgupta.io/blog/${slug}`,
     },
     twitter: {
       card: "summary_large_image",

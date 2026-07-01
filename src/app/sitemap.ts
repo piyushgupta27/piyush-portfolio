@@ -4,7 +4,9 @@ import { getAllPosts } from "@/content/blog";
 const SITE_URL = "https://www.piyushgupta.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts().filter((p) => p.content.length > 0);
+  const posts = getAllPosts().filter(
+    (p) => !p.mediumUrl && p.content.length > 0,
+  );
 
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,

@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
 
-const SITE_URL = "https://piyushgupta.io";
+const SITE_URL = "https://www.piyushgupta.io";
 const DESCRIPTION =
   "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Founded JumpingMinds AI (1M+ users) · AI systems at Slice · Open to Sr EM roles globally.";
 
