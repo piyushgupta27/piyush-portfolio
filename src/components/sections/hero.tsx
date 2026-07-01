@@ -150,7 +150,7 @@ export function Hero() {
         >
           <a
             href="#about"
-            className="inline-flex min-h-[44px] flex-col items-center justify-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
             <span className="font-mono">scroll</span>
             <motion.div

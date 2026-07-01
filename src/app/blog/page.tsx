@@ -112,7 +112,7 @@ export default function BlogIndexPage() {
             href="https://piyushguptaece.medium.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex min-h-[44px] items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             More writing on Medium
             <ArrowUpRight className="h-4 w-4" />
