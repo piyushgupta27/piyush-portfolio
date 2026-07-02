@@ -30,10 +30,10 @@ beforeAll(async () => {
 });
 
 describe("layout metadata", () => {
-  const TITLE = "Piyush Gupta — Sr Engineering Manager";
+  const TITLE = "Piyush Gupta — Engineering Manager";
   const DESCRIPTION =
-    "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Founded JumpingMinds AI (1M+ users) · AI systems at Slice · Open to Sr EM roles globally.";
-  const SITE_URL = "https://piyushgupta.io";
+    "Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Co-founded JumpingMinds AI (1M+) · AI systems at Slice · Open to Sr EM roles globally.";
+  const SITE_URL = "https://www.piyushgupta.io";
 
   it("sets the correct page title (default)", () => {
     const title = metadata.title as { default: string; template: string };
