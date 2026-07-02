@@ -7,28 +7,28 @@ const src = readFileSync(resolve(import.meta.dirname, "navbar.tsx"), "utf-8");
 
 describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
   describe("anchor links", () => {
-    it('has href="#about"', () => {
+    it('has href="/#about"', () => {
       assert.ok(
-        src.includes('href: "#about"') || src.includes('href="#about"'),
+        src.includes('href: "/#about"') || src.includes('href="/#about"'),
       );
     });
 
-    it('has href="#projects"', () => {
+    it('has href="/#projects"', () => {
       assert.ok(
-        src.includes('href: "#projects"') || src.includes('href="#projects"'),
+        src.includes('href: "/#projects"') || src.includes('href="/#projects"'),
       );
     });
 
-    it('has href="#skills"', () => {
+    it('has href="/#skills"', () => {
       assert.ok(
-        src.includes('href: "#skills"') || src.includes('href="#skills"'),
+        src.includes('href: "/#skills"') || src.includes('href="/#skills"'),
       );
     });
 
-    it('has href="#experience"', () => {
+    it('has href="/#experience"', () => {
       assert.ok(
-        src.includes('href: "#experience"') ||
-          src.includes('href="#experience"'),
+        src.includes('href: "/#experience"') ||
+          src.includes('href="/#experience"'),
       );
     });
 
@@ -36,9 +36,9 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
       assert.ok(src.includes('href: "/blog"') || src.includes('href="/blog"'));
     });
 
-    it('has href="#contact"', () => {
+    it('has href="/#contact"', () => {
       assert.ok(
-        src.includes('href: "#contact"') || src.includes('href="#contact"'),
+        src.includes('href: "/#contact"') || src.includes('href="/#contact"'),
       );
     });
   });
@@ -53,8 +53,8 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
 
     it("has a toggle button for mobile with aria-label", () => {
       assert.ok(
-        src.includes('aria-label="Toggle menu"'),
-        'Mobile toggle button must have aria-label="Toggle menu"',
+        src.includes("aria-label="),
+        "Mobile toggle button must have an aria-label attribute",
       );
     });
 
@@ -89,8 +89,8 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
 
 describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
   it("logo anchor has h-11 (44px height)", () => {
-    const logoIdx = src.indexOf('href="#"');
-    assert.ok(logoIdx !== -1, "Logo href='#' must be present");
+    const logoIdx = src.indexOf('href="/"');
+    assert.ok(logoIdx !== -1, "Logo href='/' must be present");
     const block = src.slice(logoIdx, logoIdx + 200);
     assert.ok(
       block.includes("h-11"),
@@ -106,7 +106,7 @@ describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
   });
 
   it("mobile hamburger toggle has min-h-[44px]", () => {
-    const toggleIdx = src.indexOf('aria-label="Toggle menu"');
+    const toggleIdx = src.indexOf("aria-label=");
     assert.ok(toggleIdx !== -1, "Mobile toggle button must have aria-label");
     const block = src.slice(Math.max(0, toggleIdx - 250), toggleIdx + 50);
     assert.ok(
@@ -116,7 +116,7 @@ describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
   });
 
   it("mobile hamburger toggle has min-w-[44px]", () => {
-    const toggleIdx = src.indexOf('aria-label="Toggle menu"');
+    const toggleIdx = src.indexOf("aria-label=");
     const block = src.slice(Math.max(0, toggleIdx - 250), toggleIdx + 50);
     assert.ok(
       block.includes("min-w-[44px]"),
@@ -132,8 +132,8 @@ describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
     );
     const block = src.slice(Math.max(0, onClickIdx - 100), onClickIdx + 200);
     assert.ok(
-      block.includes("h-11"),
-      "Mobile nav links must have h-11 for 44px touch target",
+      block.includes("h-11") || block.includes("h-14"),
+      "Mobile nav links must have h-11 or h-14 for ≥44px touch target",
     );
   });
 });

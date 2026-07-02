@@ -443,9 +443,11 @@ export default async function BlogPostPage({ params }: Props) {
               )}
 
               {/* Article body — skip first 2 paragraphs shown above stats */}
-              {post.content.map((block, i) =>
-                introParaIndices.has(i) ? null : renderBlock(block, i),
-              )}
+              <div className="max-w-[65ch]">
+                {post.content.map((block, i) =>
+                  introParaIndices.has(i) ? null : renderBlock(block, i),
+                )}
+              </div>
 
               {/* CTA */}
               <div className="mt-16 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">
