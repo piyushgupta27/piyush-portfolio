@@ -9,6 +9,8 @@ export type ContentBlock =
       caption?: string;
       wide?: boolean;
       mobileSrc?: string;
+      width?: number;
+      height?: number;
     }
   | { type: "table"; headers: string[]; rows: string[][]; wide?: boolean }
   | { type: "callout"; text: string; variant?: "info" | "warning" | "tip" }

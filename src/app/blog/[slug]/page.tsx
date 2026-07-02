@@ -102,18 +102,27 @@ function renderBlock(block: ContentBlock, i: number) {
               }
             >
               {block.mobileSrc && (
-                <img
+                <Image
                   src={block.mobileSrc}
                   alt={block.alt}
+                  width={block.width ?? 800}
+                  height={block.height ?? 500}
                   loading="lazy"
-                  className="block sm:hidden w-full rounded-lg border border-border/30"
+                  className="block sm:hidden w-full h-auto rounded-lg border border-border/30"
                 />
               )}
-              <img
+              <Image
                 src={block.src}
                 alt={block.alt}
+                width={block.width ?? 1200}
+                height={block.height ?? 750}
+                sizes={
+                  block.wide
+                    ? "(min-width: 640px) 1200px, 100vw"
+                    : "(min-width: 640px) 800px, 100vw"
+                }
                 loading="lazy"
-                className={`rounded-lg border border-border/30${block.wide ? " min-w-[800px] sm:min-w-0 sm:w-full" : " w-full"}${block.mobileSrc ? " hidden sm:block" : ""}`}
+                className={`rounded-lg border border-border/30 h-auto${block.wide ? " min-w-[800px] sm:min-w-0 sm:w-full" : " w-full"}${block.mobileSrc ? " hidden sm:block" : ""}`}
               />
             </div>
             {block.wide && !block.mobileSrc && (
