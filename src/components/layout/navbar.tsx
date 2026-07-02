@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -84,12 +85,12 @@ export function Navbar() {
     <>
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <a
+          <Link
             href="/"
             className="inline-flex h-11 items-center font-mono text-sm font-bold tracking-wider"
           >
             <span className="gradient-text">piyushgupta.io</span>
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <div className="hidden items-center gap-1 md:flex">
