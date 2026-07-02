@@ -78,5 +78,9 @@ tasks/session-*.md
 # tdd-guard machine-generated test results
 .claude/tdd-guard/data/
 
+# gstack/impeccable skill files — machine-local JS; biome useIgnoreFile skips these
+.claude/skills/
+skills-lock.json
+
 # repomix output
 repomix-output.*
