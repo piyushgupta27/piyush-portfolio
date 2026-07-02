@@ -43,7 +43,7 @@ export default function OGImage() {
             lineHeight: 1.3,
           }}
         >
-          Sr Engineering Manager
+          Engineering Manager
         </div>
         <div
           style={{
