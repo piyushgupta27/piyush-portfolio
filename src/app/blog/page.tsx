@@ -41,8 +41,9 @@ export default function BlogIndexPage() {
                 rel="noopener noreferrer"
                 className="block h-full"
               >
-                <Card className="group h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
-                  <CardContent className="p-6">
+                <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
+                  <CardContent className="relative p-6">
                     <div className="mb-4 flex items-center justify-between">
                       <Badge variant="secondary" className="font-mono text-xs">
                         {post.tag}
@@ -73,8 +74,9 @@ export default function BlogIndexPage() {
               </a>
             ) : (
               <Link key={post.slug} href={href} className="block h-full">
-                <Card className="group h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
-                  <CardContent className="p-6">
+                <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
+                  <CardContent className="relative p-6">
                     <div className="mb-4 flex items-center justify-between">
                       <Badge variant="secondary" className="font-mono text-xs">
                         {post.tag}
@@ -112,7 +114,7 @@ export default function BlogIndexPage() {
             href="https://piyushguptaece.medium.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="inline-flex min-h-[44px] items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             More writing on Medium
             <ArrowUpRight className="h-4 w-4" />
