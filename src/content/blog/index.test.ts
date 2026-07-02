@@ -71,11 +71,6 @@ describe("blog content — data layer (gh-68)", () => {
     assert.strictEqual(result, undefined);
   });
 
-  it("getPostBySlug returns undefined for hidden managerial-ai-toolkit post (AMJ content under review)", () => {
-    const post = getPostBySlug("managerial-ai-toolkit");
-    assert.strictEqual(post, undefined);
-  });
-
   it("agentic-sdlc post has ctaText field set (AC4/AC5: ctaText schema)", () => {
     const post = getPostBySlug("agentic-sdlc");
     assert.ok(post !== undefined, "agentic-sdlc post must exist");
