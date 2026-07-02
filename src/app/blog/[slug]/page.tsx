@@ -8,6 +8,8 @@ import type { ContentBlock } from "@/content/blog";
 import { AnchorLink } from "./anchor-link";
 import { ScrollFade } from "./scroll-fade";
 
+const SITE_URL = "https://www.piyushgupta.io";
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -29,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      url: `https://www.piyushgupta.io/blog/${slug}`,
+      url: `${SITE_URL}/blog/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -289,190 +291,222 @@ export default async function BlogPostPage({ params }: Props) {
     introParaIndices.has(i),
   ) as { type: "paragraph"; text: string }[];
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.excerpt,
+    author: {
+      "@type": "Person",
+      name: "Piyush Gupta",
+      url: SITE_URL,
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    url: `${SITE_URL}/blog/${slug}`,
+    image: `${SITE_URL}/blog/${slug}/opengraph-image`,
+    publisher: {
+      "@type": "Organization",
+      name: "Piyush Gupta",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/headshot.jpg`,
+      },
+    },
+  };
+
   return (
-    <article className="py-24 px-6">
-      <div className="mx-auto max-w-3xl">
-        {/* Hero */}
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          ← Blog
-        </Link>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd).replace(/<\//g, "<\\/"),
+        }}
+      />
+      <article className="py-24 px-6">
+        <div className="mx-auto max-w-3xl">
+          {/* Hero */}
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            ← Blog
+          </Link>
 
-        <div className="mt-6 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground">
-          <span className="text-primary">{post.tag}</span>
-          <span className="text-muted-foreground/30">·</span>
-          <span>
-            {new Date(post.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </span>
-          {hasContent && (
-            <>
-              <span className="text-muted-foreground/30">·</span>
-              <span>{calculateReadTime(post.content)}</span>
-            </>
-          )}
-        </div>
-
-        <h1 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-          {post.title}
-        </h1>
-
-        <div className="mt-5 flex items-center gap-3">
-          <Image
-            src="/images/headshot.jpg"
-            alt="Piyush Gupta"
-            width={40}
-            height={40}
-            className="h-10 w-10 rounded-full border border-border/30 object-cover object-top"
-          />
-          <div>
-            <span className="block font-mono text-xs text-foreground/85">
-              Piyush Gupta
+          <div className="mt-6 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground">
+            <span className="text-primary">{post.tag}</span>
+            <span className="text-muted-foreground/30">·</span>
+            <span>
+              {new Date(post.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </span>
-            <span className="block font-mono text-xs text-muted-foreground">
-              Engineering Manager · Slice
-              <span className="hidden sm:inline">
-                {" "}
-                · ex-Disney+Hotstar · ex-JumpingMinds
-              </span>
-            </span>
+            {hasContent && (
+              <>
+                <span className="text-muted-foreground/30">·</span>
+                <span>{calculateReadTime(post.content)}</span>
+              </>
+            )}
           </div>
-        </div>
 
-        <div className="mt-8 space-y-4">
-          <p className="leading-relaxed text-foreground/90">
-            {post.excerpt.split(".")[0]}.
-          </p>
-          {introParagraphs.map((b, i) => (
-            <p key={i} className="leading-relaxed text-foreground/90">
-              {b.text}
-            </p>
-          ))}
-        </div>
+          <h1 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+            {post.title}
+          </h1>
 
-        {hasContent ? (
-          <div className="mt-12">
-            {/* Stats graphic — only on posts with stats defined */}
-            {post.stats && post.stats.length > 0 && (
-              <div className="mb-10 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-                {post.stats.map((stat, idx) => (
-                  <ScrollFade
-                    key={stat.label}
-                    delay={idx * 80}
-                    className="rounded-lg border border-primary/20 bg-primary/5 p-3 sm:p-4"
-                  >
-                    <div className="font-mono text-2xl font-bold leading-none text-primary sm:text-3xl">
-                      {stat.value}
-                      {stat.unit && (
-                        <span className="ml-1 font-mono text-2xl font-bold text-primary/70 sm:text-3xl">
-                          {stat.unit}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-2 text-[10px] font-bold uppercase tracking-wide text-foreground/65">
-                      {stat.label}
-                    </div>
-                    <div className="mt-0.5 font-mono text-[10px] text-muted-foreground/70">
-                      {stat.sub}
-                    </div>
-                  </ScrollFade>
-                ))}
-              </div>
-            )}
-
-            {/* Inline TOC */}
-            {hasToc && (
-              <nav
-                aria-label="Table of contents"
-                className="mb-10 border-y border-border/40 py-5"
-              >
-                <p className="mb-3 font-mono text-xs text-muted-foreground/50">
-                  Contents
-                </p>
-                <ol className="flex flex-col gap-2.5">
-                  {headings.map((h) => (
-                    <li key={h.id}>
-                      <a
-                        href={`#${h.id}`}
-                        className="text-sm leading-snug text-foreground/50 transition-colors hover:text-primary"
-                      >
-                        {h.text}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            )}
-
-            {/* Article body — skip first 2 paragraphs shown above stats */}
-            {post.content.map((block, i) =>
-              introParaIndices.has(i) ? null : renderBlock(block, i),
-            )}
-
-            {/* CTA */}
-            <div className="mt-16 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">
-              {post.ctaText && (
-                <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-                  {post.ctaText}
-                </p>
-              )}
-              <div className="flex shrink-0 flex-wrap gap-4">
-                <a
-                  href="https://calendly.com/piyushguptaece/30min"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
-                >
-                  Book a call
-                </a>
-                {post.githubUrl && (
-                  <a
-                    href={post.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-3 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
-                  >
-                    View on GitHub
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                )}
-                {post.mediumUrl && (
-                  <a
-                    href={post.mediumUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    Read on Medium
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                )}
-              </div>
+          <div className="mt-5 flex items-center gap-3">
+            <Image
+              src="/images/headshot.jpg"
+              alt="Piyush Gupta"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full border border-border/30 object-cover object-top"
+            />
+            <div>
+              <span className="block font-mono text-xs text-foreground/85">
+                Piyush Gupta
+              </span>
+              <span className="block font-mono text-xs text-muted-foreground">
+                Engineering Manager · Slice
+                <span className="hidden sm:inline">
+                  {" "}
+                  · ex-Disney+Hotstar · ex-JumpingMinds
+                </span>
+              </span>
             </div>
           </div>
-        ) : (
-          <div className="mt-12 rounded-lg border border-border/50 bg-card/50 p-8 text-center">
-            <p className="mb-6 text-muted-foreground">
-              This article is published on Medium — with images, diagrams, and
-              full formatting.
+
+          <div className="mt-8 space-y-4">
+            <p className="leading-relaxed text-foreground/90">
+              {post.excerpt.split(".")[0]}.
             </p>
-            <a
-              href={post.mediumUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              Read on Medium
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+            {introParagraphs.map((b, i) => (
+              <p key={i} className="leading-relaxed text-foreground/90">
+                {b.text}
+              </p>
+            ))}
           </div>
-        )}
-      </div>
-    </article>
+
+          {hasContent ? (
+            <div className="mt-12">
+              {/* Stats graphic — only on posts with stats defined */}
+              {post.stats && post.stats.length > 0 && (
+                <div className="mb-10 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+                  {post.stats.map((stat, idx) => (
+                    <ScrollFade
+                      key={stat.label}
+                      delay={idx * 80}
+                      className="rounded-lg border border-primary/20 bg-primary/5 p-3 sm:p-4"
+                    >
+                      <div className="font-mono text-2xl font-bold leading-none text-primary sm:text-3xl">
+                        {stat.value}
+                        {stat.unit && (
+                          <span className="ml-1 font-mono text-2xl font-bold text-primary/70 sm:text-3xl">
+                            {stat.unit}
+                          </span>
+                        )}
+                      </div>
+                      <div className="mt-2 text-[10px] font-bold uppercase tracking-wide text-foreground/65">
+                        {stat.label}
+                      </div>
+                      <div className="mt-0.5 font-mono text-[10px] text-muted-foreground/70">
+                        {stat.sub}
+                      </div>
+                    </ScrollFade>
+                  ))}
+                </div>
+              )}
+
+              {/* Inline TOC */}
+              {hasToc && (
+                <nav
+                  aria-label="Table of contents"
+                  className="mb-10 border-y border-border/40 py-5"
+                >
+                  <p className="mb-3 font-mono text-xs text-muted-foreground/50">
+                    Contents
+                  </p>
+                  <ol className="flex flex-col gap-2.5">
+                    {headings.map((h) => (
+                      <li key={h.id}>
+                        <a
+                          href={`#${h.id}`}
+                          className="text-sm leading-snug text-foreground/50 transition-colors hover:text-primary"
+                        >
+                          {h.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              )}
+
+              {/* Article body — skip first 2 paragraphs shown above stats */}
+              {post.content.map((block, i) =>
+                introParaIndices.has(i) ? null : renderBlock(block, i),
+              )}
+
+              {/* CTA */}
+              <div className="mt-16 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">
+                {post.ctaText && (
+                  <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                    {post.ctaText}
+                  </p>
+                )}
+                <div className="flex shrink-0 flex-wrap gap-4">
+                  <a
+                    href="https://calendly.com/piyushguptaece/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    Book a call
+                  </a>
+                  {post.githubUrl && (
+                    <a
+                      href={post.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-4 py-3 font-mono text-sm text-primary transition-colors hover:bg-primary/20"
+                    >
+                      View on GitHub
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                  {post.mediumUrl && (
+                    <a
+                      href={post.mediumUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      Read on Medium
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-12 rounded-lg border border-border/50 bg-card/50 p-8 text-center">
+              <p className="mb-6 text-muted-foreground">
+                This article is published on Medium — with images, diagrams, and
+                full formatting.
+              </p>
+              <a
+                href={post.mediumUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                Read on Medium
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          )}
+        </div>
+      </article>
+    </>
   );
 }
