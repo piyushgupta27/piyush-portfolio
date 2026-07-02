@@ -33,7 +33,7 @@ export const pressItems: PressItem[] = [
     award: "Best CTO of the Year",
     outlet: "Indian Angel Forum",
     year: "2022",
-    url: "https://www.iafindia.com/awards/",
+    url: "https://www.linkedin.com/posts/jumpingminds_cto-of-the-year-activity-6927581452335292416-8GZo/",
   },
   {
     award: "Google for Startups Accelerator",
