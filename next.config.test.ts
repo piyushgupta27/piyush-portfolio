@@ -41,9 +41,7 @@ describe("next.config security headers", () => {
       it("sets Strict-Transport-Security for HSTS preload", () => {
         const h = getHeader("Strict-Transport-Security");
         expect(h).toBeDefined();
-        expect(h!.value).toBe(
-          "max-age=63072000; includeSubDomains; preload",
-        );
+        expect(h!.value).toBe("max-age=63072000; includeSubDomains; preload");
       });
 
       it("sets X-Frame-Options to DENY", () => {
