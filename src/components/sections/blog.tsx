@@ -102,7 +102,7 @@ export function Blog() {
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
+                          className="inline-flex min-h-[44px] items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
                         >
                           {link.label}
                           <ArrowUpRight className="h-3 w-3" />
