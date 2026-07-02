@@ -8,21 +8,21 @@ import { Footer } from "@/components/layout/footer";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
 
-const SITE_URL = "https://piyushgupta.io";
+const SITE_URL = "https://www.piyushgupta.io";
 const DESCRIPTION =
-  "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Co-founded JumpingMinds AI (1M+) · AI systems at Slice · Open to Sr EM roles globally.";
+  "Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Co-founded JumpingMinds AI (1M+) · AI systems at Slice · Open to Sr EM roles globally.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Piyush Gupta — Sr Engineering Manager",
+    default: "Piyush Gupta — Engineering Manager",
     template: "%s — Piyush Gupta",
   },
   description: DESCRIPTION,
   authors: [{ name: "Piyush Gupta", url: SITE_URL }],
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Piyush Gupta — Sr Engineering Manager",
+    title: "Piyush Gupta — Engineering Manager",
     description: DESCRIPTION,
     type: "website",
     url: SITE_URL,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Piyush Gupta — Sr Engineering Manager",
+    title: "Piyush Gupta — Engineering Manager",
     description: DESCRIPTION,
     creator: "@piyushgupta27",
   },
@@ -41,7 +41,7 @@ const jsonLd = {
   "@type": "Person",
   name: "Piyush Gupta",
   url: SITE_URL,
-  jobTitle: "Sr Engineering Manager",
+  jobTitle: "Engineering Manager",
   alumniOf: [
     {
       "@type": "CollegeOrUniversity",

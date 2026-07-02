@@ -40,11 +40,11 @@ describe("OGImage function", () => {
     expect(html).toContain("Piyush Gupta");
   });
 
-  it("includes role 'Sr Engineering Manager' in the OG image element (AC: LinkedIn share shows role)", async () => {
+  it("includes role 'Engineering Manager' in the OG image element (AC: LinkedIn share shows role)", async () => {
     OGImage();
     const element = mockImageResponse.mock.calls[0][0] as React.ReactElement;
     const { renderToString } = await import("react-dom/server");
     const html = renderToString(element);
-    expect(html).toContain("Sr Engineering Manager");
+    expect(html).toContain("Engineering Manager");
   });
 });
