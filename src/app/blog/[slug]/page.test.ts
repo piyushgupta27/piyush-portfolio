@@ -99,3 +99,42 @@ describe("blog post page — gh-141 changes", () => {
     );
   });
 });
+
+describe("blog post page — Article JSON-LD schema (gh-168)", () => {
+  const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+
+  it("includes application/ld+json script tag", () => {
+    assert.ok(
+      src.includes('type="application/ld+json"'),
+      'blog post page must include <script type="application/ld+json">',
+    );
+  });
+
+  it("includes Article @type in JSON-LD", () => {
+    assert.ok(
+      src.includes('"@type": "Article"') || src.includes('"@type":"Article"'),
+      "JSON-LD must declare @type: Article",
+    );
+  });
+
+  it("includes author Person schema in JSON-LD", () => {
+    assert.ok(
+      src.includes("Piyush Gupta") && src.includes("author"),
+      "JSON-LD must include author with name Piyush Gupta",
+    );
+  });
+
+  it("includes datePublished from post.date in JSON-LD", () => {
+    assert.ok(
+      src.includes("datePublished") && src.includes("post.date"),
+      "JSON-LD must include datePublished mapped from post.date",
+    );
+  });
+
+  it("includes post.title as headline in JSON-LD", () => {
+    assert.ok(
+      src.includes("headline") && src.includes("post.title"),
+      "JSON-LD must include headline mapped from post.title",
+    );
+  });
+});
