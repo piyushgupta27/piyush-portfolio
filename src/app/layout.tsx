@@ -10,7 +10,7 @@ import "./globals.css";
 
 const SITE_URL = "https://piyushgupta.io";
 const DESCRIPTION =
-  "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Founded JumpingMinds AI (1M+ users) · AI systems at Slice · Open to Sr EM roles globally.";
+  "Sr Engineering Manager · IIT Roorkee · Disney+ Hotstar (50M CCU) · Co-founded JumpingMinds AI (1M+) · AI systems at Slice · Open to Sr EM roles globally.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -73,9 +73,17 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-grid">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-md focus:bg-background focus:text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          Skip to main content
+        </a>
         <MotionProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main" tabIndex={-1} className="flex-1 scroll-mt-16">
+            {children}
+          </main>
           <Footer />
           <Analytics />
           <SpeedInsights />
