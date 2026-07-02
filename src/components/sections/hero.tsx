@@ -50,7 +50,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-4 text-5xl font-bold tracking-tight sm:text-7xl"
+          className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl"
         >
           Piyush <span className="gradient-text">Gupta</span>
         </motion.h1>
@@ -71,7 +71,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
+          className="mx-auto mb-6 max-w-2xl text-lg text-muted-foreground sm:mb-10 sm:text-xl"
         >
           Engineering Manager · IIT Roorkee · Ex-Disney+ Hotstar · Co-Founder
           (JumpingMinds, 1M+ users) · Currently at Slice · Relocation-ready
