@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Error({
   error,
@@ -9,21 +9,30 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const headingRef = useRef<HTMLHeadingElement>(null);
+
   useEffect(() => {
     console.error(error);
   }, [error]);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6 text-center">
       <p className="font-mono text-sm text-muted-foreground">
         {"// something went wrong"}
       </p>
-      <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+      <h1
+        ref={headingRef}
+        tabIndex={-1}
+        className="text-3xl font-bold tracking-tight sm:text-4xl"
+      >
         Unexpected Error
       </h1>
-      <p className="max-w-md text-muted-foreground">
-        An unexpected error occurred. You can try refreshing the page or come
-        back later.
+      <p role="alert" className="max-w-md text-muted-foreground">
+        An unexpected error occurred. You can try again or come back later.
       </p>
       <button
         type="button"
