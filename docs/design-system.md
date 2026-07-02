@@ -158,7 +158,7 @@ Base unit: **4px**. All spacing follows multiples of 4px.
 
 **Minimum:** 44×44px on ALL interactive elements (`<a>`, `<button>`, `[role="button"]`, `<input>`, `<select>`, `<textarea>`).
 
-This is enforced via WCAG 2.5.5 Success Criterion (AA) and tested with Playwright in `src/tests/touch-targets.test.ts`.
+This is enforced via WCAG 2.5.5 Success Criterion (AA).
 
 **Implementation pattern:**
 ```tsx
