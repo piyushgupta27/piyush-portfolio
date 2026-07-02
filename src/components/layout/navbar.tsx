@@ -6,13 +6,13 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Education", href: "/#education" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const sectionIds = [
@@ -78,14 +78,14 @@ export function Navbar() {
   const closeMenu = () => setOpen(false);
 
   const isActive = (href: string) =>
-    href.startsWith("#") && activeSection === href.slice(1);
+    href.startsWith("/#") && activeSection === href.slice(2);
 
   return (
     <>
       <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <a
-            href="#"
+            href="/"
             className="inline-flex h-11 items-center font-mono text-sm font-bold tracking-wider"
           >
             <span className="gradient-text">piyushgupta.io</span>

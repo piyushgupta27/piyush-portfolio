@@ -7,28 +7,28 @@ const src = readFileSync(resolve(import.meta.dirname, "navbar.tsx"), "utf-8");
 
 describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
   describe("anchor links", () => {
-    it('has href="#about"', () => {
+    it('has href="/#about"', () => {
       assert.ok(
-        src.includes('href: "#about"') || src.includes('href="#about"'),
+        src.includes('href: "/#about"') || src.includes('href="/#about"'),
       );
     });
 
-    it('has href="#projects"', () => {
+    it('has href="/#projects"', () => {
       assert.ok(
-        src.includes('href: "#projects"') || src.includes('href="#projects"'),
+        src.includes('href: "/#projects"') || src.includes('href="/#projects"'),
       );
     });
 
-    it('has href="#skills"', () => {
+    it('has href="/#skills"', () => {
       assert.ok(
-        src.includes('href: "#skills"') || src.includes('href="#skills"'),
+        src.includes('href: "/#skills"') || src.includes('href="/#skills"'),
       );
     });
 
-    it('has href="#experience"', () => {
+    it('has href="/#experience"', () => {
       assert.ok(
-        src.includes('href: "#experience"') ||
-          src.includes('href="#experience"'),
+        src.includes('href: "/#experience"') ||
+          src.includes('href="/#experience"'),
       );
     });
 
@@ -36,9 +36,9 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
       assert.ok(src.includes('href: "/blog"') || src.includes('href="/blog"'));
     });
 
-    it('has href="#contact"', () => {
+    it('has href="/#contact"', () => {
       assert.ok(
-        src.includes('href: "#contact"') || src.includes('href="#contact"'),
+        src.includes('href: "/#contact"') || src.includes('href="/#contact"'),
       );
     });
   });
@@ -89,8 +89,8 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
 
 describe("navbar.tsx — touch target ≥44px (gh-43)", () => {
   it("logo anchor has h-11 (44px height)", () => {
-    const logoIdx = src.indexOf('href="#"');
-    assert.ok(logoIdx !== -1, "Logo href='#' must be present");
+    const logoIdx = src.indexOf('href="/"');
+    assert.ok(logoIdx !== -1, "Logo href='/' must be present");
     const block = src.slice(logoIdx, logoIdx + 200);
     assert.ok(
       block.includes("h-11"),
