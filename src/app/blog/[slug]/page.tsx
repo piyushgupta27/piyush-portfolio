@@ -8,7 +8,7 @@ import type { ContentBlock } from "@/content/blog";
 import { AnchorLink } from "./anchor-link";
 import { ScrollFade } from "./scroll-fade";
 
-const SITE_URL = "https://piyushgupta.io";
+const SITE_URL = "https://www.piyushgupta.io";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -306,9 +306,12 @@ export default async function BlogPostPage({ params }: Props) {
     url: `${SITE_URL}/blog/${slug}`,
     image: `${SITE_URL}/blog/${slug}/opengraph-image`,
     publisher: {
-      "@type": "Person",
+      "@type": "Organization",
       name: "Piyush Gupta",
-      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/images/headshot.jpg`,
+      },
     },
   };
 

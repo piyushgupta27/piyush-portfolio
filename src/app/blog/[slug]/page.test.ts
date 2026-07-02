@@ -112,9 +112,7 @@ describe("blog post page — Article JSON-LD schema (gh-168)", () => {
 
   it("includes Article @type in JSON-LD", () => {
     assert.ok(
-      src.includes('"@type": "Article"') ||
-        src.includes('"@type":"Article"') ||
-        src.includes("Article"),
+      src.includes('"@type": "Article"') || src.includes('"@type":"Article"'),
       "JSON-LD must declare @type: Article",
     );
   });
