@@ -28,3 +28,9 @@ updates:
       - "kind:chore"
       - "area:ci"
       - "tier:1"
+    groups:
+      # Batch all GitHub Actions bumps into one PR to prevent version mismatches
+      # (e.g. codeql-action/init + autobuild + analyze must always be the same version)
+      github-actions:
+        patterns:
+          - "*"
