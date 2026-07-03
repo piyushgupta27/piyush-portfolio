@@ -10,6 +10,7 @@ updates:
     labels:
       - "kind:chore"
       - "area:deps"
+      - "tier:1"
     groups:
       # Batch low-risk dev + minor/patch bumps into one PR to cut noise.
       dev-and-minor:
@@ -26,3 +27,4 @@ updates:
     labels:
       - "kind:chore"
       - "area:ci"
+      - "tier:1"
