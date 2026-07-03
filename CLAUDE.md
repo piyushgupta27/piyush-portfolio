@@ -26,7 +26,7 @@ Run before any feature work — no exceptions:
 1. `git checkout main && git pull`
 2. `gh issue list --label blocker` — highest-priority blocker goes first; do not start other work until it's resolved
 3. `diff .github/pull_request_template.md ~/Workspace/ai-sdlc/meta/templates/pull-request.md` — sync if different (must be 10-section canonical)
-4. All features via: `pnpm sdlc dispatch --project piyush-portfolio` (run from `~/Workspace/piyush-portfolio`; no `--issue` flag; order the board first)
+4. All features via: `nvm use 22 && pnpm sdlc dispatch --project piyush-portfolio` (run from `~/Workspace/ai-sdlc`; no `--issue` flag; order the board first)
 5. Read `tasks/lessons.md`
 
 **Employer-detail boundary (privacy):** company names in hero/experience = keep (intentional portfolio content). Scrub: `/Users/piyush/`, `ai-workspace`, `mind-palace`, tokens, credentials.
