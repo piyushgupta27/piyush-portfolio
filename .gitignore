@@ -75,8 +75,12 @@ tasks/continuation.md
 tasks/lessons.md
 tasks/session-*.md
 
-# tdd-guard machine-generated test results
-.claude/tdd-guard/data/
+# claude code local settings and tool artifacts (machine-local)
+.claude/
+skills-lock.json
+
+# design review screenshots (binary assets, belong in vault not repo)
+docs/design-review-*/screenshots/
 
 # repomix output
 repomix-output.*
