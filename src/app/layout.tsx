@@ -32,7 +32,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Piyush Gupta — Engineering Manager",
     description: DESCRIPTION,
-    creator: "@piyushgupta27",
+    creator: "@acoderhasnoname",
+  },
+  verification: {
+    google: "H-CdiVERQ89muQvsGs5P4fQxsLS-SR6T884bUyDEz14",
   },
 };
 
@@ -51,7 +54,7 @@ const jsonLd = {
   sameAs: [
     "https://github.com/piyushgupta27",
     "https://linkedin.com/in/piyushgupta27",
-    "https://twitter.com/piyushgupta27",
+    "https://x.com/acoderhasnoname",
   ],
 };
 
