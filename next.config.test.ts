@@ -68,48 +68,8 @@ describe("next.config security headers", () => {
         expect(h!.value).toBe("camera=(), microphone=(), geolocation=()");
       });
 
-      describe("Content-Security-Policy", () => {
-        let cspValue: string;
-
-        beforeAll(() => {
-          const h = getHeader("Content-Security-Policy");
-          expect(h).toBeDefined();
-          cspValue = h!.value;
-        });
-
-        it("has default-src 'self'", () => {
-          expect(cspValue).toContain("default-src 'self'");
-        });
-
-        it("has img-src allowing self, Unsplash, and data URIs", () => {
-          expect(cspValue).toContain(
-            "img-src 'self' https://images.unsplash.com data:",
-          );
-        });
-
-        it("has script-src with self, unsafe-inline, and unsafe-eval for Next.js + framer-motion", () => {
-          expect(cspValue).toContain(
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-          );
-        });
-
-        it("has style-src with self and unsafe-inline for Tailwind", () => {
-          expect(cspValue).toContain("style-src 'self' 'unsafe-inline'");
-        });
-
-        it("has font-src allowing self, fonts.gstatic.com, and data URIs for Geist", () => {
-          expect(cspValue).toContain(
-            "font-src 'self' https://fonts.gstatic.com data:",
-          );
-        });
-
-        it("has connect-src 'self'", () => {
-          expect(cspValue).toContain("connect-src 'self'");
-        });
-
-        it("has frame-ancestors 'none'", () => {
-          expect(cspValue).toContain("frame-ancestors 'none'");
-        });
+      it("does not set Content-Security-Policy (moved to middleware for per-request nonces)", () => {
+        expect(getHeader("Content-Security-Policy")).toBeUndefined();
       });
     });
   });

@@ -58,6 +58,10 @@ const jsonLd = {
   ],
 };
 
+// Force dynamic rendering so Next.js reads the CSP request header set by
+// src/proxy.ts at render time and stamps the nonce on its inline hydration scripts.
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
