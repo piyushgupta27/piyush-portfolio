@@ -24,6 +24,7 @@ export function proxy(request: NextRequest) {
     "font-src 'self' https://fonts.gstatic.com data:",
     "connect-src 'self'",
     "frame-ancestors 'none'",
+    "base-uri 'none'",
   ].join("; ");
 
   // Forward CSP as request header so Next.js extracts the nonce and
