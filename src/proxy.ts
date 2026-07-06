@@ -20,7 +20,7 @@ export function proxy(request: NextRequest) {
     "default-src 'self'",
     `script-src ${scriptSrc}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' https://images.unsplash.com data:",
+    "img-src 'self' data:",
     "font-src 'self' https://fonts.gstatic.com data:",
     "connect-src 'self'",
     "frame-ancestors 'none'",

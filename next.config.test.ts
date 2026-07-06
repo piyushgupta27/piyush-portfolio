@@ -79,22 +79,4 @@ describe("next.config security headers", () => {
       expect(nextConfig.poweredByHeader).toBe(false);
     });
   });
-
-  describe("images config", () => {
-    it("preserves remotePatterns for Unsplash", () => {
-      expect(nextConfig.images).toBeDefined();
-      expect(nextConfig.images!.remotePatterns).toBeDefined();
-      const patterns = nextConfig.images!.remotePatterns!;
-      const unsplash = patterns.find(
-        (p) =>
-          typeof p === "object" &&
-          "hostname" in p &&
-          p.hostname === "images.unsplash.com",
-      );
-      expect(unsplash).toBeDefined();
-      expect(
-        (unsplash as { protocol: string; hostname: string }).protocol,
-      ).toBe("https");
-    });
-  });
 });

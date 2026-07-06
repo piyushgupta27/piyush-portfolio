@@ -73,7 +73,6 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} dark h-full antialiased`}
     >
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
