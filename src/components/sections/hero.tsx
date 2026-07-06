@@ -13,7 +13,7 @@ export function Hero() {
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80&fit=crop"
+          src="/images/hero-bg.jpg"
           alt=""
           fill
           sizes="100vw"
