@@ -1,18 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
-import {
-  StaggerChildren,
-  useStaggerItem,
-} from "@/components/motion/stagger-children";
+import { StaggerChildren } from "@/components/motion/stagger-children";
 import { education } from "@/data/education";
 
 export function Education() {
-  const staggerItem = useStaggerItem();
   return (
     <section id="education" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
@@ -24,7 +19,7 @@ export function Education() {
 
         <StaggerChildren className="grid gap-6 md:grid-cols-2">
           {education.map((edu) => (
-            <motion.div key={edu.institution} variants={staggerItem}>
+            <div key={edu.institution}>
               <Card className="group relative h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:neon-glow">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -59,7 +54,7 @@ export function Education() {
                   )}
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </StaggerChildren>
       </div>

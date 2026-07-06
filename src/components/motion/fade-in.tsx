@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
+import { useInView } from "@/hooks/use-in-view";
 
 interface FadeInProps {
   children: ReactNode;
@@ -10,11 +10,11 @@ interface FadeInProps {
   className?: string;
 }
 
-const directionOffset = {
-  up: { y: 30 },
-  down: { y: -30 },
-  left: { x: 30 },
-  right: { x: -30 },
+const directionKeyframe: Record<string, string> = {
+  up: "fade-in-up",
+  down: "fade-in-down",
+  left: "fade-in-left",
+  right: "fade-in-right",
 };
 
 export function FadeIn({
@@ -23,20 +23,15 @@ export function FadeIn({
   direction = "up",
   className,
 }: FadeInProps) {
-  const shouldReduce = useReducedMotion();
+  const { ref, inView } = useInView();
+  const style: CSSProperties = inView
+    ? {
+        animation: `${directionKeyframe[direction]} 0.6s cubic-bezier(0.21,0.47,0.32,0.98) ${delay}s both`,
+      }
+    : { opacity: 0 };
   return (
-    <motion.div
-      initial={{ opacity: 0, ...directionOffset[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        duration: shouldReduce ? 0 : 0.6,
-        delay: shouldReduce ? 0 : delay,
-        ease: [0.21, 0.47, 0.32, 0.98],
-      }}
-      className={className}
-    >
+    <div ref={ref} className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }

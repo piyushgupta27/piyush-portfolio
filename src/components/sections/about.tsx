@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
@@ -111,14 +110,8 @@ $ echo $STATUS
 
               {/* Stats grid */}
               <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                  >
+                {stats.map((stat) => (
+                  <div key={stat.label}>
                     <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
                       <CardContent className="p-4 text-center">
                         <p className="text-2xl font-bold gradient-text">
@@ -129,7 +122,7 @@ $ echo $STATUS
                         </p>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>

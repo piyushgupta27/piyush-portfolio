@@ -1,23 +1,13 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { StaggerChildren } from "@/components/motion/stagger-children";
+import { useInView } from "@/hooks/use-in-view";
 import { featuredPress, supportingPress } from "@/data/press";
 
 export function Press() {
-  const shouldReduce = useReducedMotion();
-
-  const fadeUp = (delay = 0) => ({
-    initial: { opacity: 0, y: shouldReduce ? 0 : 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-40px" },
-    transition: {
-      duration: shouldReduce ? 0 : 0.5,
-      delay: shouldReduce ? 0 : delay,
-      ease: [0.21, 0.47, 0.32, 0.98] as [number, number, number, number],
-    },
-  });
+  const { ref: heroRef, inView: heroInView } = useInView<HTMLAnchorElement>();
 
   return (
     <section id="press" className="py-16 md:py-24 px-6">
@@ -25,8 +15,16 @@ export function Press() {
         <SectionHeading label="// recognition" title="Press & Recognition" />
 
         {/* Featured hero award */}
-        <motion.a
-          {...fadeUp(0)}
+        <a
+          ref={heroRef}
+          style={
+            heroInView
+              ? {
+                  animation:
+                    "fade-in-up 0.5s cubic-bezier(0.21,0.47,0.32,0.98) both",
+                }
+              : { opacity: 0 }
+          }
           href={featuredPress.url}
           target="_blank"
           rel="noopener noreferrer"
@@ -57,17 +55,13 @@ export function Press() {
               aria-hidden="true"
             />
           </div>
-        </motion.a>
+        </a>
 
         {/* Supporting awards grid */}
-        <motion.div
-          {...fadeUp(0.1)}
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
-        >
-          {supportingPress.map((item, i) => (
-            <motion.a
+        <StaggerChildren className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {supportingPress.map((item) => (
+            <a
               key={item.award}
-              {...fadeUp(0.15 + i * 0.05)}
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -79,9 +73,9 @@ export function Press() {
               <p className="mt-auto font-mono text-[10px] text-muted-foreground">
                 {item.outlet} · {item.year}
               </p>
-            </motion.a>
+            </a>
           ))}
-        </motion.div>
+        </StaggerChildren>
       </div>
     </section>
   );

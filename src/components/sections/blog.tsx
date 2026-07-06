@@ -1,23 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowUpRight, Mic } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
-import {
-  StaggerChildren,
-  useStaggerItem,
-} from "@/components/motion/stagger-children";
+import { StaggerChildren } from "@/components/motion/stagger-children";
 import { getAllPosts } from "@/content/blog";
 import { talks } from "@/data/talks";
 
 const recentPosts = getAllPosts().slice(0, 4);
 
 export function Blog() {
-  const staggerItem = useStaggerItem();
   return (
     <section id="blog" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
@@ -29,7 +24,7 @@ export function Blog() {
 
         <StaggerChildren className="grid gap-6 md:grid-cols-2">
           {recentPosts.map((post) => (
-            <motion.div key={post.slug} variants={staggerItem}>
+            <div key={post.slug}>
               <Link href={`/blog/${post.slug}`} className="block h-full">
                 <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
@@ -62,15 +57,11 @@ export function Blog() {
                   </CardContent>
                 </Card>
               </Link>
-            </motion.div>
+            </div>
           ))}
 
           {talks.map((talk) => (
-            <motion.div
-              key={talk.title}
-              variants={staggerItem}
-              className="md:col-span-2"
-            >
+            <div key={talk.title} className="md:col-span-2">
               <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <CardContent className="relative p-6">
@@ -112,7 +103,7 @@ export function Blog() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </StaggerChildren>
       </div>
