@@ -94,10 +94,11 @@ describe("Hero – acceptance criteria", () => {
     );
   });
 
-  test("H1 element wraps name in <motion.h1> tag", () => {
+  test("H1 element uses plain <h1> with CSS animation (not motion.h1)", () => {
+    assert.ok(src.includes("<h1"), "Name must be in an h1 element");
     assert.ok(
-      src.includes("motion.h1"),
-      "Name must be in a motion.h1 heading element",
+      !src.includes("motion.h1"),
+      "h1 must not use motion.h1 — CSS animation replaces Framer Motion for LCP performance",
     );
   });
 });
