@@ -153,6 +153,20 @@
   }
 }
 
+/* Scroll indicator nudge — smooth sine-like oscillation, no bounce easing */
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.animate-scroll-nudge {
+  animation: scroll-nudge 1.5s ease-in-out infinite;
+}
+
 /* Gradient mesh background */
 .bg-grid {
   background-image: none;

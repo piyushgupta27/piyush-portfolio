@@ -22,7 +22,7 @@ export function proxy(request: NextRequest) {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self' https://fonts.gstatic.com data:",
-    "connect-src 'self'",
+    "connect-src 'self' https://o4511688684929024.ingest.de.sentry.io",
     "frame-ancestors 'none'",
     "base-uri 'none'",
   ].join("; ");

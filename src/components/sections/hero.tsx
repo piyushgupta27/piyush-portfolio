@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import { GithubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
@@ -31,59 +30,34 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* Status badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-sm backdrop-blur-sm"
-        >
+        <div className="animate-in fade-in slide-in-from-bottom-4 mb-8 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-sm backdrop-blur-sm duration-500">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
           </span>
           Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia ·
           Singapore · Remote
-        </motion.div>
+        </div>
 
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-7xl"
-        >
+        {/* Name — LCP element: no delay, visible as soon as CSS loads */}
+        <h1 className="animate-in fade-in slide-in-from-bottom-4 mb-4 text-4xl font-bold tracking-tight duration-500 delay-100 sm:text-5xl md:text-7xl">
           Piyush <span className="gradient-text">Gupta</span>
-        </motion.h1>
+        </h1>
 
         {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-6 text-xl font-semibold text-foreground sm:text-2xl"
-        >
+        <p className="animate-in fade-in slide-in-from-bottom-4 mb-6 text-xl font-semibold text-foreground duration-500 delay-200 sm:text-2xl">
           Built real-time infra for 50M+ concurrent users. Founded an AI
           startup. Still ships AI code.
-        </motion.p>
+        </p>
 
-        {/* Sub-tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mx-auto mb-6 max-w-2xl text-lg text-muted-foreground sm:mb-10 sm:text-xl"
-        >
+        {/* Sub-tagline — LCP element: no opacity animation so browser measures paint at FCP */}
+        <p className="animate-in slide-in-from-bottom-4 mx-auto mb-6 max-w-2xl text-lg text-muted-foreground duration-500 delay-300 sm:mb-10 sm:text-xl">
           Engineering Manager · IIT Roorkee · Ex-Disney+ Hotstar · Co-Founder
           (JumpingMinds, 1M+ users) · Currently at Slice · Relocation-ready
-        </motion.p>
+        </p>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-4"
-        >
+        <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 duration-500 delay-[400ms]">
           <a
             href="#projects"
             className={cn(
@@ -139,28 +113,18 @@ export function Hero() {
               <LinkedInIcon className="h-5 w-5" />
             </a>
           </div>
-        </motion.div>
+        </div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-12"
-        >
+        <div className="animate-in fade-in mt-12 duration-1000 delay-[1000ms]">
           <a
             href="#about"
             className="inline-flex min-h-[44px] min-w-[44px] flex-col items-center justify-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
             <span className="font-mono">scroll</span>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <ArrowDown className="h-4 w-4" />
-            </motion.div>
+            <ArrowDown className="h-4 w-4 animate-scroll-nudge" />
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
