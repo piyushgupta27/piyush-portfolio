@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -28,7 +27,6 @@ const sectionIds = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
-  const shouldReduce = useReducedMotion();
 
   useEffect(() => {
     const ratios = new Map<string, number>();
@@ -124,48 +122,35 @@ export function Navbar() {
         </nav>
       </header>
 
-      {/* Mobile full-screen overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-nav"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: shouldReduce ? 0 : 0.15 }}
-            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-xl md:hidden"
-            onClick={closeMenu}
+      {/* Mobile full-screen overlay — CSS fade-in, no framer-motion in layout bundle */}
+      {open && (
+        <div
+          id="mobile-nav"
+          className="animate-in fade-in fixed inset-0 z-40 bg-background/98 backdrop-blur-xl duration-150 md:hidden"
+          onClick={closeMenu}
+        >
+          <nav
+            aria-label="Mobile navigation"
+            className="animate-in fade-in slide-in-from-top-3 flex flex-col gap-1 px-6 pb-8 pt-24 duration-200"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.nav
-              initial={{ opacity: 0, y: shouldReduce ? 0 : -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: shouldReduce ? 0 : -12 }}
-              transition={{
-                duration: shouldReduce ? 0 : 0.2,
-                delay: shouldReduce ? 0 : 0.05,
-              }}
-              aria-label="Mobile navigation"
-              className="flex flex-col gap-1 px-6 pt-24 pb-8"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`inline-flex h-14 items-center rounded-md px-3 text-base transition-colors hover:text-foreground ${
-                    isActive(link.href)
-                      ? "font-medium text-foreground"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={`inline-flex h-14 items-center rounded-md px-3 text-base transition-colors hover:text-foreground ${
+                  isActive(link.href)
+                    ? "font-medium text-foreground"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      )}
     </>
   );
 }

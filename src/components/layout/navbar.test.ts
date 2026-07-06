@@ -44,10 +44,14 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
   });
 
   describe("mobile menu", () => {
-    it("imports AnimatePresence for mobile menu animation", () => {
+    it("uses CSS fade-in animation for mobile menu (no framer-motion in layout bundle)", () => {
       assert.ok(
-        src.includes("AnimatePresence"),
-        "Mobile menu must use AnimatePresence for accessible open/close animation",
+        src.includes("animate-in") && src.includes("fade-in"),
+        "Mobile menu must use CSS animate-in/fade-in — framer-motion removed from layout bundle for LCP performance",
+      );
+      assert.ok(
+        !src.includes("AnimatePresence"),
+        "Mobile menu must not use AnimatePresence — framer-motion removed from layout bundle for LCP performance",
       );
     });
 

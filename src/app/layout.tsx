@@ -5,7 +5,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { MotionProvider } from "@/components/motion/motion-provider";
 import "./globals.css";
 
 const SITE_URL = "https://www.piyushgupta.io";
@@ -85,15 +84,13 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <MotionProvider>
-          <Navbar />
-          <main id="main" tabIndex={-1} className="flex-1 scroll-mt-16">
-            {children}
-          </main>
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </MotionProvider>
+        <Navbar />
+        <main id="main" tabIndex={-1} className="flex-1 scroll-mt-16">
+          {children}
+        </main>
+        <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

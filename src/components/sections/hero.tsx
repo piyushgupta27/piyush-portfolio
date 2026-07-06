@@ -50,8 +50,8 @@ export function Hero() {
           startup. Still ships AI code.
         </p>
 
-        {/* Sub-tagline */}
-        <p className="animate-in fade-in slide-in-from-bottom-4 mx-auto mb-6 max-w-2xl text-lg text-muted-foreground duration-500 delay-300 sm:mb-10 sm:text-xl">
+        {/* Sub-tagline — LCP element: no opacity animation so browser measures paint at FCP */}
+        <p className="animate-in slide-in-from-bottom-4 mx-auto mb-6 max-w-2xl text-lg text-muted-foreground duration-500 delay-300 sm:mb-10 sm:text-xl">
           Engineering Manager · IIT Roorkee · Ex-Disney+ Hotstar · Co-Founder
           (JumpingMinds, 1M+ users) · Currently at Slice · Relocation-ready
         </p>
