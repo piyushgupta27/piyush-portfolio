@@ -12,6 +12,7 @@ allowBuilds:
   '@ast-grep/lang-ruby': false
   '@ast-grep/lang-rust': false
   '@biomejs/biome': true
+  '@sentry/cli': true
   esbuild: true
   msw: false
   sharp: true
