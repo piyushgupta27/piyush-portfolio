@@ -37,6 +37,16 @@ describe("proxy CSP headers", () => {
     expect(scriptSrc).not.toContain("'unsafe-eval'");
   });
 
+  it("script-src allows va.vercel-scripts.com for Analytics and Speed Insights", () => {
+    const req = new NextRequest("http://localhost/");
+    const res = proxy(req);
+    const csp = res.headers.get("Content-Security-Policy")!;
+    const scriptSrc = csp
+      .split(";")
+      .find((d) => d.trim().startsWith("script-src"));
+    expect(scriptSrc).toContain("https://va.vercel-scripts.com");
+  });
+
   it("includes base-uri 'none' to block <base> injection", () => {
     const req = new NextRequest("http://localhost/");
     const res = proxy(req);
