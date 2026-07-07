@@ -301,5 +301,5 @@ These claims should never be buried in prose. They should be in:
 ## Related docs
 
 - `docs/design-review-checklist.md` — Layer 1 (automated) + Layer 2 (judgment) PR checks
-- `ai-workspace/projects/active/piyush-portfolio/design-review/findings-2026-07-06.md` — Full review findings (vault)
-- `ai-workspace/projects/active/piyush-portfolio/design-review/pass4-dimension-scores.md` — Dimension scores with rationale
+- Full review findings — stored in private vault (not in repo)
+- Dimension scores with rationale — stored in private vault (not in repo)

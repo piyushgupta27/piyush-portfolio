@@ -11,7 +11,7 @@
 **Layer 1 (automatable)** — can be wired into CI/pre-commit. Run before every merge that touches UI.  
 **Layer 2 (judgment-only)** — run on changed components only, not the full page. No tooling replaces human assessment here.
 
-> Future session: wire Layer 1 checks into CI after #166 lands (see CI gate spec in `ai-workspace` vault).
+> Future session: wire Layer 1 checks into CI after #166 lands.
 
 ---
 
