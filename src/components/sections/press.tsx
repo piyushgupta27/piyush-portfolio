@@ -12,7 +12,7 @@ export function Press() {
   return (
     <section id="press" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-4xl">
-        <SectionHeading label="// recognition" title="Press & Recognition" />
+        <SectionHeading title="Press & Recognition" />
 
         {/* Featured hero award */}
         <a
@@ -65,7 +65,7 @@ export function Press() {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col gap-2 rounded-lg border border-foreground/8 bg-card/50 p-4 transition-colors hover:border-primary/25 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="group flex flex-col gap-2 rounded-lg border border-foreground/8 bg-card p-4 transition-colors hover:border-primary/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <p className="text-xs font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
                 {item.award}

@@ -20,7 +20,6 @@ export function Skills() {
     <section id="skills" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          label="// skills"
           title="Tech Stack"
           description="The tools and technologies I work with daily."
         />
@@ -30,15 +29,13 @@ export function Skills() {
             const Icon = iconMap[cat.icon] ?? Brain;
             return (
               <FadeIn key={cat.category} delay={catIndex * 0.15}>
-                <Card className="h-full border-border/50 bg-card/50 backdrop-blur-sm">
+                <Card className="h-full border-border/50 bg-card">
                   <CardContent className="p-6">
                     <div className="mb-6 flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/50 bg-background/50">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <h3 className="text-base font-semibold">
-                        {cat.category}
-                      </h3>
+                      <h3 className="text-xl font-semibold">{cat.category}</h3>
                     </div>
 
                     <div className="flex flex-wrap gap-2">

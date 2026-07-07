@@ -39,16 +39,13 @@ describe("Hero – acceptance criteria", () => {
     assert.ok(src.includes("UK"), "Status badge must reference UK");
   });
 
-  test("Sub-tagline contains JumpingMinds and Disney+ Hotstar and Slice", () => {
+  test("Sub-tagline contains JumpingMinds and Hotstar and Slice", () => {
     assert.ok(
       src.includes("JumpingMinds"),
       "Sub-tagline must mention JumpingMinds",
     );
     assert.ok(src.includes("1M+ users"), "Sub-tagline must mention user count");
-    assert.ok(
-      src.includes("Disney+ Hotstar"),
-      "Sub-tagline must mention Disney+ Hotstar",
-    );
+    assert.ok(src.includes("Hotstar"), "Sub-tagline must mention Hotstar");
     assert.ok(src.includes("Slice"), "Sub-tagline must mention Slice");
   });
 

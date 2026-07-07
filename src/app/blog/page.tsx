@@ -41,7 +41,7 @@ export default function BlogIndexPage() {
                 rel="noopener noreferrer"
                 className="block h-full"
               >
-                <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
+                <Card className="group relative h-full cursor-pointer border-border/50 bg-card transition-all duration-300 hover:border-primary/30 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
                   <CardContent className="relative p-6">
                     <div className="mb-4 flex items-center justify-between">
@@ -74,7 +74,7 @@ export default function BlogIndexPage() {
               </a>
             ) : (
               <Link key={post.slug} href={href} className="block h-full">
-                <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
+                <Card className="group relative h-full cursor-pointer border-border/50 bg-card transition-all duration-300 hover:border-primary/30 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
                   <CardContent className="relative p-6">
                     <div className="mb-4 flex items-center justify-between">

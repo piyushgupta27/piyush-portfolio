@@ -22,11 +22,41 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background" />
       </div>
 
-      {/* Gradient orbs */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-purple-500/10 blur-[120px]" />
-      </div>
+      {/* Gradient orbs — SVG radialGradient avoids GPU compositing cost of CSS blur filter */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <radialGradient id="orb-cyan" cx="25%" cy="25%" r="50%">
+            <stop
+              offset="0%"
+              stopColor="oklch(0.72 0.17 200)"
+              stopOpacity="0.1"
+            />
+            <stop
+              offset="100%"
+              stopColor="oklch(0.72 0.17 200)"
+              stopOpacity="0"
+            />
+          </radialGradient>
+          <radialGradient id="orb-purple" cx="75%" cy="75%" r="50%">
+            <stop
+              offset="0%"
+              stopColor="oklch(0.62 0.22 296)"
+              stopOpacity="0.1"
+            />
+            <stop
+              offset="100%"
+              stopColor="oklch(0.62 0.22 296)"
+              stopOpacity="0"
+            />
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#orb-cyan)" />
+        <rect width="100%" height="100%" fill="url(#orb-purple)" />
+      </svg>
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* Status badge */}
@@ -41,7 +71,7 @@ export function Hero() {
 
         {/* Name — LCP element: no delay, visible as soon as CSS loads */}
         <h1 className="animate-in fade-in slide-in-from-bottom-4 mb-4 text-4xl font-bold tracking-tight duration-500 delay-100 sm:text-5xl md:text-7xl">
-          Piyush <span className="gradient-text">Gupta</span>
+          Piyush <span className="text-primary">Gupta</span>
         </h1>
 
         {/* Tagline */}
@@ -52,14 +82,14 @@ export function Hero() {
 
         {/* Sub-tagline — LCP element: no opacity animation so browser measures paint at FCP */}
         <p className="animate-in slide-in-from-bottom-4 mx-auto mb-6 max-w-2xl text-lg text-muted-foreground duration-500 delay-300 sm:mb-10 sm:text-xl">
-          Engineering Manager · IIT Roorkee · Ex-Disney+ Hotstar · Co-Founder
-          (JumpingMinds, 1M+ users) · Currently at Slice · Relocation-ready
+          Engineering Manager · IIT Roorkee → Hotstar → Slice · Co-Founder
+          (JumpingMinds, 1M+ users)
         </p>
 
         {/* CTAs */}
         <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-wrap items-center justify-center gap-4 duration-500 delay-[400ms]">
           <a
-            href="#projects"
+            href="#experience"
             className={cn(
               buttonVariants({ size: "lg" }),
               "neon-glow min-h-[44px]",
@@ -80,7 +110,7 @@ export function Hero() {
             href="/resume/piyush-resume.pdf"
             download
             className={cn(
-              buttonVariants({ variant: "outline", size: "lg" }),
+              buttonVariants({ variant: "ghost", size: "lg" }),
               "min-h-[44px]",
             )}
           >

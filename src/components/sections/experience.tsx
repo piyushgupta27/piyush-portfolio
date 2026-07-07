@@ -15,7 +15,6 @@ export function Experience() {
     <section id="experience" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-4xl">
         <SectionHeading
-          label="// experience"
           title="Where I've Worked"
           description="Platform engineering and co-founder experience across fintech and consumer health at scale."
         />
@@ -46,7 +45,7 @@ export function Experience() {
 
                 {/* Card */}
                 <div className="md:w-[calc(50%-2rem)]">
-                  <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                  <Card className="border-border/50 bg-card">
                     <CardContent className="p-6">
                       <div className="mb-2 flex items-center gap-2">
                         <Briefcase className="h-4 w-4 text-primary" />
@@ -121,7 +120,9 @@ export function Experience() {
                   )}
                 </div>
                 {i < careerArc.length - 1 && (
-                  <span className="text-muted-foreground/30 text-xs">→</span>
+                  <span className="shrink-0 text-muted-foreground/30 text-xs">
+                    →
+                  </span>
                 )}
               </div>
             ))}

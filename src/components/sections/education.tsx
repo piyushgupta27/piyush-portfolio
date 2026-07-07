@@ -9,10 +9,9 @@ import { education } from "@/data/education";
 
 export function Education() {
   return (
-    <section id="education" className="py-16 md:py-24 px-6">
+    <section id="education" className="py-12 md:py-16 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          label="// education"
           title="Where I Studied"
           description="Engineering foundation at IIT Roorkee, with a European exchange at FAU Germany."
         />
@@ -20,7 +19,7 @@ export function Education() {
         <StaggerChildren className="grid gap-6 md:grid-cols-2">
           {education.map((edu) => (
             <div key={edu.institution}>
-              <Card className="group relative h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:neon-glow">
+              <Card className="group relative h-full overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/30 hover:neon-glow">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 <CardContent className="relative p-6">
