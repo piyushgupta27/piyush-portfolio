@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { NextRequest } from "next/server";
 import { proxy, config } from "./proxy";
 
@@ -35,6 +35,28 @@ describe("proxy CSP headers", () => {
       .split(";")
       .find((d) => d.trim().startsWith("script-src"));
     expect(scriptSrc).not.toContain("'unsafe-eval'");
+  });
+
+  it("script-src allows va.vercel-scripts.com in development (Analytics/Speed Insights debug scripts)", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const req = new NextRequest("http://localhost/");
+    const res = proxy(req);
+    const csp = res.headers.get("Content-Security-Policy")!;
+    const scriptSrc = csp
+      .split(";")
+      .find((d) => d.trim().startsWith("script-src"));
+    expect(scriptSrc).toContain("https://va.vercel-scripts.com");
+    vi.unstubAllEnvs();
+  });
+
+  it("script-src excludes va.vercel-scripts.com in production (scripts load via same-origin /_vercel/* proxy)", () => {
+    const req = new NextRequest("http://localhost/");
+    const res = proxy(req);
+    const csp = res.headers.get("Content-Security-Policy")!;
+    const scriptSrc = csp
+      .split(";")
+      .find((d) => d.trim().startsWith("script-src"));
+    expect(scriptSrc).not.toContain("va.vercel-scripts.com");
   });
 
   it("includes base-uri 'none' to block <base> injection", () => {

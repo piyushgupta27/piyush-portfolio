@@ -13,7 +13,7 @@ export function proxy(request: NextRequest) {
   const scriptSrc = [
     "'self'",
     `'nonce-${nonce}'`,
-    ...(isDev ? ["'unsafe-eval'"] : []),
+    ...(isDev ? ["https://va.vercel-scripts.com", "'unsafe-eval'"] : []),
   ].join(" ");
 
   const csp = [
