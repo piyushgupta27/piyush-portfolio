@@ -11,7 +11,7 @@ describe(".lighthouserc.json — Lighthouse CI configuration (gh-72)", () => {
     expect(config).toHaveProperty("ci");
   });
 
-  it("AC: asserts categories:performance ≥0.84 as error (0.85 unachievable with Sentry — 4× CPU throttle amplifies Sentry JS init to ~400ms simulated LCP; restore to 0.85 after #166)", () => {
+  it("AC: asserts categories:performance ≥0.85 as error (#166: framer-motion removed from page bundle; Lighthouse mobile threshold restored to 0.85)", () => {
     const raw = readFileSync(resolve(dir, ".lighthouserc.json"), "utf-8");
     const config = JSON.parse(raw) as Record<string, unknown>;
     const assertions = (
@@ -19,7 +19,7 @@ describe(".lighthouserc.json — Lighthouse CI configuration (gh-72)", () => {
     ).assertions as Record<string, [string, Record<string, unknown>]>;
     const rule = assertions["categories:performance"];
     expect(rule[0]).toBe("error");
-    expect(rule[1].minScore).toBeGreaterThanOrEqual(0.84);
+    expect(rule[1].minScore).toBeGreaterThanOrEqual(0.85);
   });
 
   it("AC: asserts cumulative-layout-shift ≤0.1 as error (CLS < 0.1)", () => {

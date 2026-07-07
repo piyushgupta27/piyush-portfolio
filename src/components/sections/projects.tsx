@@ -1,18 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
-import {
-  StaggerChildren,
-  useStaggerItem,
-} from "@/components/motion/stagger-children";
+import { StaggerChildren } from "@/components/motion/stagger-children";
 import { projects } from "@/data/projects";
 
 export function Projects() {
-  const staggerItem = useStaggerItem();
   return (
     <section id="projects" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
@@ -25,7 +20,7 @@ export function Projects() {
         <StaggerChildren className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => {
             return (
-              <motion.div key={project.title} variants={staggerItem}>
+              <div key={project.title}>
                 <Card className="group relative h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:neon-glow">
                   {/* Gradient accent */}
                   <div
@@ -65,7 +60,7 @@ export function Projects() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             );
           })}
         </StaggerChildren>

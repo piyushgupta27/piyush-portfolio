@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
+import { useInView } from "@/hooks/use-in-view";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
@@ -9,7 +9,8 @@ import { experiences } from "@/data/experience";
 import { careerArc } from "@/data/career-arc";
 
 export function Experience() {
-  const shouldReduce = useReducedMotion();
+  const { ref: timelineRef, inView: timelineInView } = useInView();
+  const { ref: careerRef, inView: careerInView } = useInView();
   return (
     <section id="experience" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-4xl">
@@ -23,18 +24,17 @@ export function Experience() {
           {/* Timeline line */}
           <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-purple-500/50 to-transparent md:left-1/2 md:-translate-x-px" />
 
-          <div className="space-y-12">
+          <div ref={timelineRef} className="space-y-12">
             {experiences.map((exp, i) => (
-              <motion.div
+              <div
                 key={exp.company}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{
-                  duration: shouldReduce ? 0 : 0.5,
-                  delay: shouldReduce ? 0 : i * 0.1,
-                  ease: [0.21, 0.47, 0.32, 0.98],
-                }}
+                style={
+                  timelineInView
+                    ? {
+                        animation: `fade-in-up 0.5s cubic-bezier(0.21,0.47,0.32,0.98) ${i * 0.1}s both`,
+                      }
+                    : { opacity: 0 }
+                }
                 className={`relative flex flex-col gap-4 pl-12 md:pl-0 ${
                   i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                 }`}
@@ -72,20 +72,22 @@ export function Experience() {
 
                 {/* Spacer for alternating layout */}
                 <div className="hidden md:block md:w-[calc(50%-2rem)]" />
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Full career arc */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: shouldReduce ? 0 : 0.5,
-            delay: shouldReduce ? 0 : 0.2,
-          }}
+        <div
+          ref={careerRef}
+          style={
+            careerInView
+              ? {
+                  animation:
+                    "fade-in-up 0.5s cubic-bezier(0.21,0.47,0.32,0.98) 0.2s both",
+                }
+              : { opacity: 0 }
+          }
           className="mt-16"
         >
           <p className="mb-4 font-mono text-xs text-muted-foreground">
@@ -124,7 +126,7 @@ export function Experience() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
