@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,6 +8,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { experiences } from "@/data/experience";
 import { careerArc } from "@/data/career-arc";
+
+const experienceSlugMap: Record<string, string> = {
+  "Slice Small Finance Bank": "slice",
+  "JumpingMinds AI": "jumpingminds",
+  "Disney+ Hotstar": "disney-hotstar",
+};
 
 export function Experience() {
   const { ref: timelineRef, inView: timelineInView } = useInView();
@@ -65,6 +72,14 @@ export function Experience() {
                           <TechBadge key={t}>{t}</TechBadge>
                         ))}
                       </div>
+                      {experienceSlugMap[exp.company] && (
+                        <Link
+                          href={`/experience/${experienceSlugMap[exp.company]}`}
+                          className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-primary/70 transition-colors hover:text-primary"
+                        >
+                          Full story →
+                        </Link>
+                      )}
                     </CardContent>
                   </Card>
                 </div>
