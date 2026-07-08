@@ -108,7 +108,7 @@ function MinimalEntry({ entry }: { entry: MinimalExperienceEntry }) {
       <p className="mb-1 font-mono text-[11px] tracking-wider text-muted-foreground/60">
         {entry.period}
       </p>
-      <h2 className="mb-0.5 text-base font-semibold">{entry.company}</h2>
+      <h3 className="mb-0.5 text-base font-semibold">{entry.company}</h3>
       <p className="mb-1 text-sm text-muted-foreground/70">{entry.role}</p>
       <p className="text-sm text-muted-foreground/60">{entry.description}</p>
     </article>
@@ -155,9 +155,9 @@ export default function ExperiencePage() {
         {minimalEntries.length > 0 && (
           <div className="mt-20">
             <div className="mb-8 border-t border-border pt-8">
-              <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50">
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50">
                 Earlier career
-              </p>
+              </h2>
             </div>
             <div className="space-y-8">
               {minimalEntries.map((entry) => (
