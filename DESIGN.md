@@ -243,9 +243,9 @@ These patterns are BANNED on this site. If a PR introduces one, it should not me
 1. Hero
 2. About
 3. Experience
-4. Skills
-5. Education
-6. Projects
+4. Projects
+5. Skills
+6. Education
 7. Press & Recognition
 8. Blog & Talks
 9. Contact
