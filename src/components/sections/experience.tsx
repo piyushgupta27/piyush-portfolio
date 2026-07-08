@@ -1,6 +1,7 @@
 "use client";
 
-import { Briefcase, GraduationCap } from "lucide-react";
+import Link from "next/link";
+import { Briefcase, GraduationCap, ArrowUpRight } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -45,28 +46,33 @@ export function Experience() {
 
                 {/* Card */}
                 <div className="md:w-[calc(50%-2rem)]">
-                  <Card className="border-border/50 bg-card">
-                    <CardContent className="p-6">
-                      <div className="mb-2 flex items-center gap-2">
-                        <Briefcase className="h-4 w-4 text-primary" />
-                        <span className="font-mono text-xs text-primary">
-                          {exp.period}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-semibold">{exp.company}</h3>
-                      <p className="mb-3 text-sm text-muted-foreground">
-                        {exp.role}
-                      </p>
-                      <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                        {exp.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.tech.map((t) => (
-                          <TechBadge key={t}>{t}</TechBadge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <Link href="/experience" className="group block">
+                    <Card className="border-border/50 bg-card transition-colors group-hover:border-primary/30">
+                      <CardContent className="p-6">
+                        <div className="mb-2 flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2">
+                            <Briefcase className="h-4 w-4 text-primary" />
+                            <span className="font-mono text-xs text-primary">
+                              {exp.period}
+                            </span>
+                          </div>
+                          <ArrowUpRight className="h-4 w-4 text-muted-foreground/30 transition-colors group-hover:text-primary" />
+                        </div>
+                        <h3 className="text-lg font-semibold">{exp.company}</h3>
+                        <p className="mb-3 text-sm text-muted-foreground">
+                          {exp.role}
+                        </p>
+                        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                          {exp.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {exp.tech.map((t) => (
+                            <TechBadge key={t}>{t}</TechBadge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </div>
 
                 {/* Spacer for alternating layout */}
