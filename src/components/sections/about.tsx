@@ -72,8 +72,8 @@ $ echo $STATUS
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Engineering manager with 12 years across backend, mobile, and
-                  frontend — the last 8+ in management. Three chapters define
-                  the career.
+                  frontend — the last 7 in management. Three chapters define the
+                  career.
                 </p>
                 <p>
                   At Disney+ Hotstar I built real-time messaging infrastructure
