@@ -87,11 +87,11 @@ describe("experience-page data", () => {
     );
   });
 
-  it("Slice period starts Apr 2024", () => {
+  it("Slice period starts Sep 2024", () => {
     const slice = fullEntries.find((e) => e.slug === "slice")!;
     assert.ok(
-      slice.period.includes("Apr 2024"),
-      "Slice period must start Apr 2024",
+      slice.period.includes("Sep 2024"),
+      "Slice period must start Sep 2024",
     );
   });
 
