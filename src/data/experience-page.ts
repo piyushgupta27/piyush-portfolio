@@ -32,7 +32,7 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
     scope: "3 squads · 15+ engineers",
     mode: "Builder + Manager",
     situation:
-      "Slice became a bank in late 2024 with no merchant product. Joined in September 2024 to build it — 4 live payment API product lines across merchant banking, payment APIs, and digital lending.",
+      "Slice became a bank in late 2024 with no merchant product. Built 4 live payment API product lines across merchant banking, payment APIs, and digital lending.",
     outcomes: [
       "Built Slice's PA/PG merchant business from scratch — 1 customer and <₹5L/month to 4 live product lines (Account Validation, Payouts, PayIns, Mandates) generating ₹70L+/month in 15 months",
       "PayIn P99 latency: 200s → 7.5s (15×) — rebuilt architecture under live production traffic while simultaneously scaling the product",
