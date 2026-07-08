@@ -22,7 +22,7 @@ export function Experience() {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-purple-500/50 to-transparent md:left-1/2 md:-translate-x-px" />
+          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/20 to-transparent md:left-1/2 md:-translate-x-px" />
 
           <div ref={timelineRef} className="space-y-12">
             {experiences.map((exp, i) => (
