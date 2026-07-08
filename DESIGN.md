@@ -215,6 +215,7 @@ Baseline requirements — every PR must pass:
 | Focus visible on interactive elements | ✅ PRESENT | globals.css `:focus-visible` |
 | WCAG AA contrast: primary text | ✅ ~15:1 | foreground on background |
 | WCAG AA contrast: nav links | ⚠️ ~5:1 | barely passing; improve to ≥6:1 |
+| WCAG AA contrast: `muted-foreground` tags/sub-text | ✅ 5.1:1 | computed: `oklch(0.6 0 0)` on darkest surface `bg-secondary/30` — passes AA |
 | `aria-current` on active nav | 🔴 MISSING | navbar.tsx — add to active item |
 | Hamburger cursor | 🔴 DEFAULT | navbar.tsx — change to `pointer` |
 | Vercel Analytics CSP | 🔴 BLOCKED | CSP config — allow `va.vercel-scripts.com` |

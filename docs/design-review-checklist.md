@@ -20,7 +20,7 @@
 ### Accessibility
 - [ ] WCAG AA contrast: body text ≥ 4.5:1 against background (current: `oklch(0.95 0 0)` on `oklch(0.07 0.01 260)` — est. 15:1 ✅)
 - [ ] WCAG AA contrast: primary color `oklch(0.87 0.1 175)` on background — verify ≥ 4.5:1
-- [ ] WCAG AA contrast: `muted-foreground` `oklch(0.6 0 0)` on `oklch(0.07 0.01 260)` — may be borderline for body text
+- [ ] WCAG AA contrast: `muted-foreground` `oklch(0.6 0 0)` — computed 5.1:1 on `--background`, 5.0:1 on `bg-secondary/30` over background — passes AA ✓ (tags, career arc, sub-text)
 - [ ] Skip-to-content link present and focusable (`layout.tsx` — currently ✅)
 - [ ] All interactive elements have `aria-label` if no visible text
 - [ ] `aria-expanded` on toggles (navbar mobile button — currently ✅)

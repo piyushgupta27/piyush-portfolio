@@ -60,7 +60,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* Status badge */}
-        <div className="animate-in fade-in slide-in-from-bottom-4 mb-8 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-sm backdrop-blur-sm duration-500">
+        <div className="animate-in fade-in slide-in-from-bottom-4 mb-8 inline-flex max-w-[88vw] flex-wrap items-center justify-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-center text-sm backdrop-blur-sm duration-500 sm:max-w-none">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
@@ -117,32 +117,30 @@ export function Hero() {
             <Download className="mr-2 h-4 w-4" />
             Resume
           </a>
-          <div className="flex items-center gap-2">
-            <a
-              href="https://github.com/piyushgupta27"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "min-h-[44px] min-w-[44px]",
-              )}
-            >
-              <GithubIcon className="h-5 w-5" />
-            </a>
-            <a
-              href="https://linkedin.com/in/piyushgupta27"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "min-h-[44px] min-w-[44px]",
-              )}
-            >
-              <LinkedInIcon className="h-5 w-5" />
-            </a>
-          </div>
+          <a
+            href="https://github.com/piyushgupta27"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "min-h-[44px] min-w-[44px]",
+            )}
+          >
+            <GithubIcon className="h-5 w-5" />
+          </a>
+          <a
+            href="https://linkedin.com/in/piyushgupta27"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "min-h-[44px] min-w-[44px]",
+            )}
+          >
+            <LinkedInIcon className="h-5 w-5" />
+          </a>
         </div>
 
         {/* Scroll indicator */}
