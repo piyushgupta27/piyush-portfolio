@@ -24,13 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (detail.stub) {
     return {
-      title: `${detail.company} — Piyush Gupta`,
+      title: detail.company,
       robots: { index: false },
     };
   }
 
   return {
-    title: `${detail.company} — ${detail.role} | Piyush Gupta`,
+    title: `${detail.company} — ${detail.role}`,
     description: detail.overview,
     openGraph: {
       title: `${detail.company} — ${detail.role}`,
