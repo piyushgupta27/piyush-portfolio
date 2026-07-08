@@ -244,17 +244,19 @@ These patterns are BANNED on this site. If a PR introduces one, it should not me
 1. Hero
 2. About
 3. Experience
-4. Projects
-5. Skills
-6. Education
-7. Press & Recognition
-8. Blog & Talks
+4. Press & Recognition
+5. Projects
+6. Blog & Talks
+7. Skills
+8. Education
 9. Contact
 
-### Navigation (must match page order)
-About → Experience → Projects → Skills → Education → Blog → Contact
+**Rationale:** Press & Recognition (Disney CEO/CTO/SVP Product as investors) is extraordinary social proof — it must appear immediately after Experience while the hiring manager is in active evaluation mode. Skills is de-emphasized (position 7) per copy principle: tech badge clouds read as IC anxiety at EM level.
 
-**Press is intentionally excluded from the nav** (it's visually prominent within the page; adding it creates 8 nav items). Reconsider if the page order is ever restructured.
+### Navigation (must match page order)
+About → Experience → Projects → Blog → Skills → Education → Contact
+
+**Press is intentionally excluded from the nav** (visually prominent within the page; adding it creates 8 nav items). Skills and Education are low-priority anchors — acceptable to drop from nav if count needs trimming to 5.
 
 ---
 
