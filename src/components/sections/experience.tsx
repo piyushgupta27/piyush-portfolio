@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Briefcase, GraduationCap, ArrowUpRight } from "lucide-react";
+import { Briefcase, GraduationCap, ArrowRight } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -47,7 +47,7 @@ export function Experience() {
                 {/* Card */}
                 <div className="md:w-[calc(50%-2rem)]">
                   <Link href="/experience" className="group block">
-                    <Card className="border-border/50 bg-card transition-colors group-hover:border-primary/30">
+                    <Card className="border-border/50 bg-card transition-colors group-hover:border-primary/30 group-focus-visible:border-primary/30">
                       <CardContent className="p-6">
                         <div className="mb-2 flex items-center justify-between gap-2">
                           <div className="flex items-center gap-2">
@@ -56,7 +56,7 @@ export function Experience() {
                               {exp.period}
                             </span>
                           </div>
-                          <ArrowUpRight className="h-4 w-4 text-muted-foreground/30 transition-colors group-hover:text-primary" />
+                          <ArrowRight className="h-4 w-4 text-muted-foreground/30 transition-colors group-hover:text-primary group-focus-visible:text-primary" />
                         </div>
                         <h3 className="text-lg font-semibold">{exp.company}</h3>
                         <p className="mb-3 text-sm text-muted-foreground">

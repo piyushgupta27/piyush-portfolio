@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     description:
       "Engineering career across Disney+ Hotstar, JumpingMinds AI, and Slice — real-time systems at 50M CCU, AI products before ChatGPT, and payment infrastructure built from scratch.",
     url: "https://www.piyushgupta.io/experience",
+    images: [{ url: "https://www.piyushgupta.io/opengraph-image" }],
   },
 };
 
@@ -135,6 +136,8 @@ export default function ExperiencePage() {
         >
           ← Experience
         </Link>
+
+        <h1 className="mb-16 text-4xl font-bold tracking-tight">Experience</h1>
 
         {/* Full role entries */}
         <div className="space-y-20">

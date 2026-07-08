@@ -10,7 +10,7 @@ export const experiences: Experience[] = [
   {
     company: "Slice Small Finance Bank",
     role: "Engineering Manager",
-    period: "Sep 2024 — Present",
+    period: "Apr 2024 — Present",
     description:
       "Engineering Manager at Slice, one of India's fastest-growing fintech banks. Leading 3 product squads (15+ engineers) across payment APIs, merchant banking, and digital lending. Shipped four AI systems now live org-wide: AI Oncall Bot (Slack — 71% query hit rate, 90s resolution vs. 5–10 min baseline); AI OpEx Reporter (CloudWatch/Sentry → Confluence/Slack — 4h/week per pod saved); PA/PG customer onboarding automation (n8n — complex multi-step flows); Managerial AI Toolkit (6h/week off EM calendar, 70% retro prep saved). Also built Cortex — a multi-tenant RAG platform (SliceLab hackathon — productionisation underway). PayIn P99 latency improved 15× (200s → 7.5s). 7× payment revenue growth in 6 months.",
     tech: [
