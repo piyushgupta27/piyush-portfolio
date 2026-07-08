@@ -279,7 +279,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "If you're building an engineering organization that wants to think seriously about agentic-at-team-scale — what governance looks like, what breaks first, how to expand trust incrementally — I'm actively exploring Senior Engineering Manager roles in the UK, Ireland, Europe, and Singapore. I'd rather talk about the hard problems than send a CV into a void.",
+      text: "If you're building an engineering organization that wants to think seriously about agentic-at-team-scale — what governance looks like, what breaks first, how to expand trust incrementally — I'm actively exploring Senior Engineering Manager roles in the UK, Ireland, Europe, UAE, Saudi Arabia, and Singapore. I'd rather talk about the hard problems than send a CV into a void.",
     },
   ],
 };
