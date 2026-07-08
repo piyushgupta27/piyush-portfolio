@@ -37,7 +37,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "Today it runs on four personal codebases — 174 automated agent executions, 47 tasks dispatched end-to-end, $173 in total AI compute across all of it. The architecture has two non-negotiables: every write is pre-checked against a blast-radius tier map that prevents touching high-risk paths without authorization, and every agent run executes against a documented harness — defined inputs, automated validation before human review, and a clear escalation path. Trust expands on data. Not intuition.",
+      text: "Today it runs on four personal codebases — 174 automated agent executions, 47 tasks dispatched end-to-end, $173 in total AI compute across all of it. The architecture has two non-negotiables: every write is pre-checked against a blast-radius tier map that prevents touching high-risk paths without authorisation, and every agent run executes against a documented harness — defined inputs, automated validation before human review, and a clear escalation path. Trust expands on data. Not intuition.",
     },
     {
       type: "heading",
@@ -68,7 +68,7 @@ const post: BlogPostData = {
         [
           "REVIEWER",
           "Diff + TESTER verdict",
-          "Maps touched files to blast-radius tiers, verifies no unauthorized paths reached",
+          "Maps touched files to blast-radius tiers, verifies no unauthorised paths reached",
           "Blast-radius map + verdict",
         ],
         [
@@ -113,7 +113,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "The constraint this enforces: the BUILDER cannot complete a write to a Tier-0 or Tier-1 path without an explicit tier authorization in the original task brief. If the task brief says Tier-2 and the BUILDER attempts to touch a payment callback handler, the pre-write hook escalates to the MANAGER — not after the commit, before it. Across 52 Tier-0 and Tier-1 agent runs to date, zero incidents. That's the number that justifies the architecture.",
+      text: "The constraint this enforces: the BUILDER cannot complete a write to a Tier-0 or Tier-1 path without an explicit tier authorisation in the original task brief. If the task brief says Tier-2 and the BUILDER attempts to touch a payment callback handler, the pre-write hook escalates to the MANAGER — not after the commit, before it. Across 52 Tier-0 and Tier-1 agent runs to date, zero incidents. That's the number that justifies the architecture.",
     },
     {
       type: "paragraph",
@@ -224,7 +224,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "The endgame isn't faster engineers. It's engineers who stop reconstructing what a change does before deciding on it — they receive a structured packet and make a call. The BUILDER handles write-test-fix. The human handles architecture, escalation routing, and the decisions the machine isn't authorized to make.",
+      text: "The endgame isn't faster engineers. It's engineers who stop reconstructing what a change does before deciding on it — they receive a structured packet and make a call. The BUILDER handles write-test-fix. The human handles architecture, escalation routing, and the decisions the machine isn't authorised to make.",
     },
     {
       type: "subheading",
@@ -279,7 +279,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "If you're building an engineering organization that wants to think seriously about agentic-at-team-scale — what governance looks like, what breaks first, how to expand trust incrementally — I'm actively exploring Senior Engineering Manager roles in the UK, Ireland, Europe, and Singapore. I'd rather talk about the hard problems than send a CV into a void.",
+      text: "If you're building an engineering organisation that wants to think seriously about agentic-at-team-scale — what governance looks like, what breaks first, how to expand trust incrementally — I'm actively exploring Senior Engineering Manager roles in the UK, Ireland, Europe, UAE, Saudi Arabia, and Singapore. I'd rather talk about the hard problems than send a CV into a void.",
     },
   ],
 };

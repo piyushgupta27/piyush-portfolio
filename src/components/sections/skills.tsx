@@ -20,8 +20,8 @@ export function Skills() {
     <section id="skills" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          title="Tech Stack"
-          description="The tools and technologies I work with daily."
+          title="Technical Range"
+          description="Spanning engineering leadership, AI systems, backend, infrastructure, and fintech."
         />
 
         <div className="grid gap-6 md:grid-cols-3">

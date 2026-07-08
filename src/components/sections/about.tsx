@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const stats = [
   { label: "Peak concurrent users", value: "50M" },
   { label: "JumpingMinds users", value: "1M+" },
-  { label: "Messages delivered IPL 2019", value: "250B+" },
+  { label: "Messages · IPL cricket season 2019", value: "250B+" },
   { label: "Engineers led currently", value: "15+" },
 ];
 
@@ -19,7 +19,7 @@ export function About() {
         <SectionHeading
           label="// about"
           title="Engineering at Scale"
-          description="Platform engineering, product leadership, and autonomous AI tooling."
+          description="Platform engineering, engineering leadership, and autonomous AI tooling."
         />
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -55,7 +55,7 @@ export function About() {
 
 $ cat skills.txt
 > platform-eng, typescript, go,
-> ai-agents, system-design, EM
+> ai-agents, system-design
 
 $ echo $STATUS
 > building ai-sdlc`}
@@ -77,9 +77,8 @@ $ echo $STATUS
                 </p>
                 <p>
                   At Disney+ Hotstar I built real-time messaging infrastructure
-                  that served 35M+ concurrent users at sub-second latency — 250
-                  billion messages during IPL 2019. The same architecture later
-                  scaled to 50M+ on the platform.
+                  that served 50M+ concurrent users at sub-second latency — 250
+                  billion messages during the IPL 2019 cricket season.
                 </p>
                 <p className="rounded-lg border border-border/50 bg-card px-4 py-3 text-sm">
                   <span className="font-semibold text-foreground">
@@ -93,14 +92,14 @@ $ echo $STATUS
                   In 2021 I co-founded JumpingMinds AI, a mental health
                   platform. Grew from zero to 1M+ users across India, US, UK,
                   and Scandinavia. Google for Startups Accelerator 2022. Wound
-                  down cleanly in 2024.
+                  down by 2024 end.
                 </p>
                 <p>
                   Today I lead three squads at Slice (15+ engineers) across
                   payments, merchant banking, and digital lending — and
                   I&apos;ve shipped four AI systems now live org-wide: an AI
-                  oncall bot, an OpEx intelligence reporter, a PA/PG onboarding
-                  automation, and a managerial AI toolkit.
+                  oncall bot, an OpEx intelligence reporter, a payments
+                  onboarding automation, and a managerial AI toolkit.
                 </p>
                 <p>
                   Open to Sr EM roles and relocation: UK · Ireland · Europe ·

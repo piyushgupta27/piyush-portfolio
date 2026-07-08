@@ -18,10 +18,12 @@ export const careerArc: ArcEntry[] = [
   },
   {
     org: "Shuttl",
+    role: "Senior Software Engineer",
     type: "work",
   },
   {
     org: "HyperTrack",
+    role: "Lead Software Engineer",
     type: "work",
   },
   {

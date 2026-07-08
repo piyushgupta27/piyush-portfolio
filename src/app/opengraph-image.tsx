@@ -55,7 +55,7 @@ export default function OGImage() {
             maxWidth: "800px",
           }}
         >
-          Building autonomous AI tooling · Platform engineering · 10M+ users
+          Building autonomous AI tooling · Platform engineering · 50M+ users
         </div>
       </div>
       <div

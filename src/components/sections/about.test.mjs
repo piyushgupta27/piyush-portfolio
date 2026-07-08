@@ -35,14 +35,14 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test('shows "250B+" messages delivered IPL 2019', () => {
+    test('shows "250B+" messages delivered IPL cricket season 2019', () => {
       assert.ok(
         src.includes('"250B+"'),
         'Expected stats to contain value "250B+"',
       );
       assert.ok(
-        src.includes("Messages delivered IPL 2019"),
-        'Expected stats label "Messages delivered IPL 2019"',
+        src.includes("Messages · IPL cricket season 2019"),
+        'Expected stats label "Messages · IPL cricket season 2019"',
       );
     });
 
