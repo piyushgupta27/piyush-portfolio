@@ -25,7 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (detail.stub) {
     return {
       title: detail.company,
+      description: `Piyush Gupta's experience at ${detail.company} — full details coming soon.`,
       robots: { index: false },
+      openGraph: {
+        title: detail.company,
+        description: `Piyush Gupta's experience at ${detail.company} — full details coming soon.`,
+        images: [{ url: `${SITE_URL}/opengraph-image` }],
+      },
     };
   }
 
