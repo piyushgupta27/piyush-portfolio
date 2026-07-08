@@ -9,6 +9,12 @@ import { TechBadge } from "@/components/ui/tech-badge";
 import { experiences } from "@/data/experience";
 import { careerArc } from "@/data/career-arc";
 
+const COMPANY_BRANDS: Record<string, { initials: string; hex: string }> = {
+  "Slice Small Finance Bank": { initials: "S", hex: "FF5C00" },
+  "JumpingMinds AI": { initials: "JM", hex: "7C3AED" },
+  "Disney+ Hotstar": { initials: "D+", hex: "0063E5" },
+};
+
 export function Experience() {
   const { ref: timelineRef, inView: timelineInView } = useInView();
   const { ref: careerRef, inView: careerInView } = useInView();
@@ -58,7 +64,22 @@ export function Experience() {
                           </div>
                           <ArrowRight className="h-4 w-4 text-muted-foreground/30 transition-colors group-hover:text-primary group-focus-visible:text-primary" />
                         </div>
-                        <h3 className="text-lg font-semibold">{exp.company}</h3>
+                        <div className="mb-1 flex items-center gap-2">
+                          {COMPANY_BRANDS[exp.company] && (
+                            <div
+                              className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-[10px] font-bold text-white"
+                              style={{
+                                backgroundColor: `#${COMPANY_BRANDS[exp.company].hex}`,
+                              }}
+                              aria-hidden="true"
+                            >
+                              {COMPANY_BRANDS[exp.company].initials}
+                            </div>
+                          )}
+                          <h3 className="text-lg font-semibold">
+                            {exp.company}
+                          </h3>
+                        </div>
                         <p className="mb-3 text-sm text-muted-foreground">
                           {exp.role}
                         </p>

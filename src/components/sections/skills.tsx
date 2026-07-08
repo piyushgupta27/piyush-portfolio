@@ -4,7 +4,28 @@ import { Brain, Code, CreditCard, Layers, Server, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
+import { TechIcon } from "@/components/ui/tech-icon";
 import { skillCategories } from "@/data/skills";
+
+const CATEGORY_TECH_ICONS: Record<string, string[]> = {
+  "Backend Engineering": [
+    "typescript",
+    "nodejs",
+    "python",
+    "go",
+    "kotlin",
+    "django",
+  ],
+  Infrastructure: [
+    "googlecloud",
+    "kubernetes",
+    "docker",
+    "redis",
+    "postgresql",
+    "apachekafka",
+    "terraform",
+  ],
+};
 
 const iconMap: Record<string, React.ElementType> = {
   Brain,
@@ -37,6 +58,19 @@ export function Skills() {
                       </div>
                       <h3 className="text-xl font-semibold">{cat.category}</h3>
                     </div>
+
+                    {CATEGORY_TECH_ICONS[cat.category] && (
+                      <div className="mb-4 flex flex-wrap gap-2">
+                        {CATEGORY_TECH_ICONS[cat.category].map((slug) => (
+                          <div
+                            key={slug}
+                            className="flex h-8 w-8 items-center justify-center rounded-md border border-border/30 bg-background/60"
+                          >
+                            <TechIcon slug={slug} size={18} />
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     <div className="flex flex-wrap gap-2">
                       {cat.skills.map((skill) => (
