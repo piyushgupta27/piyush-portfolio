@@ -13,7 +13,7 @@ export function Education() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           title="Where I Studied"
-          description="Engineering foundation at IIT Roorkee, with a European exchange at FAU Germany."
+          description="Engineering foundation at IIT Roorkee, with a Computer Vision research exchange at FAU Erlangen-Nürnberg."
         />
 
         <StaggerChildren className="grid gap-6 md:grid-cols-2">

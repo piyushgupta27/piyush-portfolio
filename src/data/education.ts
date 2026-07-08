@@ -18,8 +18,9 @@ export const education: Education[] = [
   {
     institution: "FAU Erlangen-Nürnberg",
     degree: "Exchange Semester",
+    field: "Computer Vision Research",
     location: "Erlangen, Germany",
     period: "Jun – Aug 2012",
-    note: "European academic exchange",
+    note: "Optical Flow Computation · C++ · OpenCV",
   },
 ];

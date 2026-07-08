@@ -19,7 +19,7 @@ export function About() {
         <SectionHeading
           label="// about"
           title="Engineering at Scale"
-          description="Platform engineering, product leadership, and autonomous AI tooling."
+          description="Platform engineering, engineering leadership, and autonomous AI tooling."
         />
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
@@ -72,8 +72,8 @@ $ echo $STATUS
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Engineering manager with 12 years across backend, mobile, and
-                  frontend — the last 7 in management. Three chapters define the
-                  career.
+                  frontend — the last 8+ in management. Three chapters define
+                  the career.
                 </p>
                 <p>
                   At Disney+ Hotstar I built real-time messaging infrastructure
