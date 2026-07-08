@@ -19,9 +19,9 @@ describe("navbar.tsx — anchor links and mobile menu (gh-35)", () => {
       );
     });
 
-    it('has href="/#skills"', () => {
+    it('has href="/#press"', () => {
       assert.ok(
-        src.includes('href: "/#skills"') || src.includes('href="/#skills"'),
+        src.includes('href: "/#press"') || src.includes('href="/#press"'),
       );
     });
 

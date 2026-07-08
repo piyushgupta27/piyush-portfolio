@@ -17,7 +17,6 @@ export function Blog() {
     <section id="blog" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          label="// blog & talks"
           title="Blog & Talks"
           description="What I've learned building at 50M CCU, founding at zero, and shipping AI in production."
         />
@@ -26,7 +25,7 @@ export function Blog() {
           {recentPosts.map((post) => (
             <div key={post.slug}>
               <Link href={`/blog/${post.slug}`} className="block h-full">
-                <Card className="group relative h-full cursor-pointer border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 overflow-hidden">
+                <Card className="group relative h-full cursor-pointer border-border/50 bg-card transition-all duration-300 hover:border-primary/30 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-cyan-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-xl pointer-events-none" />
                   <CardContent className="relative p-6">
                     <div className="mb-4 flex items-center justify-between">
@@ -62,7 +61,7 @@ export function Blog() {
 
           {talks.map((talk) => (
             <div key={talk.title} className="md:col-span-2">
-              <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/30">
+              <Card className="group relative overflow-hidden border-border/50 bg-card transition-all duration-300 hover:border-primary/30">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-purple-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <CardContent className="relative p-6">
                   <div className="mb-4 flex flex-wrap items-center gap-3">

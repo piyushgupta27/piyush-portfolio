@@ -38,7 +38,7 @@ export function About() {
               </div>
 
               {/* Terminal block */}
-              <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+              <Card className="border-border/50 bg-card">
                 <CardContent className="p-4">
                   <div className="mb-3 flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-red-500/70" />
@@ -81,7 +81,7 @@ $ echo $STATUS
                   billion messages during IPL 2019. The same architecture later
                   scaled to 50M+ on the platform.
                 </p>
-                <p className="rounded-lg border border-border/50 bg-card/50 px-4 py-3 text-sm">
+                <p className="rounded-lg border border-border/50 bg-card px-4 py-3 text-sm">
                   <span className="font-semibold text-foreground">
                     Disney vote of confidence:
                   </span>{" "}
@@ -112,9 +112,9 @@ $ echo $STATUS
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat) => (
                   <div key={stat.label}>
-                    <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+                    <Card className="border-border/50 bg-card">
                       <CardContent className="p-4 text-center">
-                        <p className="text-2xl font-bold gradient-text">
+                        <p className="text-2xl font-bold text-primary">
                           {stat.value}
                         </p>
                         <p className="mt-1 text-xs font-mono text-muted-foreground">

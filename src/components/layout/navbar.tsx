@@ -7,22 +7,14 @@ import { Button } from "@/components/ui/button";
 
 const links = [
   { label: "About", href: "/#about" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Skills", href: "/#skills" },
   { label: "Experience", href: "/#experience" },
-  { label: "Education", href: "/#education" },
+  { label: "Press", href: "/#press" },
+  { label: "Projects", href: "/#projects" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#contact" },
 ];
 
-const sectionIds = [
-  "about",
-  "projects",
-  "skills",
-  "experience",
-  "education",
-  "contact",
-];
+const sectionIds = ["about", "experience", "press", "projects", "contact"];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -87,7 +79,7 @@ export function Navbar() {
             href="/"
             className="inline-flex h-11 items-center font-mono text-sm font-bold tracking-wider"
           >
-            <span className="gradient-text">piyushgupta.io</span>
+            <span className="text-primary">piyushgupta.io</span>
           </Link>
 
           {/* Desktop nav */}
@@ -96,6 +88,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
                 className={`inline-flex h-11 items-center rounded-md px-3 text-sm transition-colors hover:text-foreground ${
                   isActive(link.href)
                     ? "text-foreground"
@@ -111,7 +104,7 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="min-h-[44px] min-w-[44px] md:hidden"
+            className="min-h-[44px] min-w-[44px] cursor-pointer md:hidden"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -139,6 +132,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
+                aria-current={isActive(link.href) ? "page" : undefined}
                 className={`inline-flex h-14 items-center rounded-md px-3 text-base transition-colors hover:text-foreground ${
                   isActive(link.href)
                     ? "font-medium text-foreground"

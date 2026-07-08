@@ -14,7 +14,7 @@ All color tokens use OKLCH for wide-gamut perceptual uniformity. Defined in `src
 |-------|-------|------|
 | `--background` | `oklch(0.07 0.01 260)` | Page background (near-black, cool-tinted) |
 | `--foreground` | `oklch(0.95 0 0)` | Primary text (off-white) |
-| `--card` | `oklch(0.12 0.01 260)` | Card surface (slightly lighter than background) |
+| `--card` | `oklch(0.14 0.01 260)` | Card surface (slightly lighter than background) |
 | `--card-foreground` | `oklch(0.95 0 0)` | Text on cards |
 | `--popover` | `oklch(0.12 0.01 260)` | Popover/dropdown surface |
 | `--popover-foreground` | `oklch(0.95 0 0)` | Text in popovers |
