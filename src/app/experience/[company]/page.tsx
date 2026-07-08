@@ -37,6 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: detail.overview,
       type: "profile",
       url: `${SITE_URL}/experience/${detail.slug}`,
+      images: [{ url: `${SITE_URL}/opengraph-image` }],
     },
     twitter: {
       card: "summary",
@@ -66,7 +67,7 @@ export default async function ExperienceDetailPage({ params }: Props) {
             <h1 className="text-3xl font-bold tracking-tight">
               {detail.company}
             </h1>
-            <div className="mt-12 rounded-lg border border-border/50 bg-card/50 p-8 text-center">
+            <div className="mt-12 rounded-lg border border-border/50 bg-card p-8 text-center">
               <p className="text-muted-foreground">
                 Content brief from Piyush pending — this page will be updated
                 once the full story is ready.
