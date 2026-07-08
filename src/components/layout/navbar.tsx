@@ -8,21 +8,13 @@ import { Button } from "@/components/ui/button";
 const links = [
   { label: "About", href: "/#about" },
   { label: "Experience", href: "/#experience" },
+  { label: "Press", href: "/#press" },
   { label: "Projects", href: "/#projects" },
   { label: "Blog", href: "/blog" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Education", href: "/#education" },
   { label: "Contact", href: "/#contact" },
 ];
 
-const sectionIds = [
-  "about",
-  "experience",
-  "projects",
-  "skills",
-  "education",
-  "contact",
-];
+const sectionIds = ["about", "experience", "press", "projects", "contact"];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

@@ -146,7 +146,7 @@ Rules for eyebrows:
 ### Navigation
 
 - Max 5-6 nav items (currently 7)
-- Order must match page scroll order: About → Experience → Projects → Skills → Education → Blog → Contact
+- Order must match page scroll order: About → Experience → Press → Projects → Blog → Contact
 - Active state: visually highlighted ✅ + `aria-current="page"` on active link (currently missing)
 - Blog link: add `<ArrowUpRight />` icon to signal external/route navigation (not a scroll anchor)
 - Hamburger: change `cursor: default` → `cursor: pointer`
@@ -253,10 +253,17 @@ These patterns are BANNED on this site. If a PR introduces one, it should not me
 
 **Rationale:** Press & Recognition (Disney CEO/CTO/SVP Product as investors) is extraordinary social proof — it must appear immediately after Experience while the hiring manager is in active evaluation mode. Skills is de-emphasized (position 7) per copy principle: tech badge clouds read as IC anxiety at EM level.
 
-### Navigation (must match page order)
-About → Experience → Projects → Blog → Skills → Education → Contact
+### Navigation (6 items — each earns its slot)
+About → Experience → Press → Projects → Blog → Contact
 
-**Press is intentionally excluded from the nav** (visually prominent within the page; adding it creates 8 nav items). Skills and Education are low-priority anchors — acceptable to drop from nav if count needs trimming to 5.
+**Included rationale:**
+- Press: now at page position 4; Disney CEO/CTO/SVP Product is the strongest credibility signal — a nav slot lets return visitors and forwarded links jump directly; also fixes scrollspy dead-zone
+- Blog: thought leadership seekers jump here directly
+- Contact: conversion goal — always reachable
+
+**Excluded from nav (intentional):**
+- Skills — nobody navigates to a skills section
+- Education — nobody navigates to education
 
 ---
 
