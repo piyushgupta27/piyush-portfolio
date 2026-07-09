@@ -19,6 +19,7 @@ export interface FullExperienceEntry extends BaseEntry {
 export interface MinimalExperienceEntry extends BaseEntry {
   minimal: true;
   description: string;
+  url?: string;
 }
 
 export type ExperiencePageEntry = FullExperienceEntry | MinimalExperienceEntry;
@@ -50,6 +51,7 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
       "Reliability",
       "Fintech",
     ],
+    links: [{ label: "slice.bank.in", href: "https://slice.bank.in/" }],
   },
   {
     slug: "jumpingminds",
@@ -107,6 +109,7 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
         label: "RootConf Delhi 2020 talk",
         href: "https://hasgeek.com/rootconf/2020-delhi/sub/pubsub-realtime-messaging-service-hotstar-LP7A7b7ZVu6ibfgYFAcvXZ",
       },
+      { label: "hotstar.com", href: "https://hotstar.com" },
     ],
   },
   {
@@ -117,6 +120,7 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
     minimal: true,
     description:
       "Location intelligence platform — backend systems and real-time movement tracking infrastructure.",
+    url: "https://hypertrack.com",
   },
   {
     slug: "shuttl",

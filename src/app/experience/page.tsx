@@ -34,7 +34,7 @@ function FullEntry({ entry }: { entry: FullExperienceEntry }) {
           {entry.period}
         </p>
 
-        <h2 className="mb-5 text-[clamp(28px,5vw,40px)] font-bold leading-[1.1] tracking-tight">
+        <h2 className="mb-5 text-[clamp(28px,5vw,40px)] font-bold leading-[1.1] tracking-tight text-balance">
           {entry.role}
         </h2>
 
@@ -109,7 +109,20 @@ function MinimalEntry({ entry }: { entry: MinimalExperienceEntry }) {
       <p className="mb-1 font-mono text-[11px] tracking-wider text-muted-foreground/60">
         {entry.period}
       </p>
-      <h3 className="mb-0.5 text-base font-semibold">{entry.company}</h3>
+      <h3 className="mb-0.5 text-base font-semibold">
+        {entry.url ? (
+          <a
+            href={entry.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-primary"
+          >
+            {entry.company}
+          </a>
+        ) : (
+          entry.company
+        )}
+      </h3>
       <p className="mb-1 text-sm text-muted-foreground/70">{entry.role}</p>
       <p className="text-sm text-muted-foreground/60">{entry.description}</p>
     </article>
@@ -137,14 +150,16 @@ export default function ExperiencePage() {
 
           {/* Main content */}
           <div>
-            <Link
-              href="/#experience"
-              className="mb-10 inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              ← Experience
-            </Link>
             <h1 className="mb-16 text-4xl font-bold tracking-tight">
-              Experience
+              <Link
+                href="/#experience"
+                className="group inline-flex items-center gap-3 transition-colors hover:text-primary"
+              >
+                <span className="text-muted-foreground/30 transition-colors group-hover:text-primary">
+                  ←
+                </span>
+                Experience
+              </Link>
             </h1>
             {/* Full role entries */}
             <div className="space-y-20">
