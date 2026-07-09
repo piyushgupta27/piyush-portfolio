@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { FadeIn } from "@/components/motion/fade-in";
+import { ExperienceArc } from "@/components/experience-arc";
 import { experiencePageEntries } from "@/data/experience-page";
 import type {
   ExperiencePageEntry,
   FullExperienceEntry,
   MinimalExperienceEntry,
 } from "@/data/experience-page";
-
-const COMPANY_ICONS: Record<string, string> = {
-  "Slice Small Finance Bank": "/logos/slice-icon.png",
-  "JumpingMinds AI": "/logos/jumpingminds-icon.png",
-  "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
-};
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -34,29 +28,17 @@ function FullEntry({ entry }: { entry: FullExperienceEntry }) {
   return (
     <FadeIn>
       <article>
-        {COMPANY_ICONS[entry.company] && (
-          <Image
-            src={COMPANY_ICONS[entry.company]}
-            alt=""
-            width={48}
-            height={48}
-            className="mb-5 h-12 w-12 rounded-xl object-cover"
-            unoptimized
-            aria-hidden="true"
-          />
-        )}
-
-        <p className="mb-2.5 font-mono text-sm text-primary">{entry.period}</p>
-
-        <h2 className="mb-1.5 text-[clamp(28px,5vw,40px)] font-bold leading-[1.1] tracking-tight">
+        <p className="mb-3 font-mono text-sm text-muted-foreground/60">
           {entry.company}
+          <span className="mx-2 opacity-40">·</span>
+          {entry.period}
+        </p>
+
+        <h2 className="mb-5 text-[clamp(28px,5vw,40px)] font-bold leading-[1.1] tracking-tight">
+          {entry.role}
         </h2>
 
         <div className="mb-7 flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
-          <span className="text-[17px] text-muted-foreground">
-            {entry.role}
-          </span>
-          <span className="text-muted-foreground/40">·</span>
           <span className="text-sm text-muted-foreground">{entry.scope}</span>
           <span className="text-muted-foreground/40">·</span>
           <span className="inline-block rounded border border-primary/20 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] text-primary">
@@ -148,7 +130,7 @@ export default function ExperiencePage() {
 
   return (
     <div className="px-6 py-24">
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-3xl lg:max-w-5xl">
         <Link
           href="/#experience"
           className="mb-10 inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -158,48 +140,61 @@ export default function ExperiencePage() {
 
         <h1 className="mb-16 text-4xl font-bold tracking-tight">Experience</h1>
 
-        {/* Full role entries */}
-        <div className="space-y-20">
-          {fullEntries.map((entry, i) => (
-            <div key={entry.slug}>
-              <FullEntry entry={entry} />
-              {i < fullEntries.length - 1 && (
-                <div className="mt-20 border-t border-border" />
-              )}
-            </div>
-          ))}
-        </div>
+        <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
+          {/* Career arc sidebar — desktop only */}
+          <ExperienceArc entries={fullEntries} />
 
-        {/* Earlier career */}
-        {minimalEntries.length > 0 && (
-          <div className="mt-20">
-            <div className="mb-8 border-t border-border pt-8">
-              <h2 className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50">
-                Earlier career
-              </h2>
-            </div>
-            <div className="space-y-8">
-              {minimalEntries.map((entry) => (
-                <MinimalEntry key={entry.slug} entry={entry} />
+          {/* Main content */}
+          <div>
+            {/* Full role entries */}
+            <div className="space-y-20">
+              {fullEntries.map((entry, i) => (
+                <div
+                  key={entry.slug}
+                  id={`entry-${entry.slug}`}
+                  className="scroll-mt-24"
+                >
+                  <FullEntry entry={entry} />
+                  {i < fullEntries.length - 1 && (
+                    <div className="mt-20 border-t border-border" />
+                  )}
+                </div>
               ))}
             </div>
-          </div>
-        )}
 
-        {/* Single CTA */}
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">
-          <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            Want to talk about this work or explore how I can help your team?
-          </p>
-          <a
-            href="https://calendly.com/piyushguptaece/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            <Calendar className="h-4 w-4" />
-            Book a call
-          </a>
+            {/* Earlier career */}
+            {minimalEntries.length > 0 && (
+              <div className="mt-20">
+                <div className="mb-8 border-t border-border pt-8">
+                  <h2 className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground/50">
+                    Earlier career
+                  </h2>
+                </div>
+                <div className="space-y-8">
+                  {minimalEntries.map((entry) => (
+                    <MinimalEntry key={entry.slug} entry={entry} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Single CTA */}
+            <div className="mt-20 flex flex-col items-start justify-between gap-4 rounded-xl border border-primary/30 bg-primary/5 p-6 sm:flex-row sm:items-center">
+              <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                Want to talk about this work or explore how I can help your
+                team?
+              </p>
+              <a
+                href="https://calendly.com/piyushguptaece/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 font-mono text-sm text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                <Calendar className="h-4 w-4" />
+                Book a call
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
