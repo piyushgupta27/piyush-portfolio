@@ -7,7 +7,7 @@ import type { FullExperienceEntry } from "@/data/experience-page";
 const COMPANY_ICONS: Record<string, string> = {
   "Slice Small Finance Bank": "/logos/slice-icon.png",
   "JumpingMinds AI": "/logos/jumpingminds-icon.png",
-  "Disney+ Hotstar": "/logos/disney-hotstar-icon.jpg",
+  "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
 };
 
 export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
@@ -52,7 +52,7 @@ export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
                       .getElementById(`entry-${entry.slug}`)
                       ?.scrollIntoView({ behavior: "smooth", block: "start" });
                   }}
-                  className={`group flex items-center gap-3 text-left transition-all duration-200 ${
+                  className={`group flex items-center gap-3 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:rounded-sm ${
                     isActive ? "opacity-100" : "opacity-35 hover:opacity-65"
                   }`}
                 >

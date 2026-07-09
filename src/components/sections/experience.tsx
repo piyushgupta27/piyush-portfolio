@@ -13,7 +13,7 @@ import { careerArc } from "@/data/career-arc";
 const COMPANY_ICONS: Record<string, string> = {
   "Slice Small Finance Bank": "/logos/slice-icon.png",
   "JumpingMinds AI": "/logos/jumpingminds-icon.png",
-  "Disney+ Hotstar": "/logos/disney-hotstar-icon.jpg",
+  "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
 };
 
 export function Experience() {
