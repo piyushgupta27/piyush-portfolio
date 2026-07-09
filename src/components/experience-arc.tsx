@@ -8,6 +8,7 @@ const COMPANY_ICONS: Record<string, string> = {
   "Slice Bank": "/logos/slice-icon.png",
   "JumpingMinds AI": "/logos/jumpingminds-icon.png",
   "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
+  HyperTrack: "/logos/hypertrack-icon.svg",
 };
 
 export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {

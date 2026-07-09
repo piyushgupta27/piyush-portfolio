@@ -18,21 +18,21 @@ describe("experience-page data", () => {
     assert.ok(experiencePageEntries.length > 0);
   });
 
-  it("has exactly 3 full entries and 2 minimal entries", () => {
-    assert.equal(fullEntries.length, 3);
-    assert.equal(minimalEntries.length, 2);
+  it("has exactly 4 full entries and 1 minimal entry", () => {
+    assert.equal(fullEntries.length, 4);
+    assert.equal(minimalEntries.length, 1);
   });
 
-  it("full entries contain Slice, JumpingMinds, Disney+ Hotstar", () => {
+  it("full entries contain Slice, JumpingMinds, Disney+ Hotstar, HyperTrack", () => {
     const slugs = fullEntries.map((e) => e.slug);
     assert.ok(slugs.includes("slice"));
     assert.ok(slugs.includes("jumpingminds"));
     assert.ok(slugs.includes("disney-hotstar"));
+    assert.ok(slugs.includes("hypertrack"));
   });
 
-  it("minimal entries contain HyperTrack and Shuttl", () => {
+  it("minimal entries contain Shuttl", () => {
     const slugs = minimalEntries.map((e) => e.slug);
-    assert.ok(slugs.includes("hypertrack"));
     assert.ok(slugs.includes("shuttl"));
   });
 

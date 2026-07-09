@@ -116,11 +116,39 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
     slug: "hypertrack",
     company: "HyperTrack",
     role: "Lead Software Engineer",
-    period: "2016 — 2018",
-    minimal: true,
-    description:
-      "Location intelligence platform — backend systems and real-time movement tracking infrastructure.",
-    url: "https://hypertrack.com",
+    period: "Jun 2016 — Dec 2017",
+    scope: "Small eng team · 1000+ developer community",
+    mode: "Builder",
+    situation:
+      "Location intelligence platform for real-time movement tracking. No developer SDK ecosystem existed for mobile location — built and shipped the open-source Android libraries from scratch, owned engineering delivery end-to-end, and grew a developer community that put HyperTrack on the map.",
+    outcomes: [
+      "smart-scheduler-android: 500+ GitHub stars, 20K+ developers, trending #1 on GitHub Trending (Java) — 256 stars in a single day",
+      "live-app (Android + iOS): 103 HN points, 40 comments, 2000+ developers — Show HN, zero marketing spend",
+      "hyperlog-android: 1000+ developers adopted as a utility logging library",
+      "Android Weekly #234 feature — international developer community reach",
+      "Galileo Hackathon, Gdańsk, Poland — led HyperTrack's participation as the European developer signal",
+      "Cultivated a 1000+ developer community through open-source, technical blog, and ecosystem events; coached 2 senior engineers",
+    ],
+    theCall:
+      "The product was B2B — enterprise location intelligence. The bet was open-sourcing the Android building blocks anyway, instead of keeping them closed. smart-scheduler-android hit GitHub Trending (top Java) without a PR campaign, pulling 256 stars in a single day. That's the kind of credibility a startup can't buy: 20K+ developers showing up because the library solved a real problem, not because of outreach.",
+    tech: [
+      "Android",
+      "Mobile SDKs",
+      "Open Source",
+      "Location Tech",
+      "Java",
+      "Developer Tools",
+    ],
+    links: [
+      {
+        label: "smart-scheduler-android",
+        href: "https://github.com/hypertrack/smart-scheduler-android",
+      },
+      {
+        label: "Show HN: live-app (103 pts)",
+        href: "https://news.ycombinator.com/item?id=14382813",
+      },
+    ],
   },
   {
     slug: "shuttl",

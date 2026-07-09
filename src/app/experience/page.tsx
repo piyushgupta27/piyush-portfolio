@@ -150,12 +150,12 @@ export default function ExperiencePage() {
 
           {/* Main content */}
           <div>
-            <h1 className="mb-16 text-4xl font-bold tracking-tight">
+            <h1 className="mb-12">
               <Link
                 href="/#experience"
-                className="group inline-flex items-center gap-3 transition-colors hover:text-primary"
+                className="group inline-flex items-center gap-2 font-mono text-xs text-muted-foreground/40 transition-colors hover:text-primary"
               >
-                <span className="text-muted-foreground/30 transition-colors group-hover:text-primary">
+                <span className="transition-colors group-hover:text-primary">
                   ←
                 </span>
                 Experience
