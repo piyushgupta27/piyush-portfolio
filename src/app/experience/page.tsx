@@ -138,14 +138,15 @@ export default function ExperiencePage() {
           ← Experience
         </Link>
 
-        <h1 className="mb-16 text-4xl font-bold tracking-tight">Experience</h1>
-
         <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
           {/* Career arc sidebar — desktop only */}
           <ExperienceArc entries={fullEntries} />
 
           {/* Main content */}
           <div>
+            <h1 className="mb-16 text-4xl font-bold tracking-tight">
+              Experience
+            </h1>
             {/* Full role entries */}
             <div className="space-y-20">
               {fullEntries.map((entry, i) => (
