@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -9,6 +10,12 @@ import type {
   FullExperienceEntry,
   MinimalExperienceEntry,
 } from "@/data/experience-page";
+
+const COMPANY_ICONS: Record<string, string> = {
+  "Slice Small Finance Bank": "/logos/slice-icon.png",
+  "JumpingMinds AI": "/logos/jumpingminds-icon.png",
+  "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
+};
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -27,6 +34,18 @@ function FullEntry({ entry }: { entry: FullExperienceEntry }) {
   return (
     <FadeIn>
       <article>
+        {COMPANY_ICONS[entry.company] && (
+          <Image
+            src={COMPANY_ICONS[entry.company]}
+            alt=""
+            width={48}
+            height={48}
+            className="mb-5 h-12 w-12 rounded-xl object-cover"
+            unoptimized
+            aria-hidden="true"
+          />
+        )}
+
         <p className="mb-2.5 font-mono text-sm text-primary">{entry.period}</p>
 
         <h2 className="mb-1.5 text-[clamp(28px,5vw,40px)] font-bold leading-[1.1] tracking-tight">

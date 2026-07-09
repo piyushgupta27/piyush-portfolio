@@ -10,10 +10,10 @@ import { TechBadge } from "@/components/ui/tech-badge";
 import { experiences } from "@/data/experience";
 import { careerArc } from "@/data/career-arc";
 
-const COMPANY_LOGOS: Record<string, string> = {
-  "Slice Small Finance Bank": "/logos/slice.svg",
-  "JumpingMinds AI": "/logos/jumpingminds.png",
-  "Disney+ Hotstar": "/logos/disney-hotstar.svg",
+const COMPANY_ICONS: Record<string, string> = {
+  "Slice Small Finance Bank": "/logos/slice-icon.png",
+  "JumpingMinds AI": "/logos/jumpingminds-icon.png",
+  "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
 };
 
 export function Experience() {
@@ -65,29 +65,27 @@ export function Experience() {
                           </div>
                           <ArrowRight className="h-4 w-4 text-muted-foreground/30 transition-colors group-hover:text-primary group-focus-visible:text-primary" />
                         </div>
-                        <div className="mb-1 flex items-center gap-2">
-                          {COMPANY_LOGOS[exp.company] && (
-                            <div
-                              className="flex h-6 shrink-0 items-center rounded bg-white/90 px-1.5"
+                        <div className="mb-3 flex items-center gap-2.5">
+                          {COMPANY_ICONS[exp.company] && (
+                            <Image
+                              src={COMPANY_ICONS[exp.company]}
+                              alt=""
+                              width={36}
+                              height={36}
+                              className="h-9 w-9 shrink-0 rounded-lg object-cover"
+                              unoptimized
                               aria-hidden="true"
-                            >
-                              <Image
-                                src={COMPANY_LOGOS[exp.company]}
-                                alt=""
-                                width={128}
-                                height={16}
-                                className="h-4 w-auto max-w-[64px] object-contain"
-                                unoptimized
-                              />
-                            </div>
+                            />
                           )}
-                          <h3 className="text-lg font-semibold">
-                            {exp.company}
-                          </h3>
+                          <div>
+                            <p className="text-xs text-muted-foreground/60">
+                              {exp.company}
+                            </p>
+                            <h3 className="text-base font-semibold leading-tight">
+                              {exp.role}
+                            </h3>
+                          </div>
                         </div>
-                        <p className="mb-3 text-sm text-muted-foreground">
-                          {exp.role}
-                        </p>
                         <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                           {exp.description}
                         </p>
