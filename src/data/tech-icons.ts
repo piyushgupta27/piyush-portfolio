@@ -9,6 +9,8 @@ export interface TechIconData {
 //   Django  official #092E20 → #44B78B (lighter recognisable Django green)
 //   Kafka   official #231F20 → #C8C8C8 (light grey — matches Kafka's white-on-dark usage)
 export const techIcons: Record<string, TechIconData> = {
+  // path: "" means no SVG path exists (trademark/missing); TechIcon renders a text label instead
+  aws: { title: "AWS", hex: "FF9900", path: "" },
   typescript: {
     title: "TypeScript",
     hex: "3178C6",

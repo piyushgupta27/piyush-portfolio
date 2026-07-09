@@ -17,6 +17,7 @@ const CATEGORY_TECH_ICONS: Record<string, string[]> = {
     "django",
   ],
   Infrastructure: [
+    "aws",
     "googlecloud",
     "kubernetes",
     "docker",
