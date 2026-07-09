@@ -26,7 +26,7 @@ export type ExperiencePageEntry = FullExperienceEntry | MinimalExperienceEntry;
 export const experiencePageEntries: ExperiencePageEntry[] = [
   {
     slug: "slice",
-    company: "Slice Small Finance Bank",
+    company: "Slice Bank",
     role: "Engineering Manager",
     period: "Sep 2024 — Present",
     scope: "3 squads · 15+ engineers",

@@ -8,7 +8,7 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "Slice Small Finance Bank",
+    company: "Slice Bank",
     role: "Engineering Manager",
     period: "Sep 2024 — Present",
     description:

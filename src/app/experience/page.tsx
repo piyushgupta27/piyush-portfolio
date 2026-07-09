@@ -131,19 +131,18 @@ export default function ExperiencePage() {
   return (
     <div className="px-6 py-24">
       <div className="mx-auto max-w-3xl lg:max-w-5xl">
-        <Link
-          href="/#experience"
-          className="mb-10 inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          ← Experience
-        </Link>
-
         <div className="lg:grid lg:grid-cols-[180px_1fr] lg:gap-16">
           {/* Career arc sidebar — desktop only */}
           <ExperienceArc entries={fullEntries} />
 
           {/* Main content */}
           <div>
+            <Link
+              href="/#experience"
+              className="mb-10 inline-flex items-center gap-2 py-3 font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              ← Experience
+            </Link>
             <h1 className="mb-16 text-4xl font-bold tracking-tight">
               Experience
             </h1>
