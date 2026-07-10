@@ -257,7 +257,7 @@
 
 /* Sticky element separator — compound shadow for dark backgrounds.
    border-border (8% white) is invisible on oklch(0.07) near-black.
-   Two-part: a white glow line (30%) for the top edge + a teal-tinted
+   Two-part: a white glow line (10%) for the top edge + a teal-tinted
    downward shadow for perceived elevation against dark content. */
 .shadow-sticky {
   box-shadow:
