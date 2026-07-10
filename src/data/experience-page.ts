@@ -89,14 +89,14 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
     situation:
       "Live cricket at 50M+ concurrent users — sub-second latency — and no off-the-shelf product that could handle the fan-out. Built the real-time messaging infrastructure from scratch.",
     outcomes: [
-      "PubSub/MQTT infrastructure scaled from 35M → 50M+ CCU at <1s latency — 250B+ messages during the 2019 IPL World Cup final",
-      "Architecture held across 5 IPL seasons without rearchitecting — built right the first time",
+      "PubSub/MQTT infrastructure scaled from 35M → 50M+ CCU at <1s latency — 250B+ messages during the 2019 cricket season",
+      "Architecture held across 5 cricket seasons without rearchitecting — built right the first time",
       "Co-founded the Architecture Council with Ashutosh Agrawal (now Staff SSE, Google DeepMind) — cross-team design reviews across 15+ teams, backed by CTO's office",
       "SEA localisation platform — 80% reduction in operational effort per new country launch",
       "RootConf Delhi 2020: public technical talk on the real-time infrastructure (40-min deep dive)",
     ],
     theCall:
-      "Every commercial PubSub product we evaluated hit a ceiling at live sports concurrency — the fan-out characteristics of 50M users reacting to the same ball in the same second had no prior art. Built the infrastructure from scratch rather than adapting something that would fail at scale. That same architecture ran IPL 2020, 2021, 2022, 2023 — no structural changes required.",
+      "Every commercial PubSub product we evaluated hit a ceiling at live sports concurrency — the fan-out characteristics of 50M users reacting to the same ball in the same second had no prior art. Built the infrastructure from scratch rather than adapting something that would fail at scale. That same architecture ran the 2020, 2021, 2022, and 2023 cricket seasons — no structural changes required.",
     tech: [
       "Real-time Systems",
       "PubSub / MQTT",
