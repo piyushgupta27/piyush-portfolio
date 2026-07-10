@@ -11,6 +11,14 @@ const COMPANY_ICONS: Record<string, string> = {
   HyperTrack: "/logos/hypertrack-icon.svg",
 };
 
+const COMPANY_ICON_PADDING: Record<string, string> = {
+  HyperTrack: "p-1",
+};
+
+const COMPANY_ICON_FIT: Record<string, string> = {
+  HyperTrack: "object-contain",
+};
+
 export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
   const [activeSlug, setActiveSlug] = useState(entries[0]?.slug ?? "");
 
@@ -55,16 +63,14 @@ export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
                           block: "start",
                         });
                     }}
-                    className={`group flex items-center gap-3 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:rounded-sm ${
-                      isActive ? "opacity-100" : "opacity-35 hover:opacity-65"
-                    }`}
+                    className="group flex items-center gap-3 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:rounded-sm"
                   >
                     <div
-                      className={`relative z-10 h-8 w-8 shrink-0 overflow-hidden rounded-lg transition-all duration-200 ${
+                      className={`relative z-10 h-8 w-8 shrink-0 overflow-hidden rounded-lg transition-colors duration-200 ${
                         isActive
                           ? "ring-2 ring-primary/50 ring-offset-1 ring-offset-background"
                           : ""
-                      }`}
+                      } ${COMPANY_ICON_PADDING[entry.company] ?? ""}`}
                     >
                       {COMPANY_ICONS[entry.company] ? (
                         <Image
@@ -72,7 +78,7 @@ export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
                           alt=""
                           width={32}
                           height={32}
-                          className="h-full w-full object-cover"
+                          className={`h-full w-full ${COMPANY_ICON_FIT[entry.company] ?? "object-cover"}`}
                           unoptimized
                           aria-hidden
                         />
@@ -83,10 +89,12 @@ export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
                       )}
                     </div>
                     <div>
-                      <p className="text-xs font-medium leading-snug text-foreground">
+                      <p
+                        className={`text-xs font-medium leading-snug transition-colors duration-200 ${isActive ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}
+                      >
                         {entry.company}
                       </p>
-                      <p className="text-[11px] leading-snug text-muted-foreground/55">
+                      <p className="text-xs leading-snug text-muted-foreground/60">
                         {entry.period}
                       </p>
                     </div>
