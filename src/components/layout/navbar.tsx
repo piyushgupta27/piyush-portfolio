@@ -42,7 +42,7 @@ export function Navbar() {
           });
           if (best) setActiveSection(best);
         },
-        { threshold: [0, 0.1, 0.5], rootMargin: "-64px 0px -30% 0px" },
+        { threshold: [0, 0.1, 0.5], rootMargin: "-56px 0px -30% 0px" },
       );
       observer.observe(el);
       observers.push(observer);

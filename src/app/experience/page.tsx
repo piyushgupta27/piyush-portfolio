@@ -173,7 +173,7 @@ export default function ExperiencePage() {
                 <div
                   key={entry.slug}
                   id={`entry-${entry.slug}`}
-                  className="scroll-mt-24"
+                  className="scroll-mt-40 lg:scroll-mt-24"
                 >
                   {i === 0 ? (
                     <FullEntry entry={entry} />
