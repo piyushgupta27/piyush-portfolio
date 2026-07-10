@@ -37,10 +37,7 @@ export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
   return (
     <div className="hidden lg:block">
       <div className="sticky top-24">
-        <div className="relative pl-1">
-          {/* Vertical thread */}
-          <div className="absolute left-4 top-5 h-[calc(100%-2.5rem)] w-px bg-gradient-to-b from-primary/30 via-primary/15 to-transparent" />
-
+        <div className="pl-1">
           <nav aria-label="Company timeline">
             <div className="space-y-7">
               {entries.map((entry) => {

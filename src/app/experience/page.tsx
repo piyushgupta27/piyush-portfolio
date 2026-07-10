@@ -150,7 +150,7 @@ export default function ExperiencePage() {
 
           {/* Main content */}
           <div>
-            <h1 className="mb-12">
+            <h1 className="mb-6">
               <Link
                 href="/#experience"
                 className="group inline-flex items-center gap-2 font-mono text-xs text-muted-foreground/40 transition-colors hover:text-primary"
