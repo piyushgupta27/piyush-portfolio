@@ -122,9 +122,9 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
     situation:
       "Location intelligence platform for real-time movement tracking. No developer SDK ecosystem existed for mobile location — built and shipped the open-source Android libraries from scratch, owned engineering delivery end-to-end, and grew a developer community that put HyperTrack on the map.",
     outcomes: [
-      "smart-scheduler-android: 500+ GitHub stars, 20K+ developers — #1 GitHub Trending (Java) for 3 consecutive days, 256 stars in a single day",
+      "smart-scheduler-android: 727 GitHub stars, 20K+ developers — #1 GitHub Trending (Java) for 3 consecutive days, 256 stars in a single day",
       "live-app (Android + iOS): 103 HN points, 40 comments, 2000+ developers — Show HN, zero marketing spend",
-      "hyperlog-android: 1000+ developers adopted as a utility logging library",
+      "hyperlog-android: 698 GitHub stars — mentored Aman Jain (junior mobile engineer) who co-built it; adopted as a utility logging library across the developer community",
       "Android Weekly #234 feature — international developer community reach",
       "Galileo Hackathon, Gdańsk, Poland — led HyperTrack's participation as the European developer signal",
       "Cultivated a 1000+ developer community through open-source, technical blog, and ecosystem events; coached 2 senior engineers",
@@ -145,8 +145,16 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
         href: "https://github.com/hypertrack/smart-scheduler-android",
       },
       {
+        label: "hyperlog-android",
+        href: "https://github.com/hypertrack/hyperlog-android",
+      },
+      {
         label: "Show HN: live-app (103 pts)",
         href: "https://news.ycombinator.com/item?id=14382813",
+      },
+      {
+        label: "Show HN: hyperlog-android",
+        href: "https://news.ycombinator.com/item?id=15960852",
       },
     ],
   },
