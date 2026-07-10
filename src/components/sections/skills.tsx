@@ -4,7 +4,29 @@ import { Brain, Code, CreditCard, Layers, Server, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
+import { TechIcon } from "@/components/ui/tech-icon";
 import { skillCategories } from "@/data/skills";
+
+const CATEGORY_TECH_ICONS: Record<string, { slug: string; label: string }[]> = {
+  "Backend Engineering": [
+    { slug: "typescript", label: "TypeScript" },
+    { slug: "nodejs", label: "Node.js" },
+    { slug: "python", label: "Python" },
+    { slug: "go", label: "Go" },
+    { slug: "kotlin", label: "Java / Kotlin" },
+    { slug: "django", label: "Django" },
+  ],
+  Infrastructure: [
+    { slug: "aws", label: "AWS" },
+    { slug: "googlecloud", label: "GCP" },
+    { slug: "kubernetes", label: "Kubernetes" },
+    { slug: "apachekafka", label: "Kafka" },
+    { slug: "docker", label: "Docker" },
+    { slug: "redis", label: "Redis" },
+    { slug: "postgresql", label: "Postgres" },
+    { slug: "terraform", label: "Terraform" },
+  ],
+};
 
 const iconMap: Record<string, React.ElementType> = {
   Brain,
@@ -39,14 +61,24 @@ export function Skills() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      {cat.skills.map((skill) => (
-                        <span
-                          key={skill.name}
-                          className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1 text-xs font-mono text-muted-foreground"
-                        >
-                          {skill.name}
-                        </span>
-                      ))}
+                      {CATEGORY_TECH_ICONS[cat.category]
+                        ? CATEGORY_TECH_ICONS[cat.category].map((item) => (
+                            <span
+                              key={item.slug}
+                              className="inline-flex items-center gap-1.5 rounded-md border border-border/50 bg-background/50 px-2.5 py-1 text-xs font-mono text-muted-foreground"
+                            >
+                              <TechIcon slug={item.slug} size={12} />
+                              {item.label}
+                            </span>
+                          ))
+                        : cat.skills.map((skill) => (
+                            <span
+                              key={skill.name}
+                              className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1 text-xs font-mono text-muted-foreground"
+                            >
+                              {skill.name}
+                            </span>
+                          ))}
                     </div>
                   </CardContent>
                 </Card>

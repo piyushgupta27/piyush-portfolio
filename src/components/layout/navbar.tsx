@@ -42,7 +42,7 @@ export function Navbar() {
           });
           if (best) setActiveSection(best);
         },
-        { threshold: [0, 0.1, 0.5], rootMargin: "-64px 0px -30% 0px" },
+        { threshold: [0, 0.1, 0.5], rootMargin: "-56px 0px -30% 0px" },
       );
       observer.observe(el);
       observers.push(observer);
@@ -73,8 +73,8 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl">
-        <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <header className="shadow-sticky fixed top-0 z-50 w-full bg-card/95 backdrop-blur-xl">
+        <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 md:pb-2">
           <Link
             href="/"
             className="inline-flex h-11 items-center font-mono text-sm font-bold tracking-wider"

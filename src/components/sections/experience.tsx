@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, GraduationCap, ArrowRight } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
@@ -8,6 +9,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { experiences } from "@/data/experience";
 import { careerArc } from "@/data/career-arc";
+
+const COMPANY_ICONS: Record<string, string> = {
+  "Slice Bank": "/logos/slice-icon.png",
+  "JumpingMinds AI": "/logos/jumpingminds-icon.png",
+  "Disney+ Hotstar": "/logos/disney-hotstar-icon.webp",
+};
 
 export function Experience() {
   const { ref: timelineRef, inView: timelineInView } = useInView();
@@ -58,10 +65,27 @@ export function Experience() {
                           </div>
                           <ArrowRight className="h-4 w-4 text-muted-foreground/30 transition-colors group-hover:text-primary group-focus-visible:text-primary" />
                         </div>
-                        <h3 className="text-lg font-semibold">{exp.company}</h3>
-                        <p className="mb-3 text-sm text-muted-foreground">
-                          {exp.role}
-                        </p>
+                        <div className="mb-3 flex items-center gap-2.5">
+                          {COMPANY_ICONS[exp.company] && (
+                            <Image
+                              src={COMPANY_ICONS[exp.company]}
+                              alt=""
+                              width={36}
+                              height={36}
+                              className="h-9 w-9 shrink-0 rounded-lg object-cover"
+                              unoptimized
+                              aria-hidden="true"
+                            />
+                          )}
+                          <div>
+                            <p className="text-xs text-muted-foreground/60">
+                              {exp.company}
+                            </p>
+                            <h3 className="text-base font-semibold leading-tight">
+                              {exp.role}
+                            </h3>
+                          </div>
+                        </div>
                         <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                           {exp.description}
                         </p>

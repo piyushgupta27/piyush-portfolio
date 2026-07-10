@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 const stats = [
   { label: "Peak concurrent users", value: "50M" },
   { label: "JumpingMinds users", value: "1M+" },
-  { label: "Messages · IPL cricket season 2019", value: "250B+" },
+  { label: "Messages · 2019 cricket season", value: "250B+" },
   { label: "Engineers led currently", value: "15+" },
 ];
 
@@ -78,7 +78,7 @@ $ echo $STATUS
                 <p>
                   At Disney+ Hotstar I built real-time messaging infrastructure
                   that served 50M+ concurrent users at sub-second latency — 250
-                  billion messages during the IPL 2019 cricket season.
+                  billion messages during the 2019 cricket season.
                 </p>
                 <p className="rounded-lg border border-border/50 bg-card px-4 py-3 text-sm">
                   <span className="font-semibold text-foreground">

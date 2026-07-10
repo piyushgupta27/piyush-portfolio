@@ -8,7 +8,7 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: "Slice Small Finance Bank",
+    company: "Slice Bank",
     role: "Engineering Manager",
     period: "Sep 2024 — Present",
     description:
@@ -40,7 +40,7 @@ export const experiences: Experience[] = [
     role: "Engineering Lead",
     period: "Jan 2018 — Jun 2021",
     description:
-      "Engineering Lead for the Social, Gaming & Sports pod (15 engineers). Built PubSub/MQTT real-time messaging infrastructure serving 35M+ concurrent users at sub-second latency in production — the same architecture scaled to 50M+ CCU on a platform of 500M+ total users. 250B+ messages delivered during IPL 2019. Co-founded the Architecture Council — weekly design reviews across 15+ engineering teams. Shipped SEA localisation platform: eliminated 80% of manual ops per new country launch, cut launch time by 3 weeks.",
+      "Engineering Lead for the Social, Gaming & Sports pod (15 engineers). Built PubSub/MQTT real-time messaging infrastructure serving 35M+ concurrent users at sub-second latency in production — the same architecture scaled to 50M+ CCU on a platform of 500M+ total users. 250B+ messages delivered during the 2019 cricket season. Co-founded the Architecture Council — weekly design reviews across 15+ engineering teams. Shipped SEA localisation platform: eliminated 80% of manual ops per new country launch, cut launch time by 3 weeks.",
     tech: [
       "Real-time Systems",
       "PubSub/MQTT",

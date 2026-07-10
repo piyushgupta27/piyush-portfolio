@@ -16,7 +16,7 @@ export const talks: Talk[] = [
     event: "RootConf Delhi 2020",
     date: "January 2020",
     description:
-      "How Hotstar built an MQTT-based PubSub system to handle 50M concurrent socket connections for IPL 2019. Covers the architecture, failure modes, and how the system delivered 250B+ messages across a single cricket season.",
+      "How Hotstar built an MQTT-based PubSub system to handle 50M concurrent socket connections during the 2019 cricket season. Covers the architecture, failure modes, and how the system delivered 250B+ messages at peak concurrency.",
     tags: ["Infrastructure", "Distributed Systems", "MQTT", "Scale"],
     links: [
       {
