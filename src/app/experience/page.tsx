@@ -164,7 +164,7 @@ export default function ExperiencePage() {
             {/* Mobile company nav strip — hidden on desktop where sidebar takes over */}
             <ExperienceNavStrip
               entries={fullEntries}
-              className="shadow-sticky mb-8 lg:hidden sticky top-14 z-10 -mx-6 px-6 pb-2 bg-card"
+              className="mb-8 lg:hidden sticky top-14 z-10 -mx-6 px-6 pb-2 bg-card border-b border-border"
             />
 
             {/* Full role entries */}
