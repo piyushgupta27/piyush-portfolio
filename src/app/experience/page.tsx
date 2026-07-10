@@ -14,11 +14,11 @@ import type {
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Engineering career across Disney+ Hotstar, JumpingMinds AI, and Slice — real-time systems at 50M CCU, AI products before ChatGPT, and payment infrastructure built from scratch.",
+    "Engineering career across Slice, JumpingMinds AI, Disney+ Hotstar, and HyperTrack — payment infrastructure, AI products before ChatGPT, real-time systems at 50M CCU, and open-source mobile SDKs.",
   openGraph: {
     title: "Experience — Piyush Gupta",
     description:
-      "Engineering career across Disney+ Hotstar, JumpingMinds AI, and Slice — real-time systems at 50M CCU, AI products before ChatGPT, and payment infrastructure built from scratch.",
+      "Engineering career across Slice, JumpingMinds AI, Disney+ Hotstar, and HyperTrack — payment infrastructure, AI products before ChatGPT, real-time systems at 50M CCU, and open-source mobile SDKs.",
     url: "https://www.piyushgupta.io/experience",
     images: [{ url: "https://www.piyushgupta.io/opengraph-image" }],
   },

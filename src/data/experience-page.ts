@@ -122,7 +122,7 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
     situation:
       "Location intelligence platform for real-time movement tracking. No developer SDK ecosystem existed for mobile location — built and shipped the open-source Android libraries from scratch, owned engineering delivery end-to-end, and grew a developer community that put HyperTrack on the map.",
     outcomes: [
-      "smart-scheduler-android: 500+ GitHub stars, 20K+ developers, trending #1 on GitHub Trending (Java) — 256 stars in a single day",
+      "smart-scheduler-android: 500+ GitHub stars, 20K+ developers — #1 GitHub Trending (Java) for 3 consecutive days, 256 stars in a single day",
       "live-app (Android + iOS): 103 HN points, 40 comments, 2000+ developers — Show HN, zero marketing spend",
       "hyperlog-android: 1000+ developers adopted as a utility logging library",
       "Android Weekly #234 feature — international developer community reach",
@@ -130,7 +130,7 @@ export const experiencePageEntries: ExperiencePageEntry[] = [
       "Cultivated a 1000+ developer community through open-source, technical blog, and ecosystem events; coached 2 senior engineers",
     ],
     theCall:
-      "The product was B2B — enterprise location intelligence. The bet was open-sourcing the Android building blocks anyway, instead of keeping them closed. smart-scheduler-android hit GitHub Trending (top Java) without a PR campaign, pulling 256 stars in a single day. That's the kind of credibility a startup can't buy: 20K+ developers showing up because the library solved a real problem, not because of outreach.",
+      "The product was B2B — enterprise location intelligence. The bet was open-sourcing the Android building blocks anyway, instead of keeping them closed. smart-scheduler-android hit #1 on GitHub Trending (Java) without a PR campaign — stayed on the trending page for 3 consecutive days, pulling 256 stars in a single day. That's the kind of credibility a startup can't buy: 20K+ developers showing up because the library solved a real problem, not because of outreach.",
     tech: [
       "Android",
       "Mobile SDKs",
