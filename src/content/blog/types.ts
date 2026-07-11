@@ -1,5 +1,9 @@
 export type ContentBlock =
-  | { type: "paragraph"; text: string }
+  | {
+      type: "paragraph";
+      text: string;
+      localeText?: Partial<Record<string, string>>;
+    }
   | { type: "heading"; text: string }
   | { type: "subheading"; text: string; number?: string }
   | {

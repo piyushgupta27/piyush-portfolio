@@ -123,7 +123,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "If you're building an engineering organisation that wants to think seriously about where AI fits in EM workflows — which tools are worth the design investment, where the ROI is real versus aspirational, how to establish the governance model before you have an incident — I'm actively exploring Senior Engineering Manager roles in the UK, Ireland, Europe, and Singapore. The full toolkit is live at Slice. I'd rather talk about the hard cases than describe the easy wins.",
+      text: "If you're building an engineering organisation that wants to think seriously about where AI fits in EM workflows — which tools are worth the design investment, where the ROI is real versus aspirational, how to establish the governance model before you have an incident — I'm actively exploring Senior Engineering Manager roles {regionPhrase}. The full toolkit is live at Slice. I'd rather talk about the hard cases than describe the easy wins.",
     },
   ],
 };

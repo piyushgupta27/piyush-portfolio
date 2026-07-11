@@ -4,15 +4,16 @@ import Image from "next/image";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
+import { type LocaleConfig, getRegionPhrase } from "@/lib/locale";
 
 const stats = [
   { label: "Peak concurrent users", value: "50M" },
   { label: "JumpingMinds users", value: "1M+" },
-  { label: "Messages · 2019 cricket season", value: "250B+" },
+  { label: "Messages · 2019 IPL season", value: "250B+" },
   { label: "Engineers led currently", value: "15+" },
 ];
 
-export function About() {
+export function About({ locale }: { locale: LocaleConfig }) {
   return (
     <section id="about" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">
@@ -77,8 +78,10 @@ $ echo $STATUS
                 </p>
                 <p>
                   At Disney+ Hotstar I built real-time messaging infrastructure
-                  that served 50M+ concurrent users at sub-second latency — 250
-                  billion messages during the 2019 cricket season.
+                  that served 50M+ concurrent users at sub-second latency —{" "}
+                  {locale.cricketContext === "known"
+                    ? "250 billion messages during the 2019 cricket season."
+                    : "250 billion messages during the 2019 IPL season — India's biggest sporting event."}
                 </p>
                 <p className="rounded-lg border border-border/50 bg-card px-4 py-3 text-sm">
                   <span className="font-semibold text-foreground">
@@ -102,8 +105,9 @@ $ echo $STATUS
                   onboarding automation, and a managerial AI toolkit.
                 </p>
                 <p>
-                  Open to Sr EM roles and relocation: UK · Ireland · Europe ·
-                  UAE · Saudi Arabia · Singapore.
+                  {locale.highlightedRegion
+                    ? `Open to Sr EM roles — targeting a role ${getRegionPhrase(locale)}.`
+                    : "Open to Sr EM roles and relocation: UK · Ireland · Europe · UAE · Saudi Arabia · Singapore."}
                 </p>
               </div>
 
