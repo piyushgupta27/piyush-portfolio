@@ -100,6 +100,70 @@ describe("blog post page — gh-141 changes", () => {
   });
 });
 
+describe("blog post page — locale-aware rendering (gh-215)", () => {
+  const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+
+  it("exports force-dynamic for per-request geo detection", () => {
+    assert.ok(
+      src.includes('export const dynamic = "force-dynamic"'),
+      'blog page must export dynamic = "force-dynamic" for SSR locale detection',
+    );
+  });
+
+  it("reads x-vercel-ip-country via headers()", () => {
+    assert.ok(
+      src.includes("headers()"),
+      "blog page must call headers() to read x-vercel-ip-country",
+    );
+    assert.ok(
+      src.includes("x-vercel-ip-country"),
+      "blog page must read x-vercel-ip-country header",
+    );
+  });
+
+  it("geo spoof is gated to non-production only", () => {
+    assert.ok(
+      src.includes('process.env.NODE_ENV !== "production"'),
+      "?geo= spoof must be gated to non-production only — never leaks to prod",
+    );
+  });
+
+  it("renderBlock paragraph case applies localeText currency lookup", () => {
+    assert.ok(
+      src.includes("block.localeText?.[locale.currency.code]"),
+      "paragraph renderBlock must look up localeText by currency code",
+    );
+  });
+
+  it("renderBlock paragraph case applies {regionPhrase} template substitution", () => {
+    assert.ok(
+      src.includes('replace("{regionPhrase}", getRegionPhrase(locale))'),
+      "paragraph renderBlock must substitute {regionPhrase} template",
+    );
+  });
+
+  it("renderBlock falls back to block.text when localeText has no entry", () => {
+    assert.ok(
+      src.includes("?? block.text"),
+      "localeText lookup must fall back to block.text via ??",
+    );
+  });
+
+  it("passes locale to every renderBlock call", () => {
+    assert.ok(
+      src.includes("renderBlock(block, i, locale)"),
+      "every renderBlock call must receive the locale argument",
+    );
+  });
+
+  it("generateStaticParams is retained alongside force-dynamic", () => {
+    assert.ok(
+      src.includes("generateStaticParams"),
+      "generateStaticParams must coexist with force-dynamic for route enumeration",
+    );
+  });
+});
+
 describe("blog post page — Article JSON-LD schema (gh-168)", () => {
   const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
 

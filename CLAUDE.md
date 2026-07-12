@@ -59,3 +59,42 @@ gh run watch $(gh run list --branch main -L 1 --json databaseId -q '.[0].databas
 ```
 
 Do not mark the task done, update continuation docs, or move to next work until the run is green.
+
+## i18n authoring guide
+
+Locale detection is server-side only (`x-vercel-ip-country` header, `?geo=XX` spoof in non-production). No client JS, no CLS risk.
+
+### What IS locale-sensitive
+- Status badge in Hero — shows personalised region phrase when detected
+- Bio relocation sentence in About — targeted region phrase when detected
+- Contact section description — targeted region phrase when detected
+- Blog paragraph text — `localeText` map (keyed by `CurrencyCode`) for currency variants; `{regionPhrase}` template in `text` field for region-targeted copy
+
+### What is NOT locale-sensitive
+- Page titles, OG metadata, headings, callouts, lists, code blocks
+- Stats panel values and labels
+- CTAs, links, image captions
+
+### Adding locale-aware copy to a blog paragraph
+```ts
+{
+  type: "paragraph",
+  text: "...costs {regionPhrase}.",          // {regionPhrase} substituted at render
+  localeText: {
+    GBP: "...costs ~£5 {regionPhrase}.",     // shown to GBP visitors; {regionPhrase} still substituted
+    EUR: "...costs ~€5.50 {regionPhrase}.",
+    SGD: "...costs ~S$8 {regionPhrase}.",
+    AED: "...costs ~AED 22 {regionPhrase}.",
+  },
+}
+```
+
+`localeText` is a `Partial<Record<CurrencyCode, string>>`. Omitted currencies fall back to the base `text`. Fallback: USD + generic ("internationally" from `getRegionPhrase`).
+
+### Adding a new relocation target
+1. Add country code → `RelocationRegion` in `COUNTRY_TO_REGION` in `src/lib/locale.ts`
+2. Add country code → `CurrencyCode` in `COUNTRY_TO_CURRENCY`
+3. If the target region uses cricket context, add to `CRICKET_KNOWN`
+4. Add currency code to `CurrencyCode` union if new
+5. Add `localeText` entries for the new currency in any locale-sensitive blog paragraphs
+6. Update `locale.test.ts` with assertions for the new country code

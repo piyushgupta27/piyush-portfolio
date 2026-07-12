@@ -213,6 +213,13 @@ const post: BlogPostData = {
     {
       type: "paragraph",
       text: "The cost picture: $173 in AI compute across 47 tasks — ~$6 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
+      localeText: {
+        GBP: "The cost picture: $173 in AI compute across 47 tasks — ~£5 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
+        EUR: "The cost picture: $173 in AI compute across 47 tasks — ~€5.50 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
+        SGD: "The cost picture: $173 in AI compute across 47 tasks — ~S$8 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
+        AED: "The cost picture: $173 in AI compute across 47 tasks — ~AED 22 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
+        SAR: "The cost picture: $173 in AI compute across 47 tasks — ~SAR 22 per completed task, including Opus on every review and check stage. The same tasks done manually: 2–3 hours each of fragmented engineering attention — context gathering, writing the fix, test coverage, PR scaffolding, waiting for review. At that rate, the economics aren't marginal. They're a different order of magnitude.",
+      },
     },
     {
       type: "paragraph",
@@ -279,7 +286,7 @@ const post: BlogPostData = {
     },
     {
       type: "paragraph",
-      text: "If you're building an engineering organisation that wants to think seriously about agentic-at-team-scale — what governance looks like, what breaks first, how to expand trust incrementally — I'm actively exploring Senior Engineering Manager roles in the UK, Ireland, Europe, UAE, Saudi Arabia, and Singapore. I'd rather talk about the hard problems than send a CV into a void.",
+      text: "If you're building an engineering organisation that wants to think seriously about agentic-at-team-scale — what governance looks like, what breaks first, how to expand trust incrementally — I'm actively exploring Senior Engineering Manager roles {regionPhrase}. I'd rather talk about the hard problems than send a CV into a void.",
     },
   ],
 };

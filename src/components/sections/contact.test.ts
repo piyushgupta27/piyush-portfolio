@@ -128,6 +128,49 @@ describe("contact.tsx — Calendly secondary CTA (gh-111)", () => {
   });
 });
 
+describe("contact.tsx — locale-aware description (gh-215)", () => {
+  it("accepts locale prop typed as LocaleConfig", () => {
+    assert.ok(
+      src.includes("locale: LocaleConfig") ||
+        src.includes("locale }: { locale: LocaleConfig"),
+      "Contact must accept a locale prop typed as LocaleConfig",
+    );
+  });
+
+  it("description uses locale.highlightedRegion ternary", () => {
+    assert.ok(
+      src.includes("locale.highlightedRegion"),
+      "Description must branch on locale.highlightedRegion",
+    );
+  });
+
+  it("personalised description calls getRegionPhrase(locale)", () => {
+    assert.ok(
+      src.includes("getRegionPhrase(locale)"),
+      "Personalised description must call getRegionPhrase(locale)",
+    );
+  });
+
+  it("personalised description has correct grammar — 'targeting a role'", () => {
+    assert.ok(
+      src.includes("targeting a role"),
+      "Must say 'targeting a role' — not 'targeting in the UK' (grammar fix gh-215 adversarial review)",
+    );
+  });
+
+  it("fallback description contains full geo list", () => {
+    assert.ok(
+      src.includes("UK · Ireland · Europe · UAE · Saudi Arabia · Singapore"),
+      "Fallback description must contain full geo list",
+    );
+  });
+
+  it("both description variants mention 'Series A–D AI companies'", () => {
+    const count = (src.match(/Series A/g) ?? []).length;
+    assert.ok(count >= 1, "Description must mention Series A");
+  });
+});
+
 describe("contact.tsx — touch target ≥44px (gh-43)", () => {
   it("email link has min-h-[44px]", () => {
     const mailIdx = src.indexOf('href="mailto:piyushguptaece@gmail.com"');

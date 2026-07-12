@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,11 +8,19 @@ import { getPostBySlug, getAllSlugs, calculateReadTime } from "@/content/blog";
 import type { ContentBlock } from "@/content/blog";
 import { AnchorLink } from "./anchor-link";
 import { ScrollFade } from "./scroll-fade";
+import {
+  type LocaleConfig,
+  getLocaleConfig,
+  getRegionPhrase,
+} from "@/lib/locale";
+
+export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://www.piyushgupta.io";
 
 interface Props {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export function generateStaticParams() {
@@ -48,7 +57,7 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
-function renderBlock(block: ContentBlock, i: number) {
+function renderBlock(block: ContentBlock, i: number, locale: LocaleConfig) {
   switch (block.type) {
     case "heading": {
       const id = slugify(block.text);
@@ -79,15 +88,18 @@ function renderBlock(block: ContentBlock, i: number) {
         </h3>
       );
 
-    case "paragraph":
+    case "paragraph": {
+      const base = block.localeText?.[locale.currency.code] ?? block.text;
+      const text = base.replace("{regionPhrase}", getRegionPhrase(locale));
       return (
         <p
           key={i}
           className="mb-6 leading-relaxed text-pretty text-foreground/90"
         >
-          {block.text}
+          {text}
         </p>
       );
+    }
 
     case "image":
       return (
@@ -264,8 +276,14 @@ function renderBlock(block: ContentBlock, i: number) {
   }
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const hdrs = await headers();
+  const sp = process.env.NODE_ENV !== "production" ? await searchParams : null;
+  const geo = typeof sp?.["geo"] === "string" ? sp["geo"] : null;
+  const country = geo ?? hdrs.get("x-vercel-ip-country");
+  const locale = getLocaleConfig(country);
+
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
@@ -445,7 +463,9 @@ export default async function BlogPostPage({ params }: Props) {
               {/* Article body — skip first 2 paragraphs shown above stats */}
               <div className="max-w-[65ch]">
                 {post.content.map((block, i) =>
-                  introParaIndices.has(i) ? null : renderBlock(block, i),
+                  introParaIndices.has(i)
+                    ? null
+                    : renderBlock(block, i, locale),
                 )}
               </div>
 

@@ -7,15 +7,20 @@ import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/motion/fade-in";
+import { type LocaleConfig, getRegionPhrase } from "@/lib/locale";
 
-export function Contact() {
+export function Contact({ locale }: { locale: LocaleConfig }) {
+  const description = locale.highlightedRegion
+    ? `Open to Sr EM roles at Series A–D AI companies. Based in India — open to relocation, targeting a role ${getRegionPhrase(locale)}. Reply within 24h.`
+    : "Open to Sr EM roles at Series A–D AI companies. Based in India — open to relocation: UK · Ireland · Europe · UAE · Saudi Arabia · Singapore. Reply within 24h.";
+
   return (
     <section id="contact" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-2xl">
         <SectionHeading
           label="// contact"
           title="Let's Build Something"
-          description="Open to Sr EM roles at Series A–D AI companies. Based in India — open to relocation: UK · Ireland · Europe · UAE · Saudi Arabia · Singapore. Reply within 24h."
+          description={description}
         />
 
         <FadeIn>

@@ -109,6 +109,46 @@ describe("Hero — LCP image fix (gh-72)", () => {
   });
 });
 
+describe("Hero — locale-aware badge (gh-215)", () => {
+  test("accepts locale prop (signature uses LocaleConfig)", () => {
+    assert.ok(
+      src.includes("locale: LocaleConfig") ||
+        src.includes("locale }: { locale: LocaleConfig"),
+      "Hero must accept a locale prop typed as LocaleConfig",
+    );
+  });
+
+  test("badge uses locale.highlightedRegion ternary — not a static string", () => {
+    assert.ok(
+      src.includes("locale.highlightedRegion"),
+      "Badge must branch on locale.highlightedRegion, not render a static geo list",
+    );
+  });
+
+  test("personalised branch calls getRegionPhrase(locale)", () => {
+    assert.ok(
+      src.includes("getRegionPhrase(locale)"),
+      "Personalised badge branch must call getRegionPhrase(locale)",
+    );
+  });
+
+  test("personalised badge prefix is correct", () => {
+    assert.ok(
+      src.includes("Open to Sr EM roles — "),
+      "Personalised badge must use em-dash separator: 'Open to Sr EM roles — '",
+    );
+  });
+
+  test("fallback badge contains full geo list", () => {
+    const fallback =
+      "Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia · Singapore · Remote";
+    assert.ok(
+      src.includes(fallback),
+      "Fallback badge must contain full geo list for non-targeted visitors",
+    );
+  });
+});
+
 describe("Hero — touch target ≥44px (gh-43)", () => {
   test("GitHub icon link has min-h-[44px] and min-w-[44px]", () => {
     const ghIdx = src.indexOf('aria-label="GitHub"');

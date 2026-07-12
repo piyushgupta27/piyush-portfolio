@@ -5,8 +5,9 @@ import { ArrowDown, Download } from "lucide-react";
 import { GithubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { type LocaleConfig, getRegionPhrase } from "@/lib/locale";
 
-export function Hero() {
+export function Hero({ locale }: { locale: LocaleConfig }) {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-16">
       {/* Background image */}
@@ -65,8 +66,9 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
           </span>
-          Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia ·
-          Singapore · Remote
+          {locale.highlightedRegion
+            ? `Open to Sr EM roles — ${getRegionPhrase(locale)}`
+            : "Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia · Singapore · Remote"}
         </div>
 
         {/* Name — LCP element: no delay, visible as soon as CSS loads */}

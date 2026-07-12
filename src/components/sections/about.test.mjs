@@ -35,14 +35,18 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test('shows "250B+" messages during 2019 cricket season', () => {
+    test('shows "250B+" with locale-aware stat label', () => {
       assert.ok(
         src.includes('"250B+"'),
         'Expected stats to contain value "250B+"',
       );
       assert.ok(
         src.includes("Messages · 2019 cricket season"),
-        'Expected stats label "Messages · 2019 cricket season"',
+        'Expected cricket-known label "Messages · 2019 cricket season"',
+      );
+      assert.ok(
+        src.includes("Messages · live sports broadcast"),
+        'Expected cricket-unknown label "Messages · live sports broadcast"',
       );
     });
 
@@ -106,6 +110,71 @@ describe("about.tsx — bio content (gh-2)", () => {
       assert.ok(
         src.includes("relocation"),
         'Expected bio to mention "relocation"',
+      );
+    });
+  });
+
+  describe("locale-aware copy (gh-215)", () => {
+    test("accepts locale prop typed as LocaleConfig", () => {
+      assert.ok(
+        src.includes("locale: LocaleConfig") ||
+          src.includes("locale }: { locale: LocaleConfig"),
+        "About must accept a locale prop typed as LocaleConfig",
+      );
+    });
+
+    test("cricket paragraph uses locale.cricketContext ternary", () => {
+      assert.ok(
+        src.includes('locale.cricketContext === "known"'),
+        "Hotstar paragraph must branch on locale.cricketContext",
+      );
+    });
+
+    test("cricket-known branch: uses short form without qualifier (paragraph + stat card)", () => {
+      assert.ok(
+        src.includes("250 billion messages during the 2019 cricket season."),
+        "Cricket-known paragraph must use short form: '2019 cricket season'",
+      );
+      assert.ok(
+        src.includes("Messages · 2019 cricket season"),
+        "Cricket-known stat card must use 'Messages · 2019 cricket season'",
+      );
+    });
+
+    test("cricket-unknown branch: includes IPL qualifier for non-cricket audiences", () => {
+      assert.ok(
+        src.includes(
+          "250 billion messages during the 2019 IPL season — India's biggest sporting event.",
+        ),
+        "Cricket-unknown branch must include IPL qualifier",
+      );
+    });
+
+    test("relocation paragraph uses locale.highlightedRegion ternary", () => {
+      assert.ok(
+        src.includes("locale.highlightedRegion"),
+        "Relocation paragraph must branch on locale.highlightedRegion",
+      );
+    });
+
+    test("relocation personalised branch calls getRegionPhrase(locale)", () => {
+      assert.ok(
+        src.includes("getRegionPhrase(locale)"),
+        "Personalised relocation sentence must call getRegionPhrase(locale)",
+      );
+    });
+
+    test("relocation personalised branch has correct grammar — 'targeting a role'", () => {
+      assert.ok(
+        src.includes("targeting a role"),
+        "Relocation sentence must say 'targeting a role' — not 'targeting in the UK' (grammar fix)",
+      );
+    });
+
+    test("relocation fallback contains full geo list", () => {
+      assert.ok(
+        src.includes("UK · Ireland · Europe · UAE · Saudi Arabia · Singapore"),
+        "Relocation fallback must contain full geo list",
       );
     });
   });
