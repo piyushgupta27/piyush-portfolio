@@ -6,14 +6,19 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Card, CardContent } from "@/components/ui/card";
 import { type LocaleConfig, getRegionPhrase } from "@/lib/locale";
 
-const stats = [
-  { label: "Peak concurrent users", value: "50M" },
-  { label: "JumpingMinds users", value: "1M+" },
-  { label: "Messages · 2019 IPL season", value: "250B+" },
-  { label: "Engineers led currently", value: "15+" },
-];
-
 export function About({ locale }: { locale: LocaleConfig }) {
+  const stats = [
+    { label: "Peak concurrent users", value: "50M" },
+    { label: "JumpingMinds users", value: "1M+" },
+    {
+      label:
+        locale.cricketContext === "known"
+          ? "Messages · 2019 cricket season"
+          : "Messages · live sports broadcast",
+      value: "250B+",
+    },
+    { label: "Engineers led currently", value: "15+" },
+  ];
   return (
     <section id="about" className="py-16 md:py-24 px-6">
       <div className="mx-auto max-w-6xl">

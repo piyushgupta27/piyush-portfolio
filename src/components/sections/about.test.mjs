@@ -35,14 +35,18 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test('shows "250B+" messages during 2019 IPL season', () => {
+    test('shows "250B+" with locale-aware stat label', () => {
       assert.ok(
         src.includes('"250B+"'),
         'Expected stats to contain value "250B+"',
       );
       assert.ok(
-        src.includes("Messages · 2019 IPL season"),
-        'Expected stats label "Messages · 2019 IPL season"',
+        src.includes("Messages · 2019 cricket season"),
+        'Expected cricket-known label "Messages · 2019 cricket season"',
+      );
+      assert.ok(
+        src.includes("Messages · live sports broadcast"),
+        'Expected cricket-unknown label "Messages · live sports broadcast"',
       );
     });
 
@@ -126,10 +130,14 @@ describe("about.tsx — bio content (gh-2)", () => {
       );
     });
 
-    test("cricket-known branch: uses short form without qualifier", () => {
+    test("cricket-known branch: uses short form without qualifier (paragraph + stat card)", () => {
       assert.ok(
         src.includes("250 billion messages during the 2019 cricket season."),
-        "Cricket-known branch must use short form: '2019 cricket season'",
+        "Cricket-known paragraph must use short form: '2019 cricket season'",
+      );
+      assert.ok(
+        src.includes("Messages · 2019 cricket season"),
+        "Cricket-known stat card must use 'Messages · 2019 cricket season'",
       );
     });
 
