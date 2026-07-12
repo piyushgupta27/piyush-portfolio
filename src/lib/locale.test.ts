@@ -122,6 +122,19 @@ describe("getLocaleConfig", () => {
     const c = getLocaleConfig("gb");
     expect(c.country).toBe("GB");
   });
+
+  test("US → USD, no highlighted region, cricket needs-qualifier", () => {
+    const c = getLocaleConfig("US");
+    expect(c.currency.code).toBe("USD");
+    expect(c.highlightedRegion).toBeNull();
+    expect(c.cricketContext).toBe("needs-qualifier");
+  });
+
+  test("CA → USD, no highlighted region", () => {
+    const c = getLocaleConfig("CA");
+    expect(c.currency.code).toBe("USD");
+    expect(c.highlightedRegion).toBeNull();
+  });
 });
 
 describe("getRegionPhrase", () => {
