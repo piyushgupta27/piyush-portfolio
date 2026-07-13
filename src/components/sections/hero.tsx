@@ -71,18 +71,18 @@ export function Hero({ locale }: { locale: LocaleConfig }) {
             : "Open to Sr EM roles · UK · Ireland · Europe · UAE · Saudi Arabia · Singapore · Remote"}
         </div>
 
-        {/* Name — LCP element: no delay, visible as soon as CSS loads */}
-        <h1 className="animate-in fade-in slide-in-from-bottom-4 mb-4 text-4xl font-bold tracking-tight duration-500 delay-100 sm:text-5xl md:text-7xl">
+        {/* Name — no fade-in: opacity stays 1 so Chrome can measure LCP at first paint */}
+        <h1 className="animate-in slide-in-from-bottom-4 mb-4 text-4xl font-bold tracking-tight duration-500 delay-100 sm:text-5xl md:text-7xl">
           Piyush <span className="text-primary">Gupta</span>
         </h1>
 
-        {/* Tagline */}
-        <p className="animate-in fade-in slide-in-from-bottom-4 mb-6 text-xl font-semibold text-foreground duration-500 delay-200 sm:text-2xl">
+        {/* Tagline — no fade-in: opacity 1 from first paint, slide stagger preserved */}
+        <p className="animate-in slide-in-from-bottom-4 mb-6 text-xl font-semibold text-foreground duration-500 delay-200 sm:text-2xl">
           Built real-time infra for 50M+ concurrent users. Founded an AI
           startup. Still ships AI code.
         </p>
 
-        {/* Sub-tagline — LCP element: no opacity animation so browser measures paint at FCP */}
+        {/* Sub-tagline — no fade-in: opacity 1 from first paint */}
         <p className="animate-in slide-in-from-bottom-4 mx-auto mb-6 max-w-2xl text-lg text-muted-foreground duration-500 delay-300 sm:mb-10 sm:text-xl">
           Engineering Manager · IIT Roorkee → Hotstar → Slice · Co-Founder
           (JumpingMinds, 1M+ users)
