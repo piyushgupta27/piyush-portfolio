@@ -57,6 +57,14 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
+function resolveText(
+  block: { text: string; localeText?: Partial<Record<string, string>> },
+  locale: LocaleConfig,
+): string {
+  const base = block.localeText?.[locale.currency.code] ?? block.text;
+  return base.replace("{regionPhrase}", getRegionPhrase(locale));
+}
+
 function renderBlock(block: ContentBlock, i: number, locale: LocaleConfig) {
   switch (block.type) {
     case "heading": {
@@ -88,18 +96,15 @@ function renderBlock(block: ContentBlock, i: number, locale: LocaleConfig) {
         </h3>
       );
 
-    case "paragraph": {
-      const base = block.localeText?.[locale.currency.code] ?? block.text;
-      const text = base.replace("{regionPhrase}", getRegionPhrase(locale));
+    case "paragraph":
       return (
         <p
           key={i}
           className="mb-6 leading-relaxed text-pretty text-foreground/90"
         >
-          {text}
+          {resolveText(block, locale)}
         </p>
       );
-    }
 
     case "image":
       return (
@@ -307,7 +312,7 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
   }
   const introParagraphs = post.content.filter((_, i) =>
     introParaIndices.has(i),
-  ) as { type: "paragraph"; text: string }[];
+  ) as Extract<ContentBlock, { type: "paragraph" }>[];
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -401,7 +406,7 @@ export default async function BlogPostPage({ params, searchParams }: Props) {
             </p>
             {introParagraphs.map((b, i) => (
               <p key={i} className="leading-relaxed text-foreground/90">
-                {b.text}
+                {resolveText(b, locale)}
               </p>
             ))}
           </div>

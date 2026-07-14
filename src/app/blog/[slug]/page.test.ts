@@ -164,6 +164,49 @@ describe("blog post page — locale-aware rendering (gh-215)", () => {
   });
 });
 
+describe("blog post page — intro paragraph locale substitution (gh-223)", () => {
+  const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+
+  it("resolveText helper is defined in source", () => {
+    assert.ok(
+      src.includes("function resolveText("),
+      "resolveText helper must be defined to centralise localeText + {regionPhrase} substitution",
+    );
+  });
+
+  it("introParagraphs type cast preserves localeText field", () => {
+    assert.ok(
+      src.includes('Extract<ContentBlock, { type: "paragraph" }>'),
+      "introParagraphs cast must use Extract<ContentBlock, { type: 'paragraph' }> so localeText is not stripped",
+    );
+  });
+
+  it("intro paragraph render calls resolveText, not bare b.text", () => {
+    assert.ok(
+      src.includes("resolveText(b, locale)"),
+      "intro paragraph render must call resolveText(b, locale) — not {b.text} — so localeText and {regionPhrase} are substituted",
+    );
+    assert.ok(
+      !src.includes("{b.text}"),
+      "intro paragraph render must not use bare {b.text} — that path bypasses locale substitution",
+    );
+  });
+
+  it("resolveText applies localeText currency lookup", () => {
+    assert.ok(
+      src.includes("block.localeText?.[locale.currency.code]"),
+      "resolveText must look up localeText by currency code",
+    );
+  });
+
+  it("resolveText applies {regionPhrase} substitution", () => {
+    assert.ok(
+      src.includes('replace("{regionPhrase}", getRegionPhrase(locale))'),
+      "resolveText must substitute {regionPhrase} via getRegionPhrase(locale)",
+    );
+  });
+});
+
 describe("blog post page — Article JSON-LD schema (gh-168)", () => {
   const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
 
