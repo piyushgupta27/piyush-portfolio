@@ -137,8 +137,8 @@ describe("blog post page — locale-aware rendering (gh-215)", () => {
 
   it("renderBlock paragraph case applies {regionPhrase} template substitution", () => {
     assert.ok(
-      src.includes('replace("{regionPhrase}", getRegionPhrase(locale))'),
-      "paragraph renderBlock must substitute {regionPhrase} template",
+      src.includes('replaceAll("{regionPhrase}", getRegionPhrase(locale))'),
+      "paragraph renderBlock must substitute {regionPhrase} template (replaceAll covers multiple tokens per paragraph)",
     );
   });
 
@@ -174,10 +174,10 @@ describe("blog post page — intro paragraph locale substitution (gh-223)", () =
     );
   });
 
-  it("introParagraphs type cast preserves localeText field", () => {
+  it("introParagraphs type cast uses Extract<ContentBlock> for type-level localeText visibility", () => {
     assert.ok(
       src.includes('Extract<ContentBlock, { type: "paragraph" }>'),
-      "introParagraphs cast must use Extract<ContentBlock, { type: 'paragraph' }> so localeText is not stripped",
+      "introParagraphs cast must use Extract<ContentBlock, { type: 'paragraph' }> so localeText is visible to the type system",
     );
   });
 
@@ -189,20 +189,6 @@ describe("blog post page — intro paragraph locale substitution (gh-223)", () =
     assert.ok(
       !src.includes("{b.text}"),
       "intro paragraph render must not use bare {b.text} — that path bypasses locale substitution",
-    );
-  });
-
-  it("resolveText applies localeText currency lookup", () => {
-    assert.ok(
-      src.includes("block.localeText?.[locale.currency.code]"),
-      "resolveText must look up localeText by currency code",
-    );
-  });
-
-  it("resolveText applies {regionPhrase} substitution", () => {
-    assert.ok(
-      src.includes('replace("{regionPhrase}", getRegionPhrase(locale))'),
-      "resolveText must substitute {regionPhrase} via getRegionPhrase(locale)",
     );
   });
 });

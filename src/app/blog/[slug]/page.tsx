@@ -62,7 +62,7 @@ function resolveText(
   locale: LocaleConfig,
 ): string {
   const base = block.localeText?.[locale.currency.code] ?? block.text;
-  return base.replace("{regionPhrase}", getRegionPhrase(locale));
+  return base.replaceAll("{regionPhrase}", getRegionPhrase(locale));
 }
 
 function renderBlock(block: ContentBlock, i: number, locale: LocaleConfig) {
