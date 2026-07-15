@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 function FullEntry({ entry }: { entry: FullExperienceEntry }) {
   return (
     <article>
-      <p className="mb-3 font-mono text-sm text-muted-foreground/60">
+      <p className="mb-3 font-mono text-sm text-muted-foreground">
         {entry.company}
         <span className="mx-2 opacity-40">·</span>
         {entry.period}
@@ -90,7 +90,7 @@ function FullEntry({ entry }: { entry: FullExperienceEntry }) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-muted-foreground/60 transition-colors hover:text-primary"
+              className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-primary"
             >
               <span className="text-primary/60">↗</span>
               {link.label}
@@ -105,7 +105,7 @@ function FullEntry({ entry }: { entry: FullExperienceEntry }) {
 function MinimalEntry({ entry }: { entry: MinimalExperienceEntry }) {
   return (
     <article>
-      <p className="mb-1 font-mono text-[11px] tracking-wider text-muted-foreground/60">
+      <p className="mb-1 font-mono text-[11px] tracking-wider text-muted-foreground">
         {entry.period}
       </p>
       <h3 className="mb-0.5 text-base font-semibold">
@@ -122,8 +122,8 @@ function MinimalEntry({ entry }: { entry: MinimalExperienceEntry }) {
           entry.company
         )}
       </h3>
-      <p className="mb-1 text-sm text-muted-foreground/70">{entry.role}</p>
-      <p className="text-sm text-muted-foreground/60">{entry.description}</p>
+      <p className="mb-1 text-sm text-muted-foreground">{entry.role}</p>
+      <p className="text-sm text-muted-foreground">{entry.description}</p>
     </article>
   );
 }
@@ -152,7 +152,7 @@ export default function ExperiencePage() {
             <h1 className="mb-6">
               <Link
                 href="/#experience"
-                className="group inline-flex items-center gap-2 font-mono text-xs text-muted-foreground/70 transition-colors hover:text-primary"
+                className="group inline-flex items-center gap-2 font-mono text-xs text-muted-foreground transition-colors hover:text-primary"
               >
                 <span className="transition-colors group-hover:text-primary">
                   ←
@@ -193,7 +193,7 @@ export default function ExperiencePage() {
             {minimalEntries.length > 0 && (
               <div className="mt-20">
                 <div className="mb-8 border-t border-border pt-8">
-                  <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground/50">
+                  <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">
                     Earlier career
                   </h2>
                 </div>

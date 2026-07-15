@@ -94,7 +94,7 @@ export function ExperienceArc({ entries }: { entries: FullExperienceEntry[] }) {
                       >
                         {entry.company}
                       </p>
-                      <p className="text-xs leading-snug text-muted-foreground/60">
+                      <p className="text-xs leading-snug text-muted-foreground">
                         {entry.period}
                       </p>
                     </div>
