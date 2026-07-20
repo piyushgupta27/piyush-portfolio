@@ -87,7 +87,7 @@ test("keyboard Tab reaches desktop nav links with visible focus ring on home pag
 
   await page.goto("/");
 
-  // Expected desktop nav link hrefs (logo + 6 section links)
+  // Header nav (logo + 6 links) + 2 hero CTAs ("See the work", "Get in touch")
   const expectedHrefs = [
     "/",
     "/#about",
@@ -96,12 +96,14 @@ test("keyboard Tab reaches desktop nav links with visible focus ring on home pag
     "/#projects",
     "/blog",
     "/#contact",
+    "#experience",
+    "#contact",
   ];
 
   const visitedHrefs = new Set<string>();
 
-  // Tab through enough stops to cover the entire header nav
-  for (let i = 0; i < expectedHrefs.length + 3; i++) {
+  // Tab through enough stops to reach the hero CTAs that follow the header nav
+  for (let i = 0; i < expectedHrefs.length + 5; i++) {
     await page.keyboard.press("Tab");
 
     const focused = page.locator(":focus");
