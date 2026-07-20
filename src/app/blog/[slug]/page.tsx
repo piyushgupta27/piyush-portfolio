@@ -8,11 +8,7 @@ import { getPostBySlug, getAllSlugs, calculateReadTime } from "@/content/blog";
 import type { ContentBlock } from "@/content/blog";
 import { AnchorLink } from "./anchor-link";
 import { ScrollFade } from "./scroll-fade";
-import {
-  type LocaleConfig,
-  getLocaleConfig,
-  getRegionPhrase,
-} from "@/lib/locale";
+import { type LocaleConfig, getLocaleConfig, resolveText } from "@/lib/locale";
 
 export const dynamic = "force-dynamic";
 
@@ -55,14 +51,6 @@ function slugify(text: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
-}
-
-function resolveText(
-  block: { text: string; localeText?: Partial<Record<string, string>> },
-  locale: LocaleConfig,
-): string {
-  const base = block.localeText?.[locale.currency.code] ?? block.text;
-  return base.replaceAll("{regionPhrase}", getRegionPhrase(locale));
 }
 
 function renderBlock(block: ContentBlock, i: number, locale: LocaleConfig) {

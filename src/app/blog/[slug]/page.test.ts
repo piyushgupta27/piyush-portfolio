@@ -128,24 +128,10 @@ describe("blog post page — locale-aware rendering (gh-215)", () => {
     );
   });
 
-  it("renderBlock paragraph case applies localeText currency lookup", () => {
+  it("renderBlock paragraph case delegates to resolveText for locale substitution", () => {
     assert.ok(
-      src.includes("block.localeText?.[locale.currency.code]"),
-      "paragraph renderBlock must look up localeText by currency code",
-    );
-  });
-
-  it("renderBlock paragraph case applies {regionPhrase} template substitution", () => {
-    assert.ok(
-      src.includes('replaceAll("{regionPhrase}", getRegionPhrase(locale))'),
-      "paragraph renderBlock must substitute {regionPhrase} template (replaceAll covers multiple tokens per paragraph)",
-    );
-  });
-
-  it("renderBlock falls back to block.text when localeText has no entry", () => {
-    assert.ok(
-      src.includes("?? block.text"),
-      "localeText lookup must fall back to block.text via ??",
+      src.includes("resolveText(block, locale)"),
+      "paragraph renderBlock must delegate to resolveText(block, locale) — currency lookup + {regionPhrase} substitution live in locale.ts",
     );
   });
 
@@ -167,10 +153,10 @@ describe("blog post page — locale-aware rendering (gh-215)", () => {
 describe("blog post page — intro paragraph locale substitution (gh-223)", () => {
   const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
 
-  it("resolveText helper is defined in source", () => {
+  it("resolveText is imported from locale lib (not re-implemented inline)", () => {
     assert.ok(
-      src.includes("function resolveText("),
-      "resolveText helper must be defined to centralise localeText + {regionPhrase} substitution",
+      src.includes("resolveText") && src.includes("@/lib/locale"),
+      "resolveText must be imported from @/lib/locale, not re-implemented in the page",
     );
   });
 

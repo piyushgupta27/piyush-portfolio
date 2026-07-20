@@ -118,3 +118,11 @@ export function getRegionPhrase(locale: LocaleConfig): string {
   const article = NEEDS_ARTICLE.has(locale.highlightedRegion) ? "the " : "";
   return `in ${article}${locale.highlightedRegion}`;
 }
+
+export function resolveText(
+  block: { text: string; localeText?: Partial<Record<string, string>> },
+  locale: LocaleConfig,
+): string {
+  const base = block.localeText?.[locale.currency.code] ?? block.text;
+  return base.replaceAll("{regionPhrase}", getRegionPhrase(locale));
+}
