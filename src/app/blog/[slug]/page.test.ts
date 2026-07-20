@@ -128,24 +128,10 @@ describe("blog post page — locale-aware rendering (gh-215)", () => {
     );
   });
 
-  it("renderBlock paragraph case applies localeText currency lookup", () => {
+  it("renderBlock paragraph case delegates to resolveText for locale substitution", () => {
     assert.ok(
-      src.includes("block.localeText?.[locale.currency.code]"),
-      "paragraph renderBlock must look up localeText by currency code",
-    );
-  });
-
-  it("renderBlock paragraph case applies {regionPhrase} template substitution", () => {
-    assert.ok(
-      src.includes('replace("{regionPhrase}", getRegionPhrase(locale))'),
-      "paragraph renderBlock must substitute {regionPhrase} template",
-    );
-  });
-
-  it("renderBlock falls back to block.text when localeText has no entry", () => {
-    assert.ok(
-      src.includes("?? block.text"),
-      "localeText lookup must fall back to block.text via ??",
+      src.includes("resolveText(block, locale)"),
+      "paragraph renderBlock must delegate to resolveText(block, locale) — currency lookup + {regionPhrase} substitution live in locale.ts",
     );
   });
 
@@ -160,6 +146,35 @@ describe("blog post page — locale-aware rendering (gh-215)", () => {
     assert.ok(
       src.includes("generateStaticParams"),
       "generateStaticParams must coexist with force-dynamic for route enumeration",
+    );
+  });
+});
+
+describe("blog post page — intro paragraph locale substitution (gh-223)", () => {
+  const src = readFileSync(resolve(dir, "page.tsx"), "utf-8");
+
+  it("resolveText is imported from locale lib (not re-implemented inline)", () => {
+    assert.ok(
+      src.includes("resolveText") && src.includes("@/lib/locale"),
+      "resolveText must be imported from @/lib/locale, not re-implemented in the page",
+    );
+  });
+
+  it("introParagraphs type cast uses Extract<ContentBlock> for type-level localeText visibility", () => {
+    assert.ok(
+      src.includes('Extract<ContentBlock, { type: "paragraph" }>'),
+      "introParagraphs cast must use Extract<ContentBlock, { type: 'paragraph' }> so localeText is visible to the type system",
+    );
+  });
+
+  it("intro paragraph render calls resolveText, not bare b.text", () => {
+    assert.ok(
+      src.includes("resolveText(b, locale)"),
+      "intro paragraph render must call resolveText(b, locale) — not {b.text} — so localeText and {regionPhrase} are substituted",
+    );
+    assert.ok(
+      !src.includes("{b.text}"),
+      "intro paragraph render must not use bare {b.text} — that path bypasses locale substitution",
     );
   });
 });

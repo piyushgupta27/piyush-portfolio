@@ -1,5 +1,10 @@
 import { describe, test, expect } from "vitest";
-import { getLocaleConfig, getRegionPhrase, RELOCATION_REGIONS } from "./locale";
+import {
+  getLocaleConfig,
+  getRegionPhrase,
+  resolveText,
+  RELOCATION_REGIONS,
+} from "./locale";
 
 describe("RELOCATION_REGIONS", () => {
   test("contains exactly 6 regions in correct order", () => {
@@ -134,6 +139,49 @@ describe("getLocaleConfig", () => {
     const c = getLocaleConfig("CA");
     expect(c.currency.code).toBe("USD");
     expect(c.highlightedRegion).toBeNull();
+  });
+});
+
+describe("resolveText (gh-223)", () => {
+  test("picks localeText entry for visitor currency over base text", () => {
+    const block = {
+      text: "costs {regionPhrase}.",
+      localeText: { GBP: "costs ~£5 {regionPhrase}." },
+    };
+    expect(resolveText(block, getLocaleConfig("GB"))).toBe(
+      "costs ~£5 in the UK.",
+    );
+  });
+
+  test("falls back to block.text when localeText has no entry for the currency", () => {
+    const block = {
+      text: "costs {regionPhrase}.",
+      localeText: { GBP: "costs ~£5 {regionPhrase}." },
+    };
+    expect(resolveText(block, getLocaleConfig("DE"))).toBe("costs in Europe.");
+  });
+
+  test("works when localeText is absent entirely", () => {
+    const block = { text: "open to roles {regionPhrase}." };
+    expect(resolveText(block, getLocaleConfig("SG"))).toBe(
+      "open to roles in Singapore.",
+    );
+  });
+
+  test("substitutes all {regionPhrase} tokens when multiple appear in one paragraph", () => {
+    const block = {
+      text: "{regionPhrase} is my focus — hire me {regionPhrase}.",
+    };
+    expect(resolveText(block, getLocaleConfig("AE"))).toBe(
+      "in the UAE is my focus — hire me in the UAE.",
+    );
+  });
+
+  test("no highlighted region → 'internationally'", () => {
+    const block = { text: "available {regionPhrase}." };
+    expect(resolveText(block, getLocaleConfig("US"))).toBe(
+      "available internationally.",
+    );
   });
 });
 
