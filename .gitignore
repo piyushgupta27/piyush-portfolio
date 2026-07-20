@@ -84,3 +84,6 @@ docs/design-review-*/screenshots/
 
 # repomix output
 repomix-output.*
+
+# pnpm local store (created when running inside Docker on Apple Silicon)
+.pnpm-store/
