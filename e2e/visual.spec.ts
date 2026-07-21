@@ -18,22 +18,48 @@ import { test, expect } from "@playwright/test";
 
 const PAGES = ["/", "/experience", "/blog"] as const;
 
-// Home page uses viewport capture (fullPage: false) rather than fullPage: true.
-// Reason: toHaveScreenshot's stability check extends the virtual viewport to
-// measure scroll height. At ~9500px tall, this triggers useInView
-// IntersectionObservers on below-hero sections mid-capture; the JS-driven
-// style changes (opacity:0 → animation) cause an ~82px height delta between
-// Playwright's two consecutive stability shots. The hero is min-h-screen, so
-// the 900px viewport capture covers it completely. Coverage gap: "hero section"
-// locator test + overflow assertions at all breakpoints fill the rest.
-const FULL_PAGE_PATHS = new Set(["/experience", "/blog"]);
-
 // ── Visual regression snapshots ──────────────────────────────────────────────
+
+// IO mock injected before page load via addInitScript. Passed as a string so
+// TypeScript doesn't type-check the class body (addInitScript serialises the
+// function via .toString() and runs it in the browser as plain JS).
+//
+// Why synchronous observe(): useInView calls setState inside the observer
+// callback. React 18 batches these updates asynchronously via MessageChannel,
+// so they may not be committed before Playwright's networkidle fires. The mock
+// makes observe() call the callback immediately — still batched, but the batch
+// is guaranteed to commit before the next paint, which waitForAnimations() can
+// then catch. Also prevents any real Observer from firing when toHaveScreenshot
+// extends the virtual viewport for fullPage capture.
+const IO_MOCK = `
+  window.IntersectionObserver = class {
+    constructor(cb) { this._cb = cb; }
+    observe(target) { this._cb([{ isIntersecting: true, target }], this); }
+    unobserve() {}
+    disconnect() {}
+  };
+`;
+
+// Wait for all useInView-driven elements to reach their final visible state.
+// React 18 commits IO-mock state updates via MessageChannel (one tick after
+// effects run) — waitForFunction polls until both FadeIn inline opacity and
+// StaggerChildren data attribute have settled, so toHaveScreenshot sees a
+// layout-stable page for both stability shots.
+async function waitForAnimations(page: import("@playwright/test").Page) {
+  await page.waitForFunction(
+    () =>
+      document.querySelectorAll('[data-stagger="hidden"]').length === 0 &&
+      document.querySelectorAll('[style*="opacity: 0"]').length === 0,
+    { timeout: 10_000 },
+  );
+}
 
 test.describe("visual regression", () => {
   // Set US locale via HTTP header (x-vercel-ip-country is Vercel-edge-only;
   // header is read in prod mode and produces the deterministic USD fallback).
   test.use({ extraHTTPHeaders: { "x-vercel-ip-country": "US" } });
+  // Full-page screenshots of ~9500px pages can exceed the 30s default timeout.
+  test.setTimeout(60_000);
 
   test.beforeEach(async ({}, testInfo) => {
     // Chromium only: webkit binary frozen on macOS 14 arm64 (Bus error: 10).
@@ -53,31 +79,16 @@ test.describe("visual regression", () => {
   test.describe("desktop 1440", () => {
     test.beforeEach(async ({ page }) => {
       await page.setViewportSize({ width: 1440, height: 900 });
+      await page.addInitScript(IO_MOCK);
     });
 
     for (const path of PAGES) {
       test(`full page — ${path}`, async ({ page }) => {
         await page.goto(path, { waitUntil: "networkidle" });
         await page.evaluate(() => document.fonts.ready);
-        const isFullPage = FULL_PAGE_PATHS.has(path);
-        if (isFullPage) {
-          // Scroll to bottom to trigger all IntersectionObserver-based animations
-          // (StaggerChildren + FadeIn) before handing off to toHaveScreenshot.
-          await page.evaluate(() =>
-            window.scrollTo(0, document.body.scrollHeight),
-          );
-          await page.evaluate(
-            () =>
-              new Promise<void>((resolve) =>
-                requestAnimationFrame(() =>
-                  requestAnimationFrame(() => resolve()),
-                ),
-              ),
-          );
-          await page.evaluate(() => window.scrollTo(0, 0));
-        }
+        await waitForAnimations(page);
         await expect(page).toHaveScreenshot({
-          fullPage: isFullPage,
+          fullPage: true,
           maxDiffPixelRatio: 0.02,
           mask: [page.locator("footer")], // copyright year is dynamic
         });
@@ -87,6 +98,7 @@ test.describe("visual regression", () => {
     test("hero section — /", async ({ page }) => {
       await page.goto("/", { waitUntil: "networkidle" });
       await page.evaluate(() => document.fonts.ready);
+      await waitForAnimations(page);
       await expect(page.locator("section").first()).toHaveScreenshot({
         maxDiffPixelRatio: 0.02,
       });
@@ -96,29 +108,16 @@ test.describe("visual regression", () => {
   test.describe("mobile 375", () => {
     test.beforeEach(async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 812 });
+      await page.addInitScript(IO_MOCK);
     });
 
     for (const path of PAGES) {
       test(`full page — ${path}`, async ({ page }) => {
         await page.goto(path, { waitUntil: "networkidle" });
         await page.evaluate(() => document.fonts.ready);
-        const isFullPage = FULL_PAGE_PATHS.has(path);
-        if (isFullPage) {
-          await page.evaluate(() =>
-            window.scrollTo(0, document.body.scrollHeight),
-          );
-          await page.evaluate(
-            () =>
-              new Promise<void>((resolve) =>
-                requestAnimationFrame(() =>
-                  requestAnimationFrame(() => resolve()),
-                ),
-              ),
-          );
-          await page.evaluate(() => window.scrollTo(0, 0));
-        }
+        await waitForAnimations(page);
         await expect(page).toHaveScreenshot({
-          fullPage: isFullPage,
+          fullPage: true,
           maxDiffPixelRatio: 0.02,
           mask: [page.locator("footer")], // copyright year is dynamic
         });
@@ -128,6 +127,7 @@ test.describe("visual regression", () => {
     test("hero section — /", async ({ page }) => {
       await page.goto("/", { waitUntil: "networkidle" });
       await page.evaluate(() => document.fonts.ready);
+      await waitForAnimations(page);
       await expect(page.locator("section").first()).toHaveScreenshot({
         maxDiffPixelRatio: 0.02,
       });
