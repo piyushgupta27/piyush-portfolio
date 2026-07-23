@@ -28,16 +28,17 @@ const PAGES = ["/", "/experience", "/blog"] as const;
 // callback. React 18 batches these updates asynchronously via MessageChannel,
 // so they may not be committed before Playwright's networkidle fires. The mock
 // makes observe() call the callback immediately — still batched, but the batch
-// is guaranteed to commit before the next paint, which waitForAnimations() can
-// then catch. Also prevents any real Observer from firing when toHaveScreenshot
-// extends the virtual viewport for fullPage capture.
+// is guaranteed to commit before the 500ms networkidle window closes. Also
+// prevents any real Observer from firing when toHaveScreenshot extends the
+// virtual viewport for fullPage capture.
 //
 // Known side-effect: ExperienceNavStrip and ExperienceArc also use IO to track
 // activeSlug. The mock fires all entries' callbacks in order → last-entry-wins
 // → baselines show HyperTrack highlighted instead of Slice. This is consistent
 // across all runs so the test is stable, but doesn't reflect real initial state.
-// Playwright mask can't cover these elements — sticky/fixed elements report
-// incorrect bounding boxes in fullPage screenshot coordinate space.
+// Playwright mask appears unable to cover these elements — mask attempt produced
+// identical MD5s, likely because sticky elements report incorrect bounding boxes
+// in fullPage screenshot coordinate space (root cause unconfirmed).
 const IO_MOCK = `
   window.IntersectionObserver = class {
     constructor(cb) { this._cb = cb; }
@@ -46,20 +47,6 @@ const IO_MOCK = `
     disconnect() {}
   };
 `;
-
-// Wait for all useInView-driven elements to reach their final visible state.
-// React 18 commits IO-mock state updates via MessageChannel (one tick after
-// effects run) — waitForFunction polls until both FadeIn inline opacity and
-// StaggerChildren data attribute have settled, so toHaveScreenshot sees a
-// layout-stable page for both stability shots.
-async function waitForAnimations(page: import("@playwright/test").Page) {
-  await page.waitForFunction(
-    () =>
-      document.querySelectorAll('[data-stagger="hidden"]').length === 0 &&
-      document.querySelectorAll('[style*="opacity: 0"]').length === 0,
-    { timeout: 10_000 },
-  );
-}
 
 test.describe("visual regression", () => {
   // Set US locale via HTTP header (x-vercel-ip-country is Vercel-edge-only;
@@ -93,7 +80,6 @@ test.describe("visual regression", () => {
       test(`full page — ${path}`, async ({ page }) => {
         await page.goto(path, { waitUntil: "networkidle" });
         await page.evaluate(() => document.fonts.ready);
-        await waitForAnimations(page);
         await expect(page).toHaveScreenshot({
           fullPage: true,
           maxDiffPixelRatio: 0.02,
@@ -105,7 +91,6 @@ test.describe("visual regression", () => {
     test("hero section — /", async ({ page }) => {
       await page.goto("/", { waitUntil: "networkidle" });
       await page.evaluate(() => document.fonts.ready);
-      await waitForAnimations(page);
       await expect(page.locator("section").first()).toHaveScreenshot({
         maxDiffPixelRatio: 0.02,
       });
@@ -122,7 +107,6 @@ test.describe("visual regression", () => {
       test(`full page — ${path}`, async ({ page }) => {
         await page.goto(path, { waitUntil: "networkidle" });
         await page.evaluate(() => document.fonts.ready);
-        await waitForAnimations(page);
         await expect(page).toHaveScreenshot({
           fullPage: true,
           maxDiffPixelRatio: 0.02,
@@ -134,7 +118,6 @@ test.describe("visual regression", () => {
     test("hero section — /", async ({ page }) => {
       await page.goto("/", { waitUntil: "networkidle" });
       await page.evaluate(() => document.fonts.ready);
-      await waitForAnimations(page);
       await expect(page.locator("section").first()).toHaveScreenshot({
         maxDiffPixelRatio: 0.02,
       });
