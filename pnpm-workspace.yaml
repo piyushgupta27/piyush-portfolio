@@ -1,6 +1,11 @@
 packages:
   - '.'
 
+# Force patched versions of transitive deps with active CVEs.
+overrides:
+  postcss: ">=8.5.12"   # GHSA-6g55-p6wh-862q + GHSA-qx2v-qp2m-jg93 via next > postcss
+  sharp: ">=0.35.0"     # GHSA-f88m-g3jw-g9cj + CVE-2026-33327/33328/35590/35591 via next > sharp
+
 # Dependencies allowed to run install/build scripts (pnpm build-script approval).
 # sharp ships the native image binary Next.js uses at build time; biome/esbuild/
 # unrs-resolver are native toolchain deps. msw's postinstall (service worker) is
