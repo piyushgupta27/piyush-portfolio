@@ -31,6 +31,13 @@ const PAGES = ["/", "/experience", "/blog"] as const;
 // is guaranteed to commit before the next paint, which waitForAnimations() can
 // then catch. Also prevents any real Observer from firing when toHaveScreenshot
 // extends the virtual viewport for fullPage capture.
+//
+// Known side-effect: ExperienceNavStrip and ExperienceArc also use IO to track
+// activeSlug. The mock fires all entries' callbacks in order → last-entry-wins
+// → baselines show HyperTrack highlighted instead of Slice. This is consistent
+// across all runs so the test is stable, but doesn't reflect real initial state.
+// Playwright mask can't cover these elements — sticky/fixed elements report
+// incorrect bounding boxes in fullPage screenshot coordinate space.
 const IO_MOCK = `
   window.IntersectionObserver = class {
     constructor(cb) { this._cb = cb; }
