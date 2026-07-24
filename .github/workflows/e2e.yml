@@ -1,0 +1,54 @@
+name: e2e
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: Playwright e2e
+    runs-on: ubuntu-22.04
+    # Run inside the same Playwright image used for baseline generation so
+    # the font stack + system libraries are identical and screenshots are
+    # byte-consistent. Browsers are pre-installed at /ms-playwright
+    # (PLAYWRIGHT_BROWSERS_PATH is preset in the image); no separate install
+    # step is needed.
+    # IMPORTANT: image tag and @playwright/test version in package.json must
+    # stay in lockstep — mismatching them shifts browser build IDs.
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-jammy
+      options: --ipc=host
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run e2e tests
+        run: pnpm e2e
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

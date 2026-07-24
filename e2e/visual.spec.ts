@@ -1,7 +1,10 @@
 import { test, expect } from "@playwright/test";
 
 // Visual regression baselines are captured on linux/amd64 via the Playwright
-// Docker image so they match GitHub Actions ubuntu runners (#38).
+// Docker image (mcr.microsoft.com/playwright:v1.61.1-jammy). CI also runs
+// e2e inside this image (see .github/workflows/e2e.yml — container: block)
+// so the font stack is identical and screenshots are byte-consistent.
+// The image tag must stay in lockstep with @playwright/test in package.json.
 //
 // To regenerate baselines:
 //   pnpm build && pnpm start &           # start the prod server on host
