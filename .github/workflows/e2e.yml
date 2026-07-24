@@ -13,9 +13,17 @@ concurrency:
 jobs:
   e2e:
     name: Playwright e2e
-    # ubuntu-22.04 (jammy) matches the linux/amd64 visual regression baselines
-    # committed in e2e/visual.spec.ts-snapshots/ (generated via Playwright jammy image).
     runs-on: ubuntu-22.04
+    # Run inside the same Playwright image used for baseline generation so
+    # the font stack + system libraries are identical and screenshots are
+    # byte-consistent. Browsers are pre-installed at /ms-playwright
+    # (PLAYWRIGHT_BROWSERS_PATH is preset in the image); no separate install
+    # step is needed.
+    # IMPORTANT: image tag and @playwright/test version in package.json must
+    # stay in lockstep — mismatching them shifts browser build IDs.
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-jammy
+      options: --ipc=host
     timeout-minutes: 20
 
     steps:
@@ -33,16 +41,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: playwright-${{ runner.os }}-
-
-      - name: Install Playwright browsers + system deps
-        run: pnpm exec playwright install --with-deps chromium webkit
 
       - name: Run e2e tests
         run: pnpm e2e
